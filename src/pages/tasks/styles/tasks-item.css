@@ -1,0 +1,16 @@
+.TasksItem {
+  border: 1px dashed black;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.TasksItem__Title {
+  font-weight: var(--font-weight-3);
+  font-size: var(--font-size-2);
+  color: var(--font-color-2);
+}
+.TasksItem__Icon {
+  margin-left: auto;
+}

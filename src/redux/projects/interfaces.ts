@@ -1,11 +1,11 @@
 import { Moment } from "moment";
 
 interface Task {
-  taskNumber: number;
+  isCheck:boolean
+  taskNumber: string;
   heading: string;
   description?: string;
   dateOfCreation: Moment;
-  timeAtWork: Moment;
   expirationDate: Moment;
   priority?: "short" | "average" | "high";
   currentStatus?: "wait" | "work" | "done";

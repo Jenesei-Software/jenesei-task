@@ -1,0 +1,11 @@
+.Modal__Fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    background-color: var(--background-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

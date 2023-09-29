@@ -1,0 +1,11 @@
+.ModalNewProject {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ModalNewProject__Title {
+}
+.ModalNewProject__Input {
+}
+.ModalNewProject__Button {
+}

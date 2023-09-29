@@ -1,12 +1,19 @@
-.ProjectListItem{
-
+.ProjectListItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid black;
+  padding: 10px;
 }
-.ProjectListItem__Title{
-
+.ProjectListItem__Title {
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-3);
+  color: var(--font-color-2);
 }
-.ProjectListItem__Quantity{
-
+.ProjectListItem__Quantity {
+  font-weight: var(--font-weight-3);
+  font-size: var(--font-size-1);
+  color: var(--font-color-2);
 }
-.ProjectListItem__Go{
-    
+.ProjectListItem__Go {
 }

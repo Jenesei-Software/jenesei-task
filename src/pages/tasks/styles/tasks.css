@@ -1,0 +1,40 @@
+.Tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.Tasks__Title {
+  font-weight: var(--font-weight-3);
+  font-size: var(--font-size-3);
+  color: var(--font-color-2);
+}
+.Tasks__List {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px dashed black;
+  padding: 10px;
+}
+.Tasks__List__Item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid black;
+  padding: 10px;
+  width: 100%;
+}
+.Tasks__List__Item__Title {
+  font-weight: var(--font-weight-3);
+  font-size: var(--font-size-1);
+  color: var(--font-color-2);
+}
+.Tasks__List__Item__List {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  gap: 10px;
+}

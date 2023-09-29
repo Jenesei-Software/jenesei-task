@@ -1,0 +1,21 @@
+.ModalTask {
+  background-color: burlywood;
+  padding: 10px;
+  border-radius: 10px;
+}
+.ModalTask__Title {
+}
+.ModalTask__Input {
+}
+.ModalTask__Button {
+}
+.ModalTask__SubTitle {
+  font-weight: var(--font-weight-2);
+  font-size: var(--font-size-1);
+  color: var(--font-color-2);
+}
+.ModalTask__ListOfSubStacks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

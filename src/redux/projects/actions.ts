@@ -6,12 +6,36 @@ export const addProject = (project: Project) => ({
   payload: project,
 });
 
-export const addTask = (projectId: number, task: Task, parentTaskId?: number) => ({
-  type: types.ADD_TASK,
-  payload: { projectId, task, parentTaskId },
+export const setProjects = (projects: Project[]) => ({
+  type: types.SET_PROJECTS,
+  payload: projects,
 });
 
-export const updateTask = (projectId: number, taskId: number, updatedFields: Partial<Task>) => ({
+export const addTask = (
+  projectNumber: string,
+  task: Task,
+  listName: keyof Project,
+  parentTaskId?: string
+) => ({
+  type: types.ADD_TASK,
+  payload: { projectNumber, task, listName, parentTaskId },
+});
+
+export const updateTask = (
+  projectNumber: string,
+  taskNumber: string,
+  updatedFields: Partial<Task>,
+  listName: keyof Project
+) => ({
   type: types.UPDATE_TASK,
-  payload: { projectId, taskId, updatedFields },
+  payload: { projectNumber, taskNumber, updatedFields, listName },
+});
+
+export const deleteTask = (
+  projectNumber: string,
+  taskNumber: string,
+  listName: keyof Project
+) => ({
+  type: types.DELETE_TASK,
+  payload: { projectNumber, taskNumber, listName },
 });

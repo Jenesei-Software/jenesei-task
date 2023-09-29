@@ -2,6 +2,8 @@
   /* /colors */
   --background: #f2f2f6;
 
+  --background-modal: rgba(0, 0, 0, 0.10);;
+
   --font-color-1: #8e8e92;
   --font-color-2: #000000;
   --font-color-3: #b7b7b9;
