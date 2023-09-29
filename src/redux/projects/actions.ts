@@ -24,11 +24,11 @@ export const addTask = (
 export const updateTask = (
   projectNumber: string,
   taskNumber: string,
-  updatedFields: Partial<Task>,
-  listName: keyof Project
+  listName: keyof Project,
+  updatedFields: Partial<Task>
 ) => ({
   type: types.UPDATE_TASK,
-  payload: { projectNumber, taskNumber, updatedFields, listName },
+  payload: { projectNumber, taskNumber, listName, updatedFields },
 });
 
 export const deleteTask = (

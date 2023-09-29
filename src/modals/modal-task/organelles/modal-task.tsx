@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
-
-import { Project, Task } from "../../../redux/projects/interfaces";
+import { useDispatch } from "react-redux";
+import {
+  CurrentStatus,
+  Priority,
+  Project,
+  Task,
+} from "../../../redux/projects/interfaces";
 import { TasksItem } from "../../../pages/tasks/molecules/tasks-item";
 import { ModalNewTask } from "../../modal-new-task/organelles/modal-new-task";
+import { updateTask } from "../../../redux/projects/actions";
 
 import "../styles/modal-task.css";
-import { updateTask } from "../../../redux/projects/actions";
+import moment from "moment";
+import { ModalTaskFile, useFiles } from "../molecules/modal-task-file";
 
 interface IModalTask {
   changeIsModal: () => void;
@@ -16,25 +23,36 @@ interface IModalTask {
 export const ModalTask = (props: IModalTask) => {
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [value, setValue] = useState<Task | null>(null);
+  const { files, setFiles, onAddFiles, onRemoveFile, onResetFiles } =
+    useFiles();
+  const dispatch = useDispatch();
   const changeIsAdd = () => {
     setIsAdd(!isAdd);
   };
-  const changeValue = () => {
-    dispatch(
-      updateTask(
-        props.projectNumber,
-        props.value.taskNumber,
-        {
-          heading: value?.heading,
-          description: value?.description,
-        },
-        props.listName
-      )
-    );
+  const saveValue = () => {
+    if (value)
+      dispatch(
+        updateTask(props.projectNumber, value.taskNumber, props.listName, {
+          priority: value.priority,
+          currentStatus: value.currentStatus,
+          heading: value.heading,
+          description: value.description,
+          expirationDate: moment(new Date(), "ddd MMM DD YYYY HH:mm:ss ZZ"),
+          attachedFiles: files,
+        })
+      );
+    props.changeIsModal();
+  };
+  const handlePriority = (priority: Priority) => {
+    if (value) setValue({ ...value, priority: priority });
+  };
+  const handleCurrentStatus = (currentStatus: CurrentStatus) => {
+    if (value) setValue({ ...value, currentStatus: currentStatus });
   };
   useEffect(() => {
     if (props.value) {
       setValue(props.value);
+      if (props.value.attachedFiles) setFiles(props.value.attachedFiles);
     }
     return () => {
       setValue(null);
@@ -53,6 +71,14 @@ export const ModalTask = (props: IModalTask) => {
         )}
         <div className="ModalTask">
           <div className="ModalTask__Title">Task - {value.heading}</div>
+          <div className="ModalTask__DateOfCreation">
+            <div className="ModalTask__SubTitle">Date Of Creation</div>
+            {String(value.dateOfCreation)}
+          </div>
+          <div className="ModalTask__ExpirationDate">
+            <div className="ModalTask__SubTitle">Expiration Date</div>
+            {String(value.expirationDate)}
+          </div>
           <div className="ModalTask__Heading">
             <div className="ModalTask__SubTitle">Heading</div>
             <input
@@ -95,23 +121,102 @@ export const ModalTask = (props: IModalTask) => {
                   projectNumber={props.projectNumber}
                   listName={props.listName}
                   isCheck={e.isCheck}
+                  priority={e.priority}
+                  currentStatus={e.currentStatus}
+                  attachedFiles={e.attachedFiles}
+                  description={e.description}
                 />
               </div>
             ))}
           </div>
           <div className="ModalTask__Priority">
             <div className="ModalTask__SubTitle">Priority</div>
-            <div></div>
+            <div className="ModalTask__List">
+              <div
+                className={
+                  value.priority === "short"
+                    ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                    : "ModalTask__List__Item"
+                }
+                onClick={() => handlePriority("short")}
+              >
+                short
+              </div>
+              <div
+                className={
+                  value.priority === "average"
+                    ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                    : "ModalTask__List__Item"
+                }
+                onClick={() => handlePriority("average")}
+              >
+                average
+              </div>
+              <div
+                className={
+                  value.priority === "high"
+                    ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                    : "ModalTask__List__Item"
+                }
+                onClick={() => handlePriority("high")}
+              >
+                high
+              </div>
+            </div>
           </div>
           <div className="ModalTask__CurrentStatus">
             <div className="ModalTask__SubTitle">Current Status</div>
-            <div></div>
+            <div className="ModalTask__List">
+              <div
+                className={
+                  value.currentStatus === "wait"
+                    ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                    : "ModalTask__List__Item"
+                }
+                onClick={() => handleCurrentStatus("wait")}
+              >
+                wait
+              </div>
+              <div
+                className={
+                  value.currentStatus === "work"
+                    ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                    : "ModalTask__List__Item"
+                }
+                onClick={() => handleCurrentStatus("work")}
+              >
+                work
+              </div>
+              <div
+                className={
+                  value.currentStatus === "done"
+                    ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                    : "ModalTask__List__Item"
+                }
+                onClick={() => handleCurrentStatus("done")}
+              >
+                done
+              </div>
+            </div>
           </div>
           <div className="ModalTask__AttachedFiles">
             <div className="ModalTask__SubTitle">Attached Files</div>
-            <div></div>
+            <ModalTaskFile
+              id={value.taskNumber}
+              files={files}
+              onAddFiles={onAddFiles}
+              onRemoveFile={onRemoveFile}
+              onResetFiles={onResetFiles}
+              multiple
+              clearFilesBtnClassName="file-uploader-clear-files-btn"
+            >
+            </ModalTaskFile>
           </div>
-          <button className="ModalTask__Button" type="submit">
+          <button
+            onClick={saveValue}
+            className="ModalTask__Button"
+            type="submit"
+          >
             Сохранить
           </button>
           <button className="ModalTask__Button" onClick={props.changeIsModal}>
@@ -122,6 +227,3 @@ export const ModalTask = (props: IModalTask) => {
     )
   );
 };
-function dispatch(arg0: any) {
-  throw new Error("Function not implemented.");
-}

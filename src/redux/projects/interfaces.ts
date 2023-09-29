@@ -1,14 +1,17 @@
 import { Moment } from "moment";
 
+type Priority = "short" | "average" | "high";
+type CurrentStatus = "wait" | "work" | "done";
+
 interface Task {
-  isCheck:boolean
+  isCheck: boolean;
   taskNumber: string;
   heading: string;
   description?: string;
   dateOfCreation: Moment;
   expirationDate: Moment;
-  priority?: "short" | "average" | "high";
-  currentStatus?: "wait" | "work" | "done";
+  priority?: Priority;
+  currentStatus?: CurrentStatus;
   attachedFiles?: File[];
   task: Task[];
 }
@@ -25,4 +28,4 @@ interface ProjectsState {
   projects: Project[];
 }
 
-export type { Task, Project, ProjectsState };
+export type { Task, Project, ProjectsState, Priority, CurrentStatus };

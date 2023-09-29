@@ -1,5 +1,6 @@
 import * as types from "./types";
 import { Project, Task } from "./interfaces";
+import moment from "moment";
 
 interface ProjectsState {
   projects: Project[];
@@ -18,7 +19,10 @@ const addTaskToTaskList = (
 
   return taskList.map((task) => {
     if (task.taskNumber === parentTaskId) {
-      return { ...task, task: [...(task.task || []), ModalNewTask] };
+      return {
+        ...task,
+        task: [...(task.task || []), ModalNewTask],
+      };
     }
     if (task.task && task.task.length > 0) {
       return {
@@ -37,7 +41,10 @@ const updateTaskInList = (
 ): Task[] => {
   return taskList.map((task) => {
     if (task.taskNumber === taskNumber) {
-      return { ...task, ...updatedFields };
+      return {
+        ...task,
+        ...updatedFields
+      };
     }
     if (task.task && task.task.length > 0) {
       return {

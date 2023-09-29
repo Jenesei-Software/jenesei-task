@@ -6,6 +6,7 @@ import { ModalTask } from "../../../modals/modal-task/organelles/modal-task";
 import "../styles/tasks-item.css";
 import { useDispatch } from "react-redux";
 import { deleteTask, updateTask } from "../../../redux/projects/actions";
+import moment from "moment";
 
 interface AdditionalProps {
   projectNumber: string;
@@ -22,14 +23,10 @@ export const TasksItem = (props: Task & AdditionalProps) => {
 
   const handleIsCheck = () => {
     dispatch(
-      updateTask(
-        props.projectNumber,
-        props.taskNumber,
-        {
-          isCheck: !props.isCheck,
-        },
-        props.listName
-      )
+      updateTask(props.projectNumber, props.taskNumber, props.listName, {
+        isCheck: !props.isCheck,
+        expirationDate: moment(new Date(), "ddd MMM DD YYYY HH:mm:ss ZZ"),
+      })
     );
   };
 

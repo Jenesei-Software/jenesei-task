@@ -67,6 +67,10 @@ export const Tasks = () => {
                     projectNumber={projectNumber}
                     listName={"queue"}
                     isCheck={e.isCheck}
+                    priority={e.priority}
+                    currentStatus={e.currentStatus}
+                    attachedFiles={e.attachedFiles}
+                    description={e.description}
                   />
                 </div>
               ))}
@@ -87,6 +91,10 @@ export const Tasks = () => {
                     projectNumber={projectNumber}
                     listName={"development"}
                     isCheck={e.isCheck}
+                    priority={e.priority}
+                    currentStatus={e.currentStatus}
+                    attachedFiles={e.attachedFiles}
+                    description={e.description}
                   />
                 </div>
               ))}
@@ -107,6 +115,10 @@ export const Tasks = () => {
                     projectNumber={projectNumber}
                     listName={"done"}
                     isCheck={e.isCheck}
+                    priority={e.priority}
+                    currentStatus={e.currentStatus}
+                    attachedFiles={e.attachedFiles}
+                    description={e.description}
                   />
                 </div>
               ))}
