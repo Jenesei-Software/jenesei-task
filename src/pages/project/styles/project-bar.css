@@ -1,0 +1,19 @@
+.ProjectBar{
+
+}
+.ProjectBar__Add{
+
+}
+.ProjectBar__Add__Title{
+    font-weight: var(--font-weight-3);
+    font-size: var(--font-size-1);
+    color: var(--font-color-2);
+}
+.ProjectBar__Sort{
+
+}
+.ProjectBar__Sort__Title{
+    font-weight: var(--font-weight-3);
+    font-size: var(--font-size-1);
+    color: var(--font-color-2);
+}

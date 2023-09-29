@@ -1,0 +1,5 @@
+.ProjectTitle {
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-3);
+  color: var(--font-color-2);
+}
