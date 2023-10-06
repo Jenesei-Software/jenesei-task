@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
 
@@ -10,6 +10,7 @@ interface IModalNewProject {
   changeIsAdd: () => void;
 }
 export const ModalNewProject = (props: IModalNewProject) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [title, setTitle] = useState<string | null>(null);
   const dispatch = useDispatch();
   const handleModalNewProject = () => {
@@ -25,6 +26,11 @@ export const ModalNewProject = (props: IModalNewProject) => {
       props.changeIsAdd();
     }
   };
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
   return (
     <div className="Modal__Fixed">
       <form
@@ -36,6 +42,7 @@ export const ModalNewProject = (props: IModalNewProject) => {
       >
         <div className="ModalNewProject__Title">Heading of Project</div>
         <input
+          ref={inputRef}
           className="ModalNewProject__Input"
           required
           placeholder="heading"

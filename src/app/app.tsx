@@ -8,7 +8,7 @@ import { RootState } from "../redux/store";
 import { Project } from "../pages/project/organelles/project";
 import { Tasks } from "../pages/tasks/organelles/tasks";
 import { AppGeneral } from "./app-general";
-import { setProjects } from "../redux/projects/actions";
+import { updateProjects } from "../redux/projects/actions";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function App() {
     const savedProjects = localStorage.getItem("projects");
     if (savedProjects) {
       const parsedProjects = JSON.parse(savedProjects);
-      dispatch(setProjects(parsedProjects));
+      dispatch(updateProjects(parsedProjects));
     }
   }, []);
   useEffect(() => {

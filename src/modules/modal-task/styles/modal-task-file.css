@@ -1,0 +1,54 @@
+.ModalTaskFile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 40px;
+  flex-direction: column;
+  border: 1px dashed black;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.ModalTaskFile__Clear {
+}
+.ModalTaskFile__Content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  flex-direction: column;
+}
+.ModalTaskFile__Content__Area {
+  width: 100%;
+  min-height: 100%;
+  cursor: pointer;
+}
+.ModalTaskFile__Content__Area-Active {
+}
+.ModalTaskFile__Content__Hint {
+}
+.ModalTaskFile__Content__Notice {
+}
+.ModalTaskFileElem {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px dashed black;
+  padding: 1px;
+}
+.ModalTaskFileElem__Image {
+}
+.ModalTaskFileElem__Content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.ModalTaskFileElem__Content__Name {
+  width: 150px;
+  overflow: hidden;
+  text-overflow: clip;
+}
+.ModalTaskFileElem__Content__Delete {
+  margin-left: auto;
+}

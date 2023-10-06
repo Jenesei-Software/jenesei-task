@@ -2,6 +2,9 @@
   background-color: burlywood;
   padding: 10px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 .ModalTask__Title {
 }
@@ -25,4 +28,13 @@
 }
 .ModalTask__List__Item__Active {
   color: black;
+}
+.ModalTask__Comments{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  border: 1px dashed black;
+  padding: 4px;
+  box-sizing: border-box;
 }

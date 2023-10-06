@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
 import moment from "moment";
@@ -15,6 +15,7 @@ interface IModalNewTask {
   listName: keyof Project;
 }
 export const ModalNewTask = (props: IModalNewTask) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const DEFAULT_VALUE: Task = {
     isCheck: false,
     taskNumber: v4(),
@@ -33,6 +34,11 @@ export const ModalNewTask = (props: IModalNewTask) => {
       props.changeIsAdd();
     }
   };
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
   return (
     <div className="Modal__Fixed">
       <form
@@ -44,6 +50,7 @@ export const ModalNewTask = (props: IModalNewTask) => {
       >
         <div className="ModalNewTask__Title">Add Task</div>
         <input
+          ref={inputRef}
           className="ModalNewTask__Input"
           required
           placeholder="heading"

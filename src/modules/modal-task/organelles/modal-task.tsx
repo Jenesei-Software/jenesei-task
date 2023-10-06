@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import moment from "moment";
 import {
   CurrentStatus,
   Priority,
@@ -11,8 +12,9 @@ import { ModalNewTask } from "../../modal-new-task/organelles/modal-new-task";
 import { updateTask } from "../../../redux/projects/actions";
 
 import "../styles/modal-task.css";
-import moment from "moment";
 import { ModalTaskFile, useFiles } from "../molecules/modal-task-file";
+import { ModalTaskComments } from "../molecules/modal-task-comments";
+import { Droppable } from "react-beautiful-dnd";
 
 interface IModalTask {
   changeIsModal: () => void;
@@ -21,11 +23,11 @@ interface IModalTask {
   listName: keyof Project;
 }
 export const ModalTask = (props: IModalTask) => {
+  const dispatch = useDispatch();
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [value, setValue] = useState<Task | null>(null);
   const { files, setFiles, onAddFiles, onRemoveFile, onResetFiles } =
     useFiles();
-  const dispatch = useDispatch();
   const changeIsAdd = () => {
     setIsAdd(!isAdd);
   };
@@ -38,7 +40,6 @@ export const ModalTask = (props: IModalTask) => {
           heading: value.heading,
           description: value.description,
           expirationDate: moment(new Date(), "ddd MMM DD YYYY HH:mm:ss ZZ"),
-          attachedFiles: files,
         })
       );
     props.changeIsModal();
@@ -86,7 +87,7 @@ export const ModalTask = (props: IModalTask) => {
               required
               placeholder="heading"
               type="text"
-              value={value.heading}
+              value={value.heading || ""}
               minLength={4}
               onChange={(event) =>
                 setValue({ ...value, heading: event.target.value })
@@ -100,7 +101,7 @@ export const ModalTask = (props: IModalTask) => {
               required
               placeholder="description"
               type="text"
-              value={value.description}
+              value={value.description || ""}
               minLength={4}
               onChange={(event) =>
                 setValue({ ...value, description: event.target.value })
@@ -110,24 +111,32 @@ export const ModalTask = (props: IModalTask) => {
           <div className="ModalTask__ListOfSubStacks">
             <div className="ModalTask__SubTitle">List of subtasks </div>
             <button onClick={() => changeIsAdd()}>Add</button>
-            {value?.task?.map((e: Task) => (
-              <div key={e.taskNumber}>
-                <TasksItem
-                  taskNumber={e.taskNumber}
-                  heading={e.heading}
-                  dateOfCreation={e.dateOfCreation}
-                  expirationDate={e.expirationDate}
-                  task={e.task}
-                  projectNumber={props.projectNumber}
-                  listName={props.listName}
-                  isCheck={e.isCheck}
-                  priority={e.priority}
-                  currentStatus={e.currentStatus}
-                  attachedFiles={e.attachedFiles}
-                  description={e.description}
-                />
-              </div>
-            ))}
+            <Droppable droppableId={props.listName + " " + value.taskNumber}>
+              {(provided) => (
+                <div {...provided.droppableProps} ref={provided.innerRef}>
+                  {props.value?.task?.map((e: Task, index: number) => (
+                    <TasksItem
+                      key={e.taskNumber}
+                      taskNumber={e.taskNumber}
+                      heading={e.heading}
+                      dateOfCreation={e.dateOfCreation}
+                      expirationDate={e.expirationDate}
+                      task={e.task}
+                      projectNumber={props.projectNumber}
+                      listName={props.listName}
+                      isCheck={e.isCheck}
+                      priority={e.priority}
+                      currentStatus={e.currentStatus}
+                      attachedFiles={e.attachedFiles}
+                      description={e.description}
+                      comments={e.comments}
+                      index={index}
+                    />
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
           </div>
           <div className="ModalTask__Priority">
             <div className="ModalTask__SubTitle">Priority</div>
@@ -199,18 +208,23 @@ export const ModalTask = (props: IModalTask) => {
               </div>
             </div>
           </div>
+          <div className="ModalTask__Comments">
+            <ModalTaskComments projectNumber={props.projectNumber} taskNumber={value.taskNumber} listName={props.listName} />
+            {value.comments && value.comments.map((e) =>
+              <ModalTaskComments key={e.commentId} projectNumber={props.projectNumber} taskNumber={value.taskNumber} listName={props.listName} comment={e} />
+            )}
+          </div>
           <div className="ModalTask__AttachedFiles">
             <div className="ModalTask__SubTitle">Attached Files</div>
-            <ModalTaskFile
+            {value.taskNumber && <ModalTaskFile
               id={value.taskNumber}
               files={files}
               onAddFiles={onAddFiles}
               onRemoveFile={onRemoveFile}
               onResetFiles={onResetFiles}
               multiple
-              clearFilesBtnClassName="file-uploader-clear-files-btn"
             >
-            </ModalTaskFile>
+            </ModalTaskFile>}
           </div>
           <button
             onClick={saveValue}

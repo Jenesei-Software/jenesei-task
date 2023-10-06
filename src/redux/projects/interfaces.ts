@@ -4,8 +4,9 @@ type Priority = "short" | "average" | "high";
 type CurrentStatus = "wait" | "work" | "done";
 
 interface Task {
-  isCheck: boolean;
   taskNumber: string;
+
+  isCheck: boolean;
   heading: string;
   description?: string;
   dateOfCreation: Moment;
@@ -13,19 +14,29 @@ interface Task {
   priority?: Priority;
   currentStatus?: CurrentStatus;
   attachedFiles?: File[];
-  task: Task[];
+  task?: Task[];
+  comments?: Comment[];
 }
 
-interface Project {
-  projectNumber: string;
-  title: string;
+interface Comment {
+  commentId: string;
+  content: string;
+  comments?: Comment[];
+}
+
+interface ProjectType {
   queue?: Task[];
   development?: Task[];
   done?: Task[];
+}
+
+interface Project extends ProjectType {
+  projectNumber: string;
+  title: string;
 }
 
 interface ProjectsState {
   projects: Project[];
 }
 
-export type { Task, Project, ProjectsState, Priority, CurrentStatus };
+export type { Task, Project, ProjectsState, Priority, CurrentStatus, Comment, ProjectType };

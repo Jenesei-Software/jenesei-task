@@ -1,0 +1,17 @@
+.ModalTaskComments {
+  margin-left: 10px;
+  border: 1px dashed black;
+  padding: 1px;
+}
+.ModalTaskComments__Content {
+}
+.ModalTaskComments__Content__Bar {
+  display: flex;
+  justify-content: space-between;
+}
+.ModalTaskComments__Input {
+}
+.ModalTaskComments__Button {
+}
+.ModalTaskComments__SubComment {
+}

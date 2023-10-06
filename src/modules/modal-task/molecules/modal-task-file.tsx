@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import React from "react";
 
+import '../styles/modal-task-file.css'
+
 import { ModalTaskFileElem } from "../atoms/modal-task-file-elem";
 
 export const useFiles = (defaultState: File[] = []) => {
@@ -34,7 +36,7 @@ interface IModalTaskFile {
   accept?: string;
   acceptAlert?: boolean;
   multiple?: boolean;
-  id?: string;
+  id: string;
   clearFilesBtnClassName?: string;
   children?: React.ReactNode;
 }
@@ -47,13 +49,10 @@ export const ModalTaskFile = (props: IModalTaskFile) => {
   }, [props.accept]);
 
   const getFilesWithAcceptedTypes = (currentFiles: File[]) => {
-    // Возвращает только те файлы, которые имеют допустимый тип
     if (!props.accept) return currentFiles;
     currentFiles = currentFiles.filter((f) => {
-      // Фильтрация файлов по типу
-      const fileType = "." + f.name.split(".").pop(); // Получаем тип файла
+      const fileType = "." + f.name.split(".").pop();
       if (acceptedTypes?.includes(fileType)) {
-        // Проверяем, включают ли допустимые типы полученный тип файла
         return f;
       } else {
         return null;
@@ -63,7 +62,6 @@ export const ModalTaskFile = (props: IModalTaskFile) => {
   };
 
   const addFiles = (currentFiles: FileList | null) => {
-    // Добавление файлов в список
     if (!currentFiles || !currentFiles.length) return;
 
     const fileArray = getFilesWithAcceptedTypes(Array.from(currentFiles));
@@ -92,7 +90,7 @@ export const ModalTaskFile = (props: IModalTaskFile) => {
   };
 
   return (
-    <div id={props.id} className="ModalTaskFile">
+    <div className="ModalTaskFile">
       {props.files?.length && props.onResetFiles && props.files[0] ? (
         <div
           onClick={resetFiles}
@@ -107,8 +105,8 @@ export const ModalTaskFile = (props: IModalTaskFile) => {
           htmlFor={props.id}
           className={
             drag
-              ? "ModalTaskFile__Content__Browse__Area ModalTaskFile__Content__Browse__Area-Active"
-              : "ModalTaskFile__Content__Browse__Area"
+              ? "ModalTaskFile__Content__Area ModalTaskFile__Content__Area-Active"
+              : "ModalTaskFile__Content__Area"
           }
           onDragStart={(e) => onDragHandler(e, true)}
           onDragLeave={(e) => onDragHandler(e, false)}
@@ -116,19 +114,19 @@ export const ModalTaskFile = (props: IModalTaskFile) => {
           onDrop={(e) => onDropHandler(e)}
         >
           {props.children ?? (
-            <div className="ModalTaskFile__Content__Browse__Hint">
+            <div className="ModalTaskFile__Content__Hint">
               Выберите файлы или перетащите файлы сюда
             </div>
           )}
           {props.accept ? (
             props.acceptAlert ? (
-              <p className="ModalTaskFile__Content__Browse__Notice">
+              <p className="ModalTaskFile__Content__Notice">
                 Разрешены только файлы типов {props.accept.split(",")}
               </p>
             ) : null
           ) : null}
           {props.multiple ? null : (
-            <p className="ModalTaskFile__Content__Browse__Notice">
+            <p className="ModalTaskFile__Content__Notice">
               Можно загрузить только 1 файл
             </p>
           )}
@@ -144,13 +142,12 @@ export const ModalTaskFile = (props: IModalTaskFile) => {
         })}
       </div>
       <input
+        id={props.id}
         type="file"
         accept={props.accept}
         style={{ display: "none" }}
-        id={props.id}
         onChange={(e) => {
           addFiles(e.target.files);
-          e.target.value = "";
         }}
         multiple={props.multiple}
       />
