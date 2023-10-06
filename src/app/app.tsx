@@ -29,6 +29,7 @@ function App() {
         <Route path="/" element={<AppGeneral />}>
           <Route path="*" element={<Navigate to="/project" />} />
           <Route index element={<Navigate to="/project" />} />
+          <Route path="*" element={<Navigate to="/project" />} />
           <Route path="project">
             <Route index element={<Project />} />
             <Route path=":projectNumber" element={<Tasks />} />

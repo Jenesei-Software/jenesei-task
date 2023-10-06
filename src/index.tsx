@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 import './styles/index.css'
 import './styles/fonts.css'
@@ -13,9 +13,9 @@ import { store } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
-  <BrowserRouter basename={"/uptrader-test"}>
+  <HashRouter basename={process.env.PUBLIC_URL}>
     <Provider store={store}><App /></Provider>
-  </BrowserRouter>
+  </HashRouter>
   // </React.StrictMode>
 )
 
