@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
+import { Helmet } from "react-helmet";
 
 import { RootState } from "../../../redux/store";
 import { Project, Task } from "../../../redux/projects/interfaces";
@@ -93,6 +94,11 @@ export const Tasks = () => {
         <button>Return to list of projects</button>
       </NavLink>
       {projectIndex !== null && <>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Jen Tasks - {projectState.projects[projectIndex]?.title}</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
         <div className="Tasks__Title">{projectState.projects[projectIndex]?.title}</div>
         {projectNumber &&
           <DragDropContext onDragEnd={onDragEnd}>
