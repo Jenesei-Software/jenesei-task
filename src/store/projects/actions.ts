@@ -11,6 +11,11 @@ export const updateProjects = (projects: Project[]) => ({
   payload: projects,
 });
 
+export const updateProject = (project: Project) => ({
+  type: types.UPDATE_PROJECT,
+  payload: project,
+});
+
 export const addTask = (
   projectNumber: string,
   task: Task,

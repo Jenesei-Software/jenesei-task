@@ -1,0 +1,11 @@
+.ModalEditColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ModalEditColumn__Title {
+}
+.ModalEditColumn__Input {
+}
+.ModalEditColumn__Button {
+}

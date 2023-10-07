@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import moment from "moment";
 import { Draggable } from "react-beautiful-dnd";
 
-import { CurrentStatusList, PriorityList, Task, Comment } from "../../../redux/projects/interfaces";
+import { CurrentStatusList, PriorityList, Task, Comment } from "../../../store/projects/interfaces";
 import { ModalTask } from "../../../modules/modal-task/organelles/modal-task";
-import { updateTask } from "../../../redux/projects/actions";
+import { updateTask } from "../../../store/projects/actions";
 
 import "../styles/tasks-item.css";
 

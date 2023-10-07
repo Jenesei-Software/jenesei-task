@@ -4,7 +4,7 @@ import { v4 } from "uuid";
 
 import "../styles/modal-new-project.css";
 
-import { addProject } from "../../../redux/projects/actions";
+import { addProject } from "../../../store/projects/actions";
 
 interface IModalNewProject {
   changeIsAdd: () => void;
@@ -19,9 +19,9 @@ export const ModalNewProject = (props: IModalNewProject) => {
         projectNumber: v4(),
         title: title,
         columns: {
-          queue: [],
-          development: [],
-          done: [],
+          queue: { list: [] },
+          development: { list: [] },
+          done: { list: [] },
         }
       };
       dispatch(addProject(ModalNewProject));

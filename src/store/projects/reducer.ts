@@ -92,7 +92,7 @@ const getTaskList = (
   project: Project,
   listName: string
 ): Task[] | undefined => {
-  return project.columns[listName];
+  return project.columns[listName]?.list;
 };
 
 const deleteTaskInList = (taskList: Task[], taskNumber: string): Task[] => {
@@ -171,6 +171,17 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
     case types.UPDATE_PROJECTS: {
       return { ...state, projects: action.payload };
     }
+    case types.UPDATE_PROJECT: {
+      const updatedProject = action.payload;
+      return {
+        ...state,
+        projects: state.projects.map((project) =>
+          project.projectNumber === updatedProject.projectNumber
+            ? updatedProject
+            : project
+        ),
+      };
+    }
     case types.ADD_TASK: {
       const { projectNumber, task, listName, parentTaskId, index } =
         action.payload;
@@ -182,12 +193,15 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
                 ...project,
                 columns: {
                   ...project.columns,
-                  [listName]: addTaskToTaskList(
-                    getTaskList(project, listName) || [],
-                    task,
-                    parentTaskId,
-                    index
-                  ),
+                  [listName]: {
+                    ...project.columns[listName],
+                    list: addTaskToTaskList(
+                      getTaskList(project, listName) || [],
+                      task,
+                      parentTaskId,
+                      index
+                    ),
+                  },
                 },
               }
             : project
@@ -199,42 +213,52 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
         action.payload;
       return {
         ...state,
-        projects: state.projects.map((project) => {
-          if (project.projectNumber === projectNumber) {
-            return {
-              ...project,
-              columns: {
-                ...project.columns,
-                [listName]: updateTaskInList(
-                  getTaskList(project, listName) || [],
-                  taskNumber,
-                  updatedFields
-                ),
+        projects: state.projects.map((project: Project) => {
+          if (project.projectNumber !== projectNumber) return project;
+          if (!project.columns[listName]) return project;
+          const updatedTasks = updateTaskInList(
+            project.columns[listName]?.list || [],
+            taskNumber,
+            updatedFields
+          );
+
+          return {
+            ...project,
+            columns: {
+              ...project.columns,
+              [listName]: {
+                ...project.columns[listName],
+                list: updatedTasks,
               },
-            };
-          }
-          return project;
+            },
+          };
         }),
       };
     }
     case types.DELETE_TASK: {
       const { projectNumber, taskNumber, listName } = action.payload;
+
       return {
         ...state,
-        projects: state.projects.map((project) =>
-          project.projectNumber === projectNumber
-            ? {
-                ...project,
-                columns: {
-                  ...project.columns,
-                  [listName]: deleteTaskInList(
-                    getTaskList(project, listName) || [],
-                    taskNumber
-                  ),
-                },
-              }
-            : project
-        ),
+        projects: state.projects.map((project: Project) => {
+          if (project.projectNumber !== projectNumber) return project;
+
+          const updatedTasks = deleteTaskInList(
+            project.columns[listName]?.list || [],
+            taskNumber
+          );
+
+          return {
+            ...project,
+            columns: {
+              ...project.columns,
+              [listName]: {
+                ...project.columns[listName],
+                list: updatedTasks,
+              },
+            },
+          };
+        }),
       };
     }
     case types.MOVE_TASK: {
@@ -249,13 +273,13 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
 
       return {
         ...state,
-        projects: state.projects.map((project) => {
+        projects: state.projects.map((project: Project) => {
           if (project.projectNumber !== projectNumber) return project;
 
-          const sourceTaskList = getTaskList(project, sourceList) || [];
+          const sourceTaskList = project.columns[sourceList]?.list || [];
           if (!task) return project;
 
-          const updatedProject = {
+          const updatedProject: Project = {
             ...project,
             columns: { ...project.columns },
           };
@@ -271,85 +295,65 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
               parentTaskId,
               index
             );
-            updatedProject.columns[sourceList] = withMovedTask;
+            updatedProject.columns[sourceList].list = withMovedTask;
           } else {
             const updatedSourceList = deleteTaskInList(
               sourceTaskList,
               task.taskNumber
             );
             const updatedDestinationList = addTaskToTaskList(
-              getTaskList(project, destinationList) || [],
+              project.columns[destinationList]?.list || [],
               task,
               parentTaskId,
               index
             );
 
-            updatedProject.columns[sourceList] = updatedSourceList;
-            updatedProject.columns[destinationList] = updatedDestinationList;
+            updatedProject.columns[sourceList].list = updatedSourceList;
+            if (updatedProject.columns[destinationList]) {
+              updatedProject.columns[destinationList].list =
+                updatedDestinationList;
+            } else {
+              updatedProject.columns[destinationList] = {
+                list: updatedDestinationList,
+              };
+            }
           }
 
           return updatedProject;
         }),
       };
     }
-    case types.MOVE_COLUMNS: {
-      const { projectNumber, indexStart, indexEnd } = action.payload;
 
-      // Найдем индекс проекта на основе projectNumber
-      const projectIndex = state.projects.findIndex(
-        (p) => p.projectNumber === projectNumber
-      );
-
-      if (projectIndex === -1) return state;
-
-      const currentProject = state.projects[projectIndex];
-
-      // Переупорядочим столбцы на основе индексов indexStart и indexEnd
-      const reorderedColumnsEntries = reorder(
-        Object.entries(currentProject.columns),
-        indexStart,
-        indexEnd
-      );
-      const reorderedColumns = Object.fromEntries(reorderedColumnsEntries);
-
-      // Создадим новый проект с обновленным порядком столбцов
-      const updatedProject = {
-        ...currentProject,
-        columns: reorderedColumns,
-      };
-
-      // Обновим список проектов с новым проектом
-      const updatedProjects = [
-        ...state.projects.slice(0, projectIndex),
-        updatedProject,
-        ...state.projects.slice(projectIndex + 1),
-      ];
-
-      return { ...state, projects: updatedProjects };
-    }
     case types.ADD_COMMENT: {
       const { projectNumber, taskNumber, listName, comment, parentCommentId } =
         action.payload;
+
       return {
         ...state,
-        projects: state.projects.map((project) =>
-          project.projectNumber === projectNumber
-            ? {
-                ...project,
-                columns: {
-                  ...project.columns,
-                  [listName]: addCommentToTask(
-                    getTaskList(project, listName) || [],
-                    taskNumber,
-                    comment,
-                    parentCommentId
-                  ),
-                },
-              }
-            : project
-        ),
+        projects: state.projects.map((project: Project) => {
+          if (project.projectNumber !== projectNumber) return project;
+
+          const updatedTasks = addCommentToTask(
+            project.columns[listName]?.list || [],
+            taskNumber,
+            comment,
+            parentCommentId
+          );
+
+          return {
+            ...project,
+            columns: {
+              ...project.columns,
+              [listName]: {
+                ...project.columns[listName],
+                list: updatedTasks,
+              },
+            },
+          };
+        }),
       };
     }
+
     case types.ADD_COLUMNS: {
       const { projectNumber, columnName } = action.payload;
 
@@ -361,7 +365,9 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
                 ...project,
                 columns: {
                   ...project.columns,
-                  [columnName]: [],
+                  [columnName]: {
+                    list: [],
+                  },
                 },
               }
             : project
@@ -386,6 +392,37 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
             : project
         ),
       };
+    }
+    case types.MOVE_COLUMNS: {
+      const { projectNumber, indexStart, indexEnd } = action.payload;
+
+      const projectIndex = state.projects.findIndex(
+        (p) => p.projectNumber === projectNumber
+      );
+
+      if (projectIndex === -1) return state;
+
+      const currentProject = state.projects[projectIndex];
+
+      const reorderedColumnsEntries = reorder(
+        Object.entries(currentProject.columns),
+        indexStart,
+        indexEnd
+      );
+      const reorderedColumns = Object.fromEntries(reorderedColumnsEntries);
+
+      const updatedProject = {
+        ...currentProject,
+        columns: reorderedColumns,
+      };
+
+      const updatedProjects = [
+        ...state.projects.slice(0, projectIndex),
+        updatedProject,
+        ...state.projects.slice(projectIndex + 1),
+      ];
+
+      return { ...state, projects: updatedProjects };
     }
     default:
       return state;

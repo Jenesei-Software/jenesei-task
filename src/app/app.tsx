@@ -7,8 +7,8 @@ import "./app.css";
 import { Project } from "../pages/project/organelles/project";
 import { Tasks } from "../pages/tasks/organelles/tasks";
 import { AppGeneral } from "./app-general/organelles/app-general";
-import { updateProjects } from "../redux/projects/actions";
-import { RootState } from "../redux/store";
+import { updateProjects } from "../store/projects/actions";
+import { RootState } from "../store/store";
 
 function App() {
   const projectState = useSelector((state: RootState) => state.projectsState);

@@ -8,8 +8,8 @@ import '../styles/modal-task-comments.css'
 
 import {
   Comment, Project,
-} from "../../../redux/projects/interfaces";
-import { addComment } from "../../../redux/projects/actions";
+} from "../../../store/projects/interfaces";
+import { addComment } from "../../../store/projects/actions";
 
 interface INewComment {
   commentContent: string

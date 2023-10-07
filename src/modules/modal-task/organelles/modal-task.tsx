@@ -8,10 +8,10 @@ import {
   Priority,
   Project,
   Task,
-} from "../../../redux/projects/interfaces";
+} from "../../../store/projects/interfaces";
 import { TasksItem } from "../../../pages/tasks/molecules/tasks-item";
 import { ModalNewTask } from "../../modal-new-task/organelles/modal-new-task";
-import { deleteTask, updateTask } from "../../../redux/projects/actions";
+import { deleteTask, updateTask } from "../../../store/projects/actions";
 import { ModalTaskFile, useFiles } from "../molecules/modal-task-file";
 import { ModalTaskComments } from "../molecules/modal-task-comments";
 

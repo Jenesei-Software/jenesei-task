@@ -1,4 +1,5 @@
 import { Middleware, applyMiddleware, combineReducers, createStore } from "redux";
+
 import { ProjectsState } from "./projects/interfaces";
 import projectsReducer from "./projects/reducer";
 

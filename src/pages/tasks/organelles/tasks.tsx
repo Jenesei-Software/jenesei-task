@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { DragDropContext, Draggable, DropResult, Droppable } from "react-beautiful-dnd";
 import { Helmet } from "react-helmet";
 
-import { RootState } from "../../../redux/store";
-import { Project, Task } from "../../../redux/projects/interfaces";
+import { RootState } from "../../../store/store";
+import { Project, Task } from "../../../store/projects/interfaces";
 import { TasksItem } from "../molecules/tasks-item";
 import { ModalNewTask } from "../../../modules/modal-new-task/organelles/modal-new-task";
-import { moveColumns, moveTask } from "../../../redux/projects/actions";
+import { moveColumns, moveTask } from "../../../store/projects/actions";
 import { TasksHeader } from "../molecules/tasks-header";
 import { TasksItemAdd } from "../molecules/tasks-item-add";
 
@@ -66,7 +66,7 @@ export const Tasks = () => {
         );
       } else if (projectIndex !== null) {
         if (project && project.columns[listNameStart]) {
-          const taskList = project.columns[listNameStart] as Task[];
+          const taskList = project.columns[listNameStart].list as Task[];
           const taskToMove = findTaskRecursively(taskList, resultId);
 
           if (taskToMove) {
@@ -101,9 +101,8 @@ export const Tasks = () => {
         <Helmet>
           <meta charSet="utf-8" />
           <title>Jen Task - {projectState.projects[projectIndex]?.title}</title>
-          <link rel="canonical" href="http://mysite.com/example" />
         </Helmet>
-        <TasksHeader projectNumber={projectNumber} title={projectState.projects[projectIndex]?.title} />
+        <TasksHeader project={projectState.projects[projectIndex]} title={projectState.projects[projectIndex]?.title} />
         <DragDropContext onDragEnd={onDragEnd}>
           {/* Columns  Droppable*/}
           <Droppable droppableId={JSON.stringify({ listName: "droppable-lists", taskNumber: undefined })} type="LIST" direction="horizontal">
@@ -129,7 +128,7 @@ export const Tasks = () => {
                             <Droppable droppableId={JSON.stringify({ listName: listName, taskNumber: undefined })} type="TASK">
                               {(provided) => (
                                 <div {...provided.droppableProps} ref={provided.innerRef} className="Tasks__List__Item__List">
-                                  {tasks.map((task: Task, index: number) => (
+                                  {tasks.list.map((task: Task, index: number) => (
                                     // Task Draggable
                                     <TasksItem
                                       {...task}

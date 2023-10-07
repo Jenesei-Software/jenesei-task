@@ -1,0 +1,11 @@
+.ModalEditProject {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ModalEditProject__Title {
+}
+.ModalEditProject__Input {
+}
+.ModalEditProject__Button {
+}

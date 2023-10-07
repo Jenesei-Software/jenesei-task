@@ -1,21 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
 
-import "../styles/modal-new-column.css";
+import "../styles/modal-edit-column.css";
 
-import { addColumn } from "../../../store/projects/actions";
 
-interface IModalNewColumn {
+interface IModalEditColumn {
   changeIsAdd: () => void;
   projectNumber: string
 }
-export const ModalNewColumn = (props: IModalNewColumn) => {
+export const ModalEditColumn = (props: IModalEditColumn) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [title, setTitle] = useState<string | null>(null);
-  const dispatch = useDispatch();
-  const handleModalNewColumn = () => {
+  // const dispatch = useDispatch();
+  const handleModalEditColumn = () => {
     if (title) {
-      dispatch(addColumn(props.projectNumber, title));
+      // dispatch(addColumn(props.projectNumber, title));
       props.changeIsAdd();
     }
   };
@@ -27,16 +25,16 @@ export const ModalNewColumn = (props: IModalNewColumn) => {
   return (
     <div className="Modal__Fixed">
       <form
-        className="ModalNewColumn"
+        className="ModalEditColumn"
         onSubmit={(e) => {
           e.preventDefault();
-          handleModalNewColumn();
+          handleModalEditColumn();
         }}
       >
-        <div className="ModalNewColumn__Title">Heading of Columns</div>
+        <div className="ModalEditColumn__Title">Heading of Columns</div>
         <input
           ref={inputRef}
-          className="ModalNewColumn__Input"
+          className="ModalEditColumn__Input"
           required
           placeholder="heading"
           type="text"
@@ -44,10 +42,10 @@ export const ModalNewColumn = (props: IModalNewColumn) => {
           minLength={4}
           onChange={(event) => setTitle(event.target.value)}
         />
-        <button className="ModalNewColumn__Button" type="submit">
+        <button className="ModalEditColumn__Button" type="submit">
           Create
         </button>
-        <button className="ModalNewColumn__Button" onClick={props.changeIsAdd}>
+        <button className="ModalEditColumn__Button" onClick={props.changeIsAdd}>
           Cancel
         </button>
       </form>

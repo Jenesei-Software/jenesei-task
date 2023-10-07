@@ -1,5 +1,6 @@
 export const ADD_PROJECT = 'ADD_PROJECT';
 export const UPDATE_PROJECTS = 'UPDATE_PROJECTS';
+export const UPDATE_PROJECT = 'UPDATE_PROJECT';
 
 export const ADD_TASK = 'ADD_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';

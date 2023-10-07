@@ -37,13 +37,17 @@ interface Comment {
 
 interface ProjectType {
   columns: {
-    [columnName: string]: Task[];
-  }
+    [columnName: string]: {
+      list: Task[];
+      description?: string;
+    };
+  };
 }
 
 interface Project extends ProjectType {
   projectNumber: string;
   title: string;
+  backgroundLink?: string;
 }
 
 interface ProjectsState {

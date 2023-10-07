@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { Flipped, Flipper } from "react-flip-toolkit";
 import { useParams } from "react-router-dom";
 
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../../store/store";
 import { ProjectListItem } from "../atoms/project-list-item";
-import { Project } from "../../../redux/projects/interfaces";
+import { Project } from "../../../store/projects/interfaces";
 import { ProjectListItemZero } from "../atoms/project-list-item-zero";
 
 import "../styles/project-list.css";

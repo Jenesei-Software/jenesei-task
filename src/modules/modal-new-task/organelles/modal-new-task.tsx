@@ -5,8 +5,8 @@ import moment from "moment";
 
 import "../styles/modal-new-task.css";
 
-import { addTask } from "../../../redux/projects/actions";
-import { Task } from "../../../redux/projects/interfaces";
+import { addTask } from "../../../store/projects/actions";
+import { Task } from "../../../store/projects/interfaces";
 
 interface IModalNewTask {
   changeIsAdd: () => void;

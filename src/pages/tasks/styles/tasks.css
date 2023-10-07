@@ -27,6 +27,7 @@
   border: 1px solid #d9d9d9;
   margin: 12px;
   box-sizing: border-box;
+  background-color: var(--block-color-1);
 }
 .Tasks__List__Item__Title {
   font-weight: var(--font-weight-4);
@@ -41,4 +42,5 @@
   align-content: flex-start;
   user-select: none;
   min-height: 1px;
+  height: 100%;
 }
