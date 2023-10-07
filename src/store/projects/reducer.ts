@@ -182,6 +182,7 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
         ),
       };
     }
+    
     case types.ADD_TASK: {
       const { projectNumber, task, listName, parentTaskId, index } =
         action.payload;
