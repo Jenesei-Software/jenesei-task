@@ -1,11 +1,15 @@
 .AppGeneral {
   display: grid;
   grid-template-columns: 80px 1fr;
+  padding-right: 12px;
+  width: 100dvw;
+  box-sizing: border-box;
 }
 .AppGeneral__Outlet {
   grid-column-start: 2;
-  grid-column-end: auto;
+  grid-column-end: 3;
   grid-row-start: 2;
-  grid-row-end: auto;
+  grid-row-end: 3;
   background: var(--block-color-1);
+  overflow: hidden;
 }

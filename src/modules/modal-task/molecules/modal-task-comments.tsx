@@ -15,7 +15,7 @@ interface INewComment {
   commentContent: string
   projectNumber: string
   taskNumber: string
-  listName: keyof Project;
+  listName: string;
   parentCommentId?: string
   dispatch: Dispatch<AnyAction>
 }
@@ -38,7 +38,7 @@ export const newComment = (props: INewComment) => {
 interface IModalTaskComments {
   projectNumber: string;
   taskNumber: string;
-  listName: keyof Project;
+  listName: string;
   comment?: Comment
 }
 export const ModalTaskComments = (props: IModalTaskComments) => {

@@ -1,13 +1,12 @@
 import { NavLink } from "react-router-dom";
 
-import { Project, ProjectType, Task } from "../../../redux/projects/interfaces";
+import { Project } from "../../../redux/projects/interfaces";
 
 import "../styles/project-list-item.css";
 
-const getTotalTasks = (project: ProjectType): number => {
-  return Object.keys(project)
-    .filter(key => Array.isArray(project[key as keyof ProjectType]))
-    .reduce((acc, key) => acc + (project[key as keyof ProjectType] as Task[]).length, 0);
+const getTotalTasks = (project: Project): number => {
+  return Object.values(project.columns || {})
+    .reduce((acc, tasks) => acc + tasks.length, 0);
 }
 
 export const ProjectListItem = (props: Project) => {

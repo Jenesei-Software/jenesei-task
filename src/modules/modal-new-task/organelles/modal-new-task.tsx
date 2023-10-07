@@ -6,13 +6,13 @@ import moment from "moment";
 import "../styles/modal-new-task.css";
 
 import { addTask } from "../../../redux/projects/actions";
-import { Project, Task } from "../../../redux/projects/interfaces";
+import { Task } from "../../../redux/projects/interfaces";
 
 interface IModalNewTask {
   changeIsAdd: () => void;
   projectNumber: string;
   taskNumber?: string;
-  listName: keyof Project;
+  listName: string;
 }
 export const ModalNewTask = (props: IModalNewTask) => {
   const inputRef = useRef<HTMLInputElement>(null);

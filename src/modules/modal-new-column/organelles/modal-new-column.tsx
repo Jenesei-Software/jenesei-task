@@ -1,30 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { v4 } from "uuid";
 
-import "../styles/modal-new-project.css";
+import "../styles/modal-new-column.css";
 
-import { addProject } from "../../../redux/projects/actions";
+import { addColumn } from "../../../redux/projects/actions";
 
-interface IModalNewProject {
+interface IModalNewColumn {
   changeIsAdd: () => void;
+  projectNumber: string
 }
-export const ModalNewProject = (props: IModalNewProject) => {
+export const ModalNewColumn = (props: IModalNewColumn) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [title, setTitle] = useState<string | null>(null);
   const dispatch = useDispatch();
-  const handleModalNewProject = () => {
+  const handleModalNewColumn = () => {
     if (title) {
-      const ModalNewProject = {
-        projectNumber: v4(),
-        title: title,
-        columns: {
-          queue: [],
-          development: [],
-          done: [],
-        }
-      };
-      dispatch(addProject(ModalNewProject));
+      dispatch(addColumn(props.projectNumber, title));
       props.changeIsAdd();
     }
   };
@@ -36,16 +27,16 @@ export const ModalNewProject = (props: IModalNewProject) => {
   return (
     <div className="Modal__Fixed">
       <form
-        className="ModalNewProject"
+        className="ModalNewColumn"
         onSubmit={(e) => {
           e.preventDefault();
-          handleModalNewProject();
+          handleModalNewColumn();
         }}
       >
-        <div className="ModalNewProject__Title">Heading of Project</div>
+        <div className="ModalNewColumn__Title">Heading of Columns</div>
         <input
           ref={inputRef}
-          className="ModalNewProject__Input"
+          className="ModalNewColumn__Input"
           required
           placeholder="heading"
           type="text"
@@ -53,10 +44,10 @@ export const ModalNewProject = (props: IModalNewProject) => {
           minLength={4}
           onChange={(event) => setTitle(event.target.value)}
         />
-        <button className="ModalNewProject__Button" type="submit">
+        <button className="ModalNewColumn__Button" type="submit">
           Create
         </button>
-        <button className="ModalNewProject__Button" onClick={props.changeIsAdd}>
+        <button className="ModalNewColumn__Button" onClick={props.changeIsAdd}>
           Cancel
         </button>
       </form>

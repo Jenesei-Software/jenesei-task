@@ -9,6 +9,13 @@ const initialState: ProjectsState = {
   projects: [],
 };
 
+function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+  return result;
+}
+
 const addTaskToTaskList = (
   taskList: Task[] = [],
   ModalNewTask: Task,
@@ -85,14 +92,7 @@ const getTaskList = (
   project: Project,
   listName: string
 ): Task[] | undefined => {
-  if (
-    listName === "queue" ||
-    listName === "development" ||
-    listName === "done"
-  ) {
-    return project[listName];
-  }
-  return undefined;
+  return project.columns[listName];
 };
 
 const deleteTaskInList = (taskList: Task[], taskNumber: string): Task[] => {
@@ -180,12 +180,15 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
           project.projectNumber === projectNumber
             ? {
                 ...project,
-                [listName]: addTaskToTaskList(
-                  getTaskList(project, listName) || [],
-                  task,
-                  parentTaskId,
-                  index
-                ),
+                columns: {
+                  ...project.columns,
+                  [listName]: addTaskToTaskList(
+                    getTaskList(project, listName) || [],
+                    task,
+                    parentTaskId,
+                    index
+                  ),
+                },
               }
             : project
         ),
@@ -200,11 +203,14 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
           if (project.projectNumber === projectNumber) {
             return {
               ...project,
-              [listName]: updateTaskInList(
-                getTaskList(project, listName) || [],
-                taskNumber,
-                updatedFields
-              ),
+              columns: {
+                ...project.columns,
+                [listName]: updateTaskInList(
+                  getTaskList(project, listName) || [],
+                  taskNumber,
+                  updatedFields
+                ),
+              },
             };
           }
           return project;
@@ -219,10 +225,13 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
           project.projectNumber === projectNumber
             ? {
                 ...project,
-                [listName]: deleteTaskInList(
-                  getTaskList(project, listName) || [],
-                  taskNumber
-                ),
+                columns: {
+                  ...project.columns,
+                  [listName]: deleteTaskInList(
+                    getTaskList(project, listName) || [],
+                    taskNumber
+                  ),
+                },
               }
             : project
         ),
@@ -246,6 +255,11 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
           const sourceTaskList = getTaskList(project, sourceList) || [];
           if (!task) return project;
 
+          const updatedProject = {
+            ...project,
+            columns: { ...project.columns },
+          };
+
           if (sourceList === destinationList) {
             const withoutMovedTask = deleteTaskInList(
               sourceTaskList,
@@ -257,16 +271,12 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
               parentTaskId,
               index
             );
-            return {
-              ...project,
-              [sourceList]: withMovedTask,
-            };
+            updatedProject.columns[sourceList] = withMovedTask;
           } else {
             const updatedSourceList = deleteTaskInList(
               sourceTaskList,
               task.taskNumber
             );
-
             const updatedDestinationList = addTaskToTaskList(
               getTaskList(project, destinationList) || [],
               task,
@@ -274,14 +284,48 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
               index
             );
 
-            return {
-              ...project,
-              [sourceList]: updatedSourceList,
-              [destinationList]: updatedDestinationList,
-            };
+            updatedProject.columns[sourceList] = updatedSourceList;
+            updatedProject.columns[destinationList] = updatedDestinationList;
           }
+
+          return updatedProject;
         }),
       };
+    }
+    case types.MOVE_COLUMNS: {
+      const { projectNumber, indexStart, indexEnd } = action.payload;
+
+      // Найдем индекс проекта на основе projectNumber
+      const projectIndex = state.projects.findIndex(
+        (p) => p.projectNumber === projectNumber
+      );
+
+      if (projectIndex === -1) return state;
+
+      const currentProject = state.projects[projectIndex];
+
+      // Переупорядочим столбцы на основе индексов indexStart и indexEnd
+      const reorderedColumnsEntries = reorder(
+        Object.entries(currentProject.columns),
+        indexStart,
+        indexEnd
+      );
+      const reorderedColumns = Object.fromEntries(reorderedColumnsEntries);
+
+      // Создадим новый проект с обновленным порядком столбцов
+      const updatedProject = {
+        ...currentProject,
+        columns: reorderedColumns,
+      };
+
+      // Обновим список проектов с новым проектом
+      const updatedProjects = [
+        ...state.projects.slice(0, projectIndex),
+        updatedProject,
+        ...state.projects.slice(projectIndex + 1),
+      ];
+
+      return { ...state, projects: updatedProjects };
     }
     case types.ADD_COMMENT: {
       const { projectNumber, taskNumber, listName, comment, parentCommentId } =
@@ -292,11 +336,51 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
           project.projectNumber === projectNumber
             ? {
                 ...project,
-                [listName]: addCommentToTask(
-                  getTaskList(project, listName) || [],
-                  taskNumber,
-                  comment,
-                  parentCommentId
+                columns: {
+                  ...project.columns,
+                  [listName]: addCommentToTask(
+                    getTaskList(project, listName) || [],
+                    taskNumber,
+                    comment,
+                    parentCommentId
+                  ),
+                },
+              }
+            : project
+        ),
+      };
+    }
+    case types.ADD_COLUMNS: {
+      const { projectNumber, columnName } = action.payload;
+
+      return {
+        ...state,
+        projects: state.projects.map((project) =>
+          project.projectNumber === projectNumber
+            ? {
+                ...project,
+                columns: {
+                  ...project.columns,
+                  [columnName]: [],
+                },
+              }
+            : project
+        ),
+      };
+    }
+    case types.DELETE_COLUMNS: {
+      const { projectNumber, columnName } = action.payload;
+
+      return {
+        ...state,
+        projects: state.projects.map((project) =>
+          project.projectNumber === projectNumber
+            ? {
+                ...project,
+                columns: Object.fromEntries(
+                  Object.entries(project.columns).filter(
+                    ([key]) => key !== columnName
+                  )
                 ),
               }
             : project

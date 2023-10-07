@@ -36,9 +36,9 @@ interface Comment {
 }
 
 interface ProjectType {
-  queue?: Task[];
-  development?: Task[];
-  done?: Task[];
+  columns: {
+    [columnName: string]: Task[];
+  }
 }
 
 interface Project extends ProjectType {

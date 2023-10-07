@@ -14,7 +14,7 @@ export const updateProjects = (projects: Project[]) => ({
 export const addTask = (
   projectNumber: string,
   task: Task,
-  listName: keyof Project,
+  listName: string,
   parentTaskId?: string,
   index?: number
 ) => ({
@@ -25,7 +25,7 @@ export const addTask = (
 export const updateTask = (
   projectNumber: string,
   taskNumber: string,
-  listName: keyof Project,
+  listName: string,
   updatedFields: Partial<Task>
 ) => ({
   type: types.UPDATE_TASK,
@@ -35,7 +35,7 @@ export const updateTask = (
 export const deleteTask = (
   projectNumber: string,
   taskNumber: string,
-  listName: keyof Project
+  listName: string
 ) => ({
   type: types.DELETE_TASK,
   payload: { projectNumber, taskNumber, listName },
@@ -44,13 +44,33 @@ export const deleteTask = (
 export const moveTask = (
   projectNumber: string,
   task: Task,
-  sourceList: keyof Project,
-  destinationList: keyof Project,
+  sourceList: string,
+  destinationList: string,
   parentTaskId?: string,
   index?: number
 ) => ({
   type: types.MOVE_TASK,
-  payload: { projectNumber, task, sourceList, destinationList, parentTaskId, index },
+  payload: {
+    projectNumber,
+    task,
+    sourceList,
+    destinationList,
+    parentTaskId,
+    index,
+  },
+});
+
+export const moveColumns = (
+  projectNumber: string,
+  indexStart: number,
+  indexEnd: number
+) => ({
+  type: types.MOVE_COLUMNS,
+  payload: {
+    projectNumber,
+    indexStart,
+    indexEnd,
+  },
 });
 
 interface AddCommentAction {
@@ -67,10 +87,20 @@ interface AddCommentAction {
 export const addComment = (
   projectNumber: string,
   taskNumber: string,
-  listName:  keyof Project,
+  listName: string,
   comment: Comment,
   parentCommentId?: string
 ): AddCommentAction => ({
   type: types.ADD_COMMENT,
   payload: { projectNumber, taskNumber, listName, comment, parentCommentId },
+});
+
+export const addColumn = (projectNumber: string, columnName: string) => ({
+  type: types.ADD_COLUMNS,
+  payload: { projectNumber, columnName },
+});
+
+export const deleteColumn = (projectNumber: string, columnName: string) => ({
+  type: types.DELETE_COLUMNS,
+  payload: { projectNumber, columnName },
 });

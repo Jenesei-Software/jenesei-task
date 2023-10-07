@@ -1,8 +1,18 @@
 .TasksHeader {
-    display: flex;
+  display: flex;
+  gap: 30px;
+  align-items: center;
 }
 .TasksHeader__logo {
   font-weight: var(--font-weight-4);
   font-size: var(--font-size-3);
   color: var(--font-color-2);
+  min-width: 120px;
+}
+.TasksHeader .TasksItemAdd {
+  width: 200px;
+  justify-content: space-between;
+}
+.TasksHeader .TasksItemAdd__RightIcon {
+  margin-left: 0px;
 }

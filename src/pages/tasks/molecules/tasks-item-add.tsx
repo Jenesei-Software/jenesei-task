@@ -2,6 +2,7 @@ import "../styles/tasks-item-add.css";
 
 interface ITasksItemAdd {
     onClick: () => void
+    title:string
 }
 export const TasksItemAdd = (props: ITasksItemAdd) => {
     return (
@@ -15,7 +16,7 @@ export const TasksItemAdd = (props: ITasksItemAdd) => {
                 </g>
             </svg>
             <div className="TasksItemAdd__Title">
-                Add a Task
+                {props.title}
             </div>
             <svg className="TasksItemAdd__RightIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_4_124" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">

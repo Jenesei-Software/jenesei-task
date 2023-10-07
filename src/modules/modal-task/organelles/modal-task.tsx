@@ -21,7 +21,7 @@ interface IModalTask {
   changeIsModal: () => void;
   projectNumber: string;
   value: Task;
-  listName: keyof Project;
+  listName: string;
 }
 export const ModalTask = (props: IModalTask) => {
   const dispatch = useDispatch();
@@ -124,10 +124,12 @@ export const ModalTask = (props: IModalTask) => {
           <div className="ModalTask__ListOfSubStacks">
             <div className="ModalTask__SubTitle">List of subtasks </div>
             <button onClick={() => changeIsAdd()}>Add</button>
-            <Droppable droppableId={props.listName + " " + value.taskNumber}>
+            {/* Tasks  Droppable*/}
+            <Droppable droppableId={JSON.stringify({ listName: props.listName, taskNumber: value.taskNumber })}>
               {(provided) => (
                 <div {...provided.droppableProps} ref={provided.innerRef}>
                   {props.value?.task?.map((e: Task, index: number) => (
+                    // Task Draggable
                     <TasksItem
                       key={e.taskNumber}
                       taskNumber={e.taskNumber}

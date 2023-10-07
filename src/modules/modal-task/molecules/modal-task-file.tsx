@@ -115,19 +115,19 @@ export const ModalTaskFile = (props: IModalTaskFile) => {
         >
           {props.children ?? (
             <div className="ModalTaskFile__Content__Hint">
-              Выберите файлы или перетащите файлы сюда
+              Select files or drag and drop files here
             </div>
           )}
           {props.accept ? (
             props.acceptAlert ? (
               <p className="ModalTaskFile__Content__Notice">
-                Разрешены только файлы типов {props.accept.split(",")}
+                Only type files are allowed {props.accept.split(",")}
               </p>
             ) : null
           ) : null}
           {props.multiple ? null : (
             <p className="ModalTaskFile__Content__Notice">
-              Можно загрузить только 1 файл
+              You can only upload 1 file
             </p>
           )}
         </label>
