@@ -1,7 +1,18 @@
 import { Moment } from "moment";
 
-type Priority = "short" | "average" | "high";
-type CurrentStatus = "wait" | "work" | "done";
+export const PriorityList = {
+  short: { color: "#0AAAF4" },
+  average: { color: "#F8BD1C" },
+  high: { color: "#FF3838" },
+} as const;
+export const CurrentStatusList = {
+  wait: { color: "#1AD698" },
+  work: { color: "#4339F2" },
+  done: { color: "#891BE8" },
+} as const;
+
+type Priority = keyof typeof PriorityList;
+type CurrentStatus = keyof typeof CurrentStatusList;
 
 interface Task {
   taskNumber: string;
@@ -39,4 +50,12 @@ interface ProjectsState {
   projects: Project[];
 }
 
-export type { Task, Project, ProjectsState, Priority, CurrentStatus, Comment, ProjectType };
+export type {
+  Task,
+  Project,
+  ProjectsState,
+  Priority,
+  CurrentStatus,
+  Comment,
+  ProjectType,
+};

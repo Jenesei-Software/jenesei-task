@@ -1,0 +1,23 @@
+.AppGeneralBar {
+  grid-column-start: 1;
+  grid-column-end: auto;
+  grid-row-start: 2;
+  grid-row-end: auto;
+  display: flex;
+  padding: 24px 12px 24px 12px;
+  align-items: center;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+.AppGeneralBar__Nav__Link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.AppGeneralBar__Nav__Link__Title {
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-1);
+  color: var(--font-color-2);
+}

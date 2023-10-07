@@ -12,4 +12,4 @@
 `npm run start`
 
 1. would like to publish the project as a website? Then make a distribution build by generating static files:  
-`npm run build` 
+`npm run build`

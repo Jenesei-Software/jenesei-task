@@ -1,6 +1,6 @@
 {
-  "name": "Jen Tasks",
-  "short_name": "Jen Tasks",
+  "name": "Jen Task",
+  "short_name": "Jen Task",
   "icons": [
     {
       "src": "./android-chrome-192x192.png",
@@ -17,7 +17,7 @@
   "background_color": "#4195d2",
   "start_url": "/uptrader-test",
   "display": "standalone",
-  "description": "Jen Tasks is Nice",
+  "description": "Jen Task is Nice",
   "lang": "eng",
   "orientation": "portrait"
 }

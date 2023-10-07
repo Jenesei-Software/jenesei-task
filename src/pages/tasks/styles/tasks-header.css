@@ -1,0 +1,8 @@
+.TasksHeader {
+    display: flex;
+}
+.TasksHeader__logo {
+  font-weight: var(--font-weight-4);
+  font-size: var(--font-size-3);
+  color: var(--font-color-2);
+}

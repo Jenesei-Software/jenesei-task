@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
+import { Droppable } from "react-beautiful-dnd";
+
 import {
   CurrentStatus,
   Priority,
@@ -9,12 +11,11 @@ import {
 } from "../../../redux/projects/interfaces";
 import { TasksItem } from "../../../pages/tasks/molecules/tasks-item";
 import { ModalNewTask } from "../../modal-new-task/organelles/modal-new-task";
-import { updateTask } from "../../../redux/projects/actions";
-
-import "../styles/modal-task.css";
+import { deleteTask, updateTask } from "../../../redux/projects/actions";
 import { ModalTaskFile, useFiles } from "../molecules/modal-task-file";
 import { ModalTaskComments } from "../molecules/modal-task-comments";
-import { Droppable } from "react-beautiful-dnd";
+
+import "../styles/modal-task.css";
 
 interface IModalTask {
   changeIsModal: () => void;
@@ -50,6 +51,9 @@ export const ModalTask = (props: IModalTask) => {
   const handleCurrentStatus = (currentStatus: CurrentStatus) => {
     if (value) setValue({ ...value, currentStatus: currentStatus });
   };
+  const handleDelete = () => {
+    if (value) dispatch(deleteTask(props.projectNumber, value.taskNumber, props.listName));
+  };
   useEffect(() => {
     if (props.value) {
       setValue(props.value);
@@ -71,6 +75,15 @@ export const ModalTask = (props: IModalTask) => {
           />
         )}
         <div className="ModalTask">
+          <svg
+            className="ModalTask__Icon"
+            onClick={handleDelete}
+            xmlns="http://www.w3.org/2000/svg"
+            height="1em"
+            viewBox="0 0 448 512"
+          >
+            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+          </svg>
           <div className="ModalTask__Title">Task - {value.heading}</div>
           <div className="ModalTask__DateOfCreation">
             <div className="ModalTask__SubTitle">Date Of Creation</div>

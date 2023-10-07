@@ -1,0 +1,24 @@
+.AppGeneralHeader {
+  display: flex;
+  padding: 23px 28px 23px 28px;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.AppGeneralHeader__Logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.AppGeneralHeader__Logo__Icon {
+}
+.AppGeneralHeader__Logo__Title {
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-5);
+  color: var(--font-color-brand);
+}

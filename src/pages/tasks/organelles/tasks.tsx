@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import { Helmet } from "react-helmet";
@@ -11,6 +11,8 @@ import { ModalNewTask } from "../../../modules/modal-new-task/organelles/modal-n
 import { moveTask } from "../../../redux/projects/actions";
 
 import "../styles/tasks.css";
+import { TasksHeader } from "../molecules/tasks-header";
+import { TasksItemAdd } from "../molecules/tasks-item-add";
 
 const findProjectIndexByNumber = (
   projects: Project[],
@@ -76,7 +78,6 @@ export const Tasks = () => {
         projectState.projects,
         projectNumber
       );
-      console.log("foundProjectIndex", foundProjectIndex)
       if (foundProjectIndex !== -1)
         setProjectIndex(foundProjectIndex);
     }
@@ -90,22 +91,18 @@ export const Tasks = () => {
           listName={type}
         />
       )}
-      <NavLink className="ProjectListItem__Go" to={`/project`}>
-        <button>Return to list of projects</button>
-      </NavLink>
       {projectIndex !== null && <>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Jen Tasks - {projectState.projects[projectIndex]?.title}</title>
+          <title>Jen Task - {projectState.projects[projectIndex]?.title}</title>
           <link rel="canonical" href="http://mysite.com/example" />
         </Helmet>
-        <div className="Tasks__Title">{projectState.projects[projectIndex]?.title}</div>
+        <TasksHeader title={projectState.projects[projectIndex]?.title} />
         {projectNumber &&
           <DragDropContext onDragEnd={onDragEnd}>
             <div className="Tasks__List">
               <div className="Tasks__List__Item">
                 <div className="Tasks__List__Item__Title">queue</div>
-                <button onClick={() => changeIsAdd("queue")}>Add</button>
                 <Droppable droppableId={`queue`}>
                   {(provided) => (
                     <div {...provided.droppableProps} ref={provided.innerRef} className="Tasks__List__Item__List">
@@ -132,10 +129,10 @@ export const Tasks = () => {
                     </div>
                   )}
                 </Droppable>
+                <TasksItemAdd onClick={() => changeIsAdd("queue")} />
               </div>
               <div className="Tasks__List__Item">
                 <div className="Tasks__List__Item__Title">development</div>
-                <button onClick={() => changeIsAdd("development")}>Add</button>
                 <Droppable droppableId={`development`}>
                   {(provided) => (
                     <div {...provided.droppableProps} ref={provided.innerRef} className="Tasks__List__Item__List">
@@ -162,10 +159,10 @@ export const Tasks = () => {
                     </div>
                   )}
                 </Droppable>
+                <TasksItemAdd onClick={() => changeIsAdd("development")} />
               </div>
               <div className="Tasks__List__Item">
                 <div className="Tasks__List__Item__Title">done</div>
-                <button onClick={() => changeIsAdd("done")}>Add</button>
                 <Droppable droppableId={`done`}>
                   {(provided) => (
                     <div {...provided.droppableProps} className="Tasks__List__Item__List" ref={provided.innerRef}>
@@ -192,6 +189,7 @@ export const Tasks = () => {
                     </div>
                   )}
                 </Droppable>
+                <TasksItemAdd onClick={() => changeIsAdd("done")} />
               </div>
             </div>
           </DragDropContext>

@@ -1,20 +1,20 @@
 import { NavLink } from "react-router-dom";
 
-import { Project } from "../../../redux/projects/interfaces";
+import { Project, ProjectType, Task } from "../../../redux/projects/interfaces";
 
 import "../styles/project-list-item.css";
 
+const getTotalTasks = (project: ProjectType): number => {
+  return Object.keys(project)
+    .filter(key => Array.isArray(project[key as keyof ProjectType]))
+    .reduce((acc, key) => acc + (project[key as keyof ProjectType] as Task[]).length, 0);
+}
+
 export const ProjectListItem = (props: Project) => {
   return (
-    <div className="ProjectListItem">
+    <NavLink to={`/project/${props.projectNumber}`} className={({ isActive }) => isActive ? "ProjectListItem ProjectListItem--active" : "ProjectListItem"}>
       <div className="ProjectListItem__Title">{props.title}</div>
-      <div className="ProjectListItem__Quantity">Length task: </div>
-      <NavLink
-        className="ProjectListItem__Go"
-        to={`/project/${props.projectNumber}`}
-      >
-        <button>Go</button>
-      </NavLink>
-    </div>
+      <div className="ProjectListItem__Quantity">{getTotalTasks(props)} task</div>
+    </NavLink>
   );
 };
