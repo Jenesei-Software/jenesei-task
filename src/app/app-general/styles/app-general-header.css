@@ -22,3 +22,20 @@
   font-size: var(--font-size-5);
   color: var(--font-color-brand);
 }
+@media (orientation: portrait) {
+  .AppGeneralHeader {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: 0;
+    justify-content: center;
+  }
+  .AppGeneralHeader__Logo__Title{
+    font-size: var(--font-size-2);
+  }
+  .AppGeneralHeader__Logo__Icon{
+    width: 20px;
+    height: 20px;
+  }
+}

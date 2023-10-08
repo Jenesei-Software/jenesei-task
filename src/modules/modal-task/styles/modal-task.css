@@ -26,6 +26,16 @@
   flex-direction: column;
   gap: 10px;
 }
+.ModalTask__ListOfSubStacks__List{
+  display: flex !important;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  -webkit-user-select: none;
+  user-select: none;
+  min-height: 1px;
+  height: 100%;
+}
 .ModalTask__List__Item__Active {
   color: black;
 }

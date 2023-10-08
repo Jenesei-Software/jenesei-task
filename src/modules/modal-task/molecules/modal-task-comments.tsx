@@ -16,7 +16,7 @@ interface INewComment {
   projectNumber: string
   taskNumber: string
   listName: string;
-  parentCommentId?: string
+  parentCommentNumber?: string
   dispatch: Dispatch<AnyAction>
 }
 export const newComment = (props: INewComment) => {
@@ -26,11 +26,11 @@ export const newComment = (props: INewComment) => {
       props.taskNumber,
       props.listName,
       {
-        commentId: v4(),
+        commentNumber: v4(),
         content: props.commentContent,
         comments: [],
       },
-      props.parentCommentId
+      props.parentCommentNumber
     )
   );
 };
@@ -61,7 +61,7 @@ export const ModalTaskComments = (props: IModalTaskComments) => {
                 projectNumber: props.projectNumber,
                 taskNumber: props.taskNumber,
                 listName: props.listName,
-                parentCommentId: props?.comment?.commentId,
+                parentCommentNumber: props?.comment?.commentNumber,
                 dispatch: dispatch
               });
           }}
@@ -71,7 +71,7 @@ export const ModalTaskComments = (props: IModalTaskComments) => {
       </div>
       <div className="ModalTaskComments__SubComment">
         {props.comment && props.comment.comments?.map((e) =>
-          <ModalTaskComments key={e.commentId} projectNumber={props.projectNumber} taskNumber={props.taskNumber} listName={props.listName} comment={e} />
+          <ModalTaskComments key={e.commentNumber} projectNumber={props.projectNumber} taskNumber={props.taskNumber} listName={props.listName} comment={e} />
         )}
       </div>
     </div>

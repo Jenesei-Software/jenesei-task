@@ -1,5 +1,5 @@
 import * as types from "./types";
-import { Project, Task, Comment } from "./interfaces";
+import { Project, Task, Comment, Column } from "./interfaces";
 
 export const addProject = (project: Project) => ({
   type: types.ADD_PROJECT,
@@ -70,7 +70,7 @@ export const moveColumns = (
   indexStart: number,
   indexEnd: number
 ) => ({
-  type: types.MOVE_COLUMNS,
+  type: types.MOVE_COLUMN,
   payload: {
     projectNumber,
     indexStart,
@@ -85,7 +85,7 @@ interface AddCommentAction {
     taskNumber: string;
     listName: string;
     comment: Comment;
-    parentCommentId?: string;
+    parentCommentNumber?: string;
   };
 }
 
@@ -94,18 +94,39 @@ export const addComment = (
   taskNumber: string,
   listName: string,
   comment: Comment,
-  parentCommentId?: string
+  parentCommentNumber?: string
 ): AddCommentAction => ({
   type: types.ADD_COMMENT,
-  payload: { projectNumber, taskNumber, listName, comment, parentCommentId },
+  payload: {
+    projectNumber,
+    taskNumber,
+    listName,
+    comment,
+    parentCommentNumber,
+  },
 });
 
 export const addColumn = (projectNumber: string, columnName: string) => ({
-  type: types.ADD_COLUMNS,
+  type: types.ADD_COLUMN,
   payload: { projectNumber, columnName },
 });
 
 export const deleteColumn = (projectNumber: string, columnName: string) => ({
-  type: types.DELETE_COLUMNS,
+  type: types.DELETE_COLUMN,
   payload: { projectNumber, columnName },
+});
+
+export const updateColumn = (
+  projectNumber: string,
+  oldColumnName: string,
+  newColumnName: string,
+  description?: string
+) => ({
+  type: types.UPDATE_COLUMN,
+  payload: {
+    projectNumber,
+    oldColumnName,
+    newColumnName,
+    description,
+  },
 });

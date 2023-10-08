@@ -4,11 +4,11 @@ import { useEffect } from "react";
 
 import "./app.css";
 
-import { Project } from "../pages/project/organelles/project";
-import { Tasks } from "../pages/tasks/organelles/tasks";
 import { AppGeneral } from "./app-general/organelles/app-general";
 import { updateProjects } from "../store/projects/actions";
 import { RootState } from "../store/store";
+import { ProjectBar } from "../pages/project-bar/organelles/project-bar";
+import { Project } from "../pages/project/organelles/project";
 
 function App() {
   const projectState = useSelector((state: RootState) => state.projectsState);
@@ -28,8 +28,8 @@ function App() {
       <Routes >
         <Route path="/" element={<AppGeneral />}>
           <Route path="*" element={<Navigate to="/project" />} />
-          <Route path="project" element={<Project />}>
-            <Route path=":projectNumber" element={<Tasks />} />
+          <Route path="project" element={<ProjectBar />}>
+            <Route path=":projectNumber" element={<Project />} />
           </Route>
         </Route>
       </Routes>

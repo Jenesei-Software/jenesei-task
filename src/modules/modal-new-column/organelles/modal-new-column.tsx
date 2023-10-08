@@ -33,7 +33,7 @@ export const ModalNewColumn = (props: IModalNewColumn) => {
           handleModalNewColumn();
         }}
       >
-        <div className="ModalNewColumn__Title">Heading of Columns</div>
+        <div className="ModalNewColumn__Title">Add of Columns</div>
         <input
           ref={inputRef}
           className="ModalNewColumn__Input"

@@ -114,17 +114,17 @@ const addCommentToTask = (
   taskList: Task[],
   taskNumber: string,
   comment: Comment,
-  parentCommentId?: string
+  parentCommentNumber?: string
 ): Task[] => {
   return taskList.map((task) => {
     if (task.taskNumber === taskNumber) {
       const addNestedComment = (
         comments: Comment[],
         comment: Comment,
-        parentCommentId?: string
+        parentCommentNumber?: string
       ): Comment[] => {
         return comments.map((com) => {
-          if (com.commentId === parentCommentId) {
+          if (com.commentNumber === parentCommentNumber) {
             return {
               ...com,
               comments: [...(com.comments || []), comment],
@@ -136,7 +136,7 @@ const addCommentToTask = (
               comments: addNestedComment(
                 com.comments,
                 comment,
-                parentCommentId
+                parentCommentNumber
               ),
             };
           }
@@ -146,8 +146,8 @@ const addCommentToTask = (
 
       return {
         ...task,
-        comments: parentCommentId
-          ? addNestedComment(task.comments || [], comment, parentCommentId)
+        comments: parentCommentNumber
+          ? addNestedComment(task.comments || [], comment, parentCommentNumber)
           : [...(task.comments || []), comment],
       };
     }
@@ -155,7 +155,12 @@ const addCommentToTask = (
     if (task.task && task.task.length > 0) {
       return {
         ...task,
-        task: addCommentToTask(task.task, taskNumber, comment, parentCommentId),
+        task: addCommentToTask(
+          task.task,
+          taskNumber,
+          comment,
+          parentCommentNumber
+        ),
       };
     }
 
@@ -182,7 +187,7 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
         ),
       };
     }
-    
+
     case types.ADD_TASK: {
       const { projectNumber, task, listName, parentTaskId, index } =
         action.payload;
@@ -326,8 +331,13 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
     }
 
     case types.ADD_COMMENT: {
-      const { projectNumber, taskNumber, listName, comment, parentCommentId } =
-        action.payload;
+      const {
+        projectNumber,
+        taskNumber,
+        listName,
+        comment,
+        parentCommentNumber,
+      } = action.payload;
 
       return {
         ...state,
@@ -338,7 +348,7 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
             project.columns[listName]?.list || [],
             taskNumber,
             comment,
-            parentCommentId
+            parentCommentNumber
           );
 
           return {
@@ -355,7 +365,7 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
       };
     }
 
-    case types.ADD_COLUMNS: {
+    case types.ADD_COLUMN: {
       const { projectNumber, columnName } = action.payload;
 
       return {
@@ -375,7 +385,7 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
         ),
       };
     }
-    case types.DELETE_COLUMNS: {
+    case types.DELETE_COLUMN: {
       const { projectNumber, columnName } = action.payload;
 
       return {
@@ -394,7 +404,7 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
         ),
       };
     }
-    case types.MOVE_COLUMNS: {
+    case types.MOVE_COLUMN: {
       const { projectNumber, indexStart, indexEnd } = action.payload;
 
       const projectIndex = state.projects.findIndex(
@@ -424,6 +434,33 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
       ];
 
       return { ...state, projects: updatedProjects };
+    }
+    case types.UPDATE_COLUMN: {
+      const { projectNumber, oldColumnName, newColumnName, description } =
+        action.payload;
+
+      return {
+        ...state,
+        projects: state.projects.map((project) => {
+          if (project.projectNumber !== projectNumber) return project;
+
+          const column = project.columns[oldColumnName];
+          if (!column) return project;
+
+          const updatedColumns = { ...project.columns };
+
+          delete updatedColumns[oldColumnName];
+          updatedColumns[newColumnName] = {
+            ...column,
+            description: description || column.description,
+          };
+
+          return {
+            ...project,
+            columns: updatedColumns,
+          };
+        }),
+      };
     }
     default:
       return state;

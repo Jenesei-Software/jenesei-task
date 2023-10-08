@@ -13,3 +13,22 @@
   background: var(--block-color-1);
   overflow: hidden;
 }
+@media (orientation: portrait) {
+  .AppGeneral {
+    grid-template-columns: 1fr;
+    grid-template-rows: 24px 40px 1fr;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    min-height: 100dvh;
+    padding-right: 2dvw;
+    padding-left: 2dvw;
+  }
+  .AppGeneral__Outlet {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+}

@@ -7,7 +7,7 @@ export const AppGeneralBar = () => {
     <div className="AppGeneralBar">
       <div className="AppGeneralBar__Nav">
         <NavLink to={"/project"} className="AppGeneralBar__Nav__Link">
-          <svg width="56" height="32" viewBox="0 0 56 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="AppGeneralBar__Nav__Link__Icon" width="56" height="32" viewBox="0 0 56 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="56" height="32" rx="16" fill="#CCECFF" />
             <mask id="mask0_206_2" maskUnits="userSpaceOnUse" x="16" y="4" width="24" height="24">
               <rect x="16" y="4" width="24" height="24" fill="#D9D9D9" />

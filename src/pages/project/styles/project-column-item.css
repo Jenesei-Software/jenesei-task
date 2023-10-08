@@ -1,59 +1,61 @@
-.TasksItem {
+.ProjectColumnItem {
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 6px;
   border-radius: 8px;
-  background: #F4F4F4;
+  background: #f4f4f4;
   margin: 5px 0px 5px 0px;
 }
-.TasksItem__Info {
+.ProjectColumnItem__Info {
   padding: 10px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.TasksItem__Info__Status {
+.ProjectColumnItem__Info__Status {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 6px;
   opacity: 0.7;
 }
-.TasksItem__Info__Status__Priority {
+.ProjectColumnItem__Info__Status__PriorityStatus {
   width: 40px;
   height: 8px;
   border-radius: 4px;
 }
-.TasksItem__Info__Status__CurrentStatus {
+.ProjectColumnItem__Info__Status__CurrentStatus {
   width: 40px;
   height: 8px;
   border-radius: 4px;
 }
-.TasksItem__Info__Bar {
+.ProjectColumnItem__Info__Bar {
+  display: flex;
+  gap: 2px;
 }
-.TasksItem__Info__Bar__Comments {
+.ProjectColumnItem__Info__Bar__Comments {
   display: flex;
   gap: 1px;
   align-items: center;
 }
-.TasksItem__Info__Bar__Comments__Title {
-  font-weight: var(--font-weight-2);
+.ProjectColumnItem__Info__Bar__Comments__Title {
+  font-weight: var(--font-weight-5);
   font-size: var(--font-size-2);
   color: var(--font-color-2);
   opacity: 0.2;
 }
-.TasksItem__Info__Title {
+.ProjectColumnItem__Info__Title {
   font-weight: var(--font-weight-3);
   font-size: var(--font-size-2);
   color: var(--font-color-2);
 }
-.TasksItem__Icon {
+.ProjectColumnItem__Icon {
   margin-left: auto;
   opacity: 0;
   padding-right: 10px;
 }
-.TasksItem:hover .TasksItem__Icon {
+.ProjectColumnItem:hover .ProjectColumnItem__Icon {
   opacity: 1;
 }

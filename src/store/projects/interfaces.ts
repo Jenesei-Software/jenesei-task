@@ -1,6 +1,6 @@
 import { Moment } from "moment";
 
-export const PriorityList = {
+export const PriorityStatusList = {
   short: { color: "#0AAAF4" },
   average: { color: "#F8BD1C" },
   high: { color: "#FF3838" },
@@ -11,43 +11,41 @@ export const CurrentStatusList = {
   done: { color: "#891BE8" },
 } as const;
 
-type Priority = keyof typeof PriorityList;
+type PriorityStatus = keyof typeof PriorityStatusList;
 type CurrentStatus = keyof typeof CurrentStatusList;
+
+interface Comment {
+  commentNumber: string;
+  content: string;
+  comments?: Comment[];
+}
 
 interface Task {
   taskNumber: string;
-
   isCheck: boolean;
   heading: string;
   description?: string;
   dateOfCreation: Moment;
   expirationDate: Moment;
-  priority?: Priority;
+  priorityStatus?: PriorityStatus;
   currentStatus?: CurrentStatus;
   attachedFiles?: File[];
   task?: Task[];
   comments?: Comment[];
 }
 
-interface Comment {
-  commentId: string;
-  content: string;
-  comments?: Comment[];
+interface Column {
+  list: Task[];
+  description?: string;
 }
 
-interface ProjectType {
-  columns: {
-    [columnName: string]: {
-      list: Task[];
-      description?: string;
-    };
-  };
-}
-
-interface Project extends ProjectType {
+interface Project {
   projectNumber: string;
   title: string;
   backgroundLink?: string;
+  columns: {
+    [columnName: string]: Column;
+  };
 }
 
 interface ProjectsState {
@@ -55,11 +53,11 @@ interface ProjectsState {
 }
 
 export type {
-  Task,
-  Project,
   ProjectsState,
-  Priority,
-  CurrentStatus,
+  Project,
+  Column,
+  Task,
   Comment,
-  ProjectType,
+  PriorityStatus,
+  CurrentStatus,
 };

@@ -22,7 +22,6 @@ export const ModalNewTask = (props: IModalNewTask) => {
     heading: "",
     dateOfCreation: moment(new Date(), "ddd MMM DD YYYY HH:mm:ss ZZ"),
     expirationDate: moment(new Date(), "ddd MMM DD YYYY HH:mm:ss ZZ"),
-    task: [],
   };
   const [value, setValue] = useState<Task>(DEFAULT_VALUE);
   const dispatch = useDispatch();

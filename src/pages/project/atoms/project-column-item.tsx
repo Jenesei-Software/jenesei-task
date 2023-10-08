@@ -3,23 +3,13 @@ import { useDispatch } from "react-redux";
 import moment from "moment";
 import { Draggable } from "react-beautiful-dnd";
 
-import { CurrentStatusList, PriorityList, Task, Comment } from "../../../store/projects/interfaces";
+import { CurrentStatusList, PriorityStatusList, Task } from "../../../store/projects/interfaces";
 import { ModalTask } from "../../../modules/modal-task/organelles/modal-task";
 import { updateTask } from "../../../store/projects/actions";
+import { countNestedComments } from "../../../functions/count-nested-comments";
 
-import "../styles/tasks-item.css";
-
-const countNestedComments = (comments: Comment[]): number => {
-  let count = comments.length;
-
-  for (let comment of comments) {
-    if (comment.comments) {
-      count += countNestedComments(comment.comments);
-    }
-  }
-
-  return count;
-};
+import "../styles/project-column-item.css";
+import { countNestedTasks } from "../../../functions/count-nested-tasks";
 
 interface AdditionalProps {
   projectNumber: string;
@@ -27,7 +17,7 @@ interface AdditionalProps {
   index: number
 }
 
-export const TasksItem = (props: Task & AdditionalProps) => {
+export const ProjectColumnItem = (props: Task & AdditionalProps) => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const dispatch = useDispatch();
 
@@ -47,7 +37,7 @@ export const TasksItem = (props: Task & AdditionalProps) => {
     <Draggable draggableId={JSON.stringify({ listName: undefined, taskNumber: props.taskNumber })} index={props.index}>
       {(provided, snapshot) => {
         return (
-          <div className="TasksItem" ref={provided.innerRef}
+          <div className="ProjectColumnItem" ref={provided.innerRef}
             //@ts-ignore
             snapshot={snapshot}
             {...provided.draggableProps}
@@ -63,26 +53,26 @@ export const TasksItem = (props: Task & AdditionalProps) => {
                 listName={props.listName}
               />
             )}
-            <div className="TasksItem__Info" onClick={handleIsCheck}>
-              <div className="TasksItem__Info__Status">
-                {props.priority && <div className="TasksItem__Info__Status__Priority"
+            <div className="ProjectColumnItem__Info" onClick={handleIsCheck}>
+              <div className="ProjectColumnItem__Info__Status">
+                {props.priorityStatus && <div className="ProjectColumnItem__Info__Status__PriorityStatus"
                   style={{
-                    backgroundColor: PriorityList[props.priority].color
+                    backgroundColor: PriorityStatusList[props.priorityStatus].color
                   }}
                 />}
-                {props.currentStatus && <div className="TasksItem__Info__Status__CurrentStatus"
+                {props.currentStatus && <div className="ProjectColumnItem__Info__Status__CurrentStatus"
                   style={{
                     backgroundColor: CurrentStatusList[props.currentStatus].color
                   }}
                 />}
               </div>
-              <div className="TasksItem__Info__Title" style={{ textDecoration: props.isCheck ? "line-through" : "auto" }}>
+              <div className="ProjectColumnItem__Info__Title" style={{ textDecoration: props.isCheck ? "line-through" : "auto" }}>
                 {props.heading}
               </div>
-              <div className="TasksItem__Info__Bar">
+              <div className="ProjectColumnItem__Info__Bar">
                 {
-                  props.comments && <div className="TasksItem__Info__Bar__Comments">
-                    <div className="TasksItem__Info__Bar__Comments__Title">
+                  props.comments && <div className="ProjectColumnItem__Info__Bar__Comments">
+                    <div className="ProjectColumnItem__Info__Bar__Comments__Title">
                       {countNestedComments(props.comments)}
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -96,9 +86,22 @@ export const TasksItem = (props: Task & AdditionalProps) => {
                     </svg>
                   </div>
                 }
+                {
+                  props.task && <div className="ProjectColumnItem__Info__Bar__Comments">
+                    <div className="ProjectColumnItem__Info__Bar__Comments__Title">
+                      {countNestedTasks(props.task)}
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <g opacity="0.2">
+                        <rect opacity="0.01" width="20" height="20" fill="black" />
+                        <path d="M7.74167 17.5C6.35094 17.4934 5.02105 16.929 4.05 15.9334C3.08641 15.0201 2.5256 13.7611 2.4912 12.4339C2.45681 11.1067 2.95167 9.82034 3.86667 8.85838L10 2.66672C10.6619 2.00606 11.5651 1.64477 12.5 1.66672C13.5011 1.67013 14.4589 2.07546 15.1583 2.79172C16.5926 4.17263 16.6483 6.45063 15.2833 7.90005L9.11667 14.0917C8.7177 14.4934 8.17446 14.7185 7.60833 14.7167C6.99665 14.7175 6.41061 14.4711 5.98333 14.0334C5.10353 13.1816 5.07379 11.7801 5.91667 10.8917L11.6083 5.17505C11.9425 4.95309 12.3875 5.00078 12.667 5.28852C12.9466 5.57626 12.9815 6.02237 12.75 6.35005L7.05833 12.0667C6.86088 12.3046 6.89054 12.6569 7.125 12.8584C7.24226 12.9765 7.40034 13.0451 7.56667 13.05C7.69111 13.0518 7.81112 13.0038 7.9 12.9167L14.0583 6.72505C14.7776 5.92599 14.7219 4.69744 13.9333 3.96672C13.2024 3.20784 12.0057 3.15295 11.2083 3.84172L5.05 10C4.44516 10.6497 4.12441 11.5137 4.15882 12.4007C4.19323 13.2876 4.57998 14.1242 5.23333 14.725C5.88864 15.4044 6.78951 15.7917 7.73333 15.8C8.54697 15.8067 9.32971 15.4888 9.90833 14.9167L16.0667 8.72505C16.3911 8.39828 16.9191 8.39642 17.2458 8.72088C17.5726 9.04535 17.5745 9.57328 17.25 9.90005L11.0917 16.0917C10.2085 16.9905 9.0018 17.4978 7.74167 17.5Z" fill="black" />
+                      </g>
+                    </svg>
+                  </div>
+                }
               </div>
             </div>
-            <svg className="TasksItem__Icon" onClick={() => setIsModal(true)} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="ProjectColumnItem__Icon" onClick={() => setIsModal(true)} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <mask id="mask0_4_82" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                 <rect width="24" height="24" fill="#D9D9D9" />
               </mask>
