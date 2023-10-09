@@ -9,6 +9,7 @@ const localStorageMiddleware: Middleware = ({ getState }) => next => action => {
   const result = next(action);
   const state = getState() as RootState;
   localStorage.setItem(localStorageName, JSON.stringify(state.projectsState.projects));
+
   return result;
 };
 

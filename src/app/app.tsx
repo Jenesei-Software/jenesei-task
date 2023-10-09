@@ -11,15 +11,29 @@ import { Project } from "../pages/project/organelles/project";
 import { Settings } from "../pages/settings/organelles/settings";
 import { localStorageName } from "../stores/store";
 
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const savedProjects = localStorage.getItem(localStorageName);
-    if (savedProjects) {
-      const parsedProjects = JSON.parse(savedProjects);
-      dispatch(updateProjects(parsedProjects));
+    const updateDate = new Date("2023-10-09");
+    
+    const currentDate = new Date().getTime();
+    const targetTime = updateDate.getTime();
+    console.log("updateDate",updateDate)
+    console.log("currentDate",currentDate)
+    if (currentDate < targetTime) {
+        localStorage.removeItem(localStorageName);
+        return;
     }
-  }, []);
+
+    const savedProjects = localStorage.getItem(localStorageName);
+
+
+    if (savedProjects) {
+        const parsedProjects = JSON.parse(savedProjects);
+        dispatch(updateProjects(parsedProjects));
+    }
+}, [dispatch]);
   return (
     <div className="App">
       <Routes>

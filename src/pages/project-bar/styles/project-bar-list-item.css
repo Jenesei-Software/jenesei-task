@@ -51,6 +51,9 @@
   align-items: center;
   border-radius: 4px;
   background: #fff;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: clip;
 }
 .ProjectBarListItem__Quantity {
   font-weight: var(--font-weight-3);
@@ -77,12 +80,15 @@
     text-align: center;
     line-height: normal;
   }
-  .ProjectBarListItem__Title{
+  .ProjectBarListItem__Title {
     font-size: var(--font-size-1);
     padding: 3px 4px;
     border-radius: 4px;
+    max-width: 40px;
+    overflow: hidden;
+    text-overflow: clip;
   }
-  .ProjectBarListItem__Quantity{
+  .ProjectBarListItem__Quantity {
     display: none;
   }
 }
