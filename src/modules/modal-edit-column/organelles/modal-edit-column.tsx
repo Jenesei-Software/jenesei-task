@@ -63,7 +63,7 @@ export const ModalEditColumn = (props: IModalEditColumn) => {
             className="Modal__Block__Button"
             onClick={handleModalDeleteColumn}
           >
-            Удалить
+            Delete
           </button>
         </div>
         <input

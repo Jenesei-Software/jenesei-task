@@ -51,7 +51,7 @@ export const ModalEditProject = (props: IModalEditProject) => {
             className="Modal__Block__Button"
             onClick={handleModalDeleteProject}
           >
-            Удалить
+            Delete
           </button>
         </div>
         <input

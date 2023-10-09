@@ -21,13 +21,14 @@ export const ProjectBarList = () => {
     setSelectedIndex(index);
   }
   useEffect(() => {
-    const projectExists = projectState.projects.some(e => e.projectNumber === projectNumber);
-    if (!projectExists) {
-      setSelectedIndex(null);
-      navigate('/project');
-    } else {
-      const index = projectState.projects.findIndex((e: Project) => e.projectNumber === projectNumber);
-      setSelectedIndex(index);
+    if (projectState && projectState.projects) {
+      const projectExists = projectState.projects.some(e => e.projectNumber === projectNumber);
+      if (!projectExists) {
+        setSelectedIndex(null);
+      } else {
+        const index = projectState.projects.findIndex((e: Project) => e.projectNumber === projectNumber);
+        setSelectedIndex(index);
+      }
     }
   }, [projectNumber, projectState]);
   return (

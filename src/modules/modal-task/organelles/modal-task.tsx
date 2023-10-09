@@ -82,7 +82,7 @@ export const ModalTask = (props: IModalTask) => {
                 {props.listName} - {props.fullName}
               </div>
               <button onClick={handleDelete} className="Modal__Block__Button">
-                Удалить
+                Delete
               </button>
             </div>
             <div className="ModalTask__Info">
