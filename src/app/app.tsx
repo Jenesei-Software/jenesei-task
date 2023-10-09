@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import "./app.css";
 
 import { AppGeneral } from "./app-general/organelles/app-general";
-import { updateProjects } from "../store/projects/actions";
+import { updateProjects } from "../stores/projects/actions";
 import { ProjectBar } from "../pages/project-bar/organelles/project-bar";
 import { Project } from "../pages/project/organelles/project";
 import { Settings } from "../pages/settings/organelles/settings";

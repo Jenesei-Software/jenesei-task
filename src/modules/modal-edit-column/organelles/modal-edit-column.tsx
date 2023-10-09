@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 
 import "../styles/modal-edit-column.css";
 
-import { Column } from "../../../store/projects/interfaces";
-import { deleteColumn, updateColumn } from "../../../store/projects/actions";
+import { Column } from "../../../stores/projects/interfaces";
+import { deleteColumn, updateColumn } from "../../../stores/projects/actions";
 
 interface IModalEditColumn {
   changeIsEdit: () => void;

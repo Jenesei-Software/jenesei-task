@@ -5,7 +5,7 @@ import {
   Droppable,
 } from "react-beautiful-dnd";
 
-import { Column, Task } from "../../../store/projects/interfaces";
+import { Column, Task } from "../../../stores/projects/interfaces";
 import { ProjectColumnItem } from "../atoms/project-column-item";
 import { ProjectColumnItemAdd } from "../atoms/project-column-item-add";
 import { ModalEditColumn } from "../../../modules/modal-edit-column/organelles/modal-edit-column";

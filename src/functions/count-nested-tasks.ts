@@ -1,4 +1,4 @@
-import { Task } from "../store/projects/interfaces";
+import { Task } from "../stores/projects/interfaces";
 
 export const countNestedTasks = (tasks: Task[]): number => {
   let count = tasks.length;

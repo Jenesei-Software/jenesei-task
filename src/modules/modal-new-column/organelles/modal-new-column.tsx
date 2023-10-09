@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import "../styles/modal-new-column.css";
 
-import { addColumn } from "../../../store/projects/actions";
+import { addColumn } from "../../../stores/projects/actions";
 
 interface IModalNewColumn {
   changeIsAdd: () => void;

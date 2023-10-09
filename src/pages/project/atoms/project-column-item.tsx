@@ -7,9 +7,9 @@ import {
   CurrentStatusList,
   PriorityStatusList,
   Task,
-} from "../../../store/projects/interfaces";
+} from "../../../stores/projects/interfaces";
 import { ModalTask } from "../../../modules/modal-task/organelles/modal-task";
-import { updateTask } from "../../../store/projects/actions";
+import { updateTask } from "../../../stores/projects/actions";
 import { countNestedComments } from "../../../functions/count-nested-comments";
 
 import "../styles/project-column-item.css";

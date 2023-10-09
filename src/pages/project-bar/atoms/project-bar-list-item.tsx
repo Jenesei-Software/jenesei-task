@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-import { Project } from "../../../store/projects/interfaces";
+import { Project } from "../../../stores/projects/interfaces";
 
 import "../styles/project-bar-list-item.css";
 

@@ -1,4 +1,4 @@
-import { Project } from "../store/projects/interfaces";
+import { Project } from "../stores/projects/interfaces";
 
 export const findProjectIndexByNumber = (
     projects: Project[],

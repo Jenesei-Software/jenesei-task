@@ -7,9 +7,9 @@ import {
   CurrentStatus,
   PriorityStatus,
   Task,
-} from "../../../store/projects/interfaces";
+} from "../../../stores/projects/interfaces";
 import { ModalNewTask } from "../../modal-new-task/organelles/modal-new-task";
-import { deleteTask, updateTask } from "../../../store/projects/actions";
+import { deleteTask, updateTask } from "../../../stores/projects/actions";
 import { ModalTaskFile, useFiles } from "../molecules/modal-task-file";
 import { ModalTaskComments } from "../molecules/modal-task-comments";
 

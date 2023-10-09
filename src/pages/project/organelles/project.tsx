@@ -9,10 +9,10 @@ import {
 } from "react-beautiful-dnd";
 import { Helmet } from "react-helmet";
 
-import { RootState } from "../../../store/store";
-import { Task } from "../../../store/projects/interfaces";
+import { RootState } from "../../../stores/stores";
+import { Task } from "../../../stores/projects/interfaces";
 import { ModalNewTask } from "../../../modules/modal-new-task/organelles/modal-new-task";
-import { moveColumns, moveTask } from "../../../store/projects/actions";
+import { moveColumns, moveTask } from "../../../stores/projects/actions";
 import { ProjectHeader } from "../molecules/project-header";
 import { findProjectIndexByNumber } from "../../../functions/find-project-index-by-number";
 import { findTaskRecursively } from "../../../functions/find-task-recursively";

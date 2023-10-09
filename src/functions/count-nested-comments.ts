@@ -1,4 +1,4 @@
-import { Comment } from "../store/projects/interfaces";
+import { Comment } from "../stores/projects/interfaces";
 
 export const countNestedComments = (comments: Comment[]): number => {
   let count = comments.length;

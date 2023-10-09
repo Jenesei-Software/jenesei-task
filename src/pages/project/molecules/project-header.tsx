@@ -5,7 +5,7 @@ import "../styles/project-header.css";
 import { ProjectColumnItemAdd } from "../atoms/project-column-item-add";
 import { ModalNewColumn } from "../../../modules/modal-new-column/organelles/modal-new-column";
 import { ModalEditProject } from "../../../modules/modal-edit-project/organelles/modal-edit-project";
-import { Project } from "../../../store/projects/interfaces";
+import { Project } from "../../../stores/projects/interfaces";
 import { ProjectHeaderEdit } from "../atoms/project-header-edit";
 
 interface IProjectHeader {

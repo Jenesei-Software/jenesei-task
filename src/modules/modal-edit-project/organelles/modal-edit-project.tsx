@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 
 import "../styles/modal-edit-project.css";
 
-import { Project } from "../../../store/projects/interfaces";
-import { deleteProject, updateProject } from "../../../store/projects/actions";
+import { Project } from "../../../stores/projects/interfaces";
+import { deleteProject, updateProject } from "../../../stores/projects/actions";
 
 interface IModalEditProject {
   changeIsAdd: () => void;
