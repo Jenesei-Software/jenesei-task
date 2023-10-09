@@ -10,9 +10,7 @@
 .ProjectColumnItem__Info {
   padding: 10px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  
 }
 .ProjectColumnItem__Info__Status {
   display: flex;
@@ -53,9 +51,9 @@
 }
 .ProjectColumnItem__Icon {
   margin-left: auto;
-  opacity: 0;
+  opacity: 1;
   padding-right: 10px;
 }
-.ProjectColumnItem:hover .ProjectColumnItem__Icon {
+/* .ProjectColumnItem:hover .ProjectColumnItem__Icon {
   opacity: 1;
-}
+} */

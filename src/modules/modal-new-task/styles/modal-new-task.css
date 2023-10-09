@@ -1,11 +1,5 @@
 .ModalNewTask {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
   z-index: 3;
-  background-color: black;
-  padding: 10px;
-  border-radius: 10px;
 }
 .ModalNewTask__Title {
 }

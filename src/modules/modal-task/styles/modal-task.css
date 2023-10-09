@@ -1,24 +1,30 @@
 .ModalTask {
-  background-color: burlywood;
-  padding: 10px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  width: 600px;
 }
 .ModalTask__Title {
+  white-space: nowrap;
+  overflow: hidden;
+  direction: rtl;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 .ModalTask__Input {
 }
 .ModalTask__Button {
 }
 .ModalTask__List {
+  gap: 8px;
   display: flex;
   justify-content: space-between;
 }
 .ModalTask__SubTitle {
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-2);
+  color: var(--font-color-2);
+}
+.ModalTask__SubInfo {
   font-weight: var(--font-weight-2);
-  font-size: var(--font-size-1);
+  font-size: var(--font-size-2);
   color: var(--font-color-2);
 }
 .ModalTask__ListOfSubStacks {
@@ -26,25 +32,81 @@
   flex-direction: column;
   gap: 10px;
 }
-.ModalTask__ListOfSubStacks__List{
-  display: flex !important;
-  flex-direction: column;
+.ModalTask__ListOfSubStacks__List {
   flex-wrap: nowrap;
-  align-content: flex-start;
-  -webkit-user-select: none;
   user-select: none;
-  min-height: 1px;
-  height: 100%;
-}
-.ModalTask__List__Item__Active {
-  color: black;
-}
-.ModalTask__Comments{
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 6px;
-  border: 1px dashed black;
-  padding: 4px;
+  padding: 16px;
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid #d9d9d9;
   box-sizing: border-box;
+  background-color: var(--block-color-1);
+  justify-content: flex-start;
+}
+.ModalTask__List__Item {
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-2);
+  color: var(--font-color-2);
+  display: inline-flex;
+  padding: 4px 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: #fff;
+}
+.ModalTask__List__Item__Active {
+  color: var(--font-color-white);
+  background: var(--block-color-brand-08);
+}
+.ModalTask__Comments {
+  flex-wrap: nowrap;
+  -webkit-user-select: none;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  background-color: var(--block-color-1);
+  justify-content: flex-start;
+}
+.ModalTask__General {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+  justify-content: space-between;
+}
+.ModalTask__General__Sub {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.ModalTask__Head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ModalTask__Info {
+  overflow-y: auto;
+  height: 70dvh;
+  min-height: 70dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ModalTask__Button__Cancel {
+}
+@media (orientation: portrait) {
+  .ModalTask__Info {
+    height: 80dvh;
+  }
+  .ModalTask {
+    width: 90dvw;
+  }
 }

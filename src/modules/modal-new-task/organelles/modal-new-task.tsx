@@ -41,18 +41,18 @@ export const ModalNewTask = (props: IModalNewTask) => {
   return (
     <div className="Modal__Fixed">
       <form
-        className="ModalNewTask"
+        className="ModalNewTask Modal__Block"
         onSubmit={(e) => {
           e.preventDefault();
           handleModalNewTask();
         }}
       >
-        <div className="ModalNewTask__Title">Add Task</div>
+        <div className="ModalNewTask__Title Modal__Block__Title">Add Task</div>
         <input
           ref={inputRef}
-          className="ModalNewTask__Input"
+          className="ModalNewTask__Input Modal__Block__Input"
           required
-          placeholder="heading"
+          placeholder="Write heading"
           type="text"
           value={value.heading}
           minLength={4}
@@ -60,10 +60,10 @@ export const ModalNewTask = (props: IModalNewTask) => {
             setValue({ ...value, heading: event.target.value })
           }
         />
-        <button className="ModalNewTask__Button" type="submit">
+        <button className="ModalNewTask__Button Modal__Block__Button" type="submit">
           Create
         </button>
-        <button className="ModalNewTask__Button" onClick={props.changeIsAdd}>
+        <button className="ModalNewTask__Button Modal__Block__Button" onClick={props.changeIsAdd}>
           Cancel
         </button>
       </form>

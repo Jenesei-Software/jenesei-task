@@ -1,17 +1,16 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 import "./app.css";
 
 import { AppGeneral } from "./app-general/organelles/app-general";
 import { updateProjects } from "../store/projects/actions";
-import { RootState } from "../store/store";
 import { ProjectBar } from "../pages/project-bar/organelles/project-bar";
 import { Project } from "../pages/project/organelles/project";
+import { Settings } from "../pages/settings/organelles/settings";
 
 function App() {
-  const projectState = useSelector((state: RootState) => state.projectsState);
   const dispatch = useDispatch();
   useEffect(() => {
     const savedProjects = localStorage.getItem("projects");
@@ -20,17 +19,15 @@ function App() {
       dispatch(updateProjects(parsedProjects));
     }
   }, []);
-  useEffect(() => {
-    console.log("Project State:", projectState);
-  }, [projectState]);
   return (
     <div className="App">
-      <Routes >
+      <Routes>
         <Route path="/" element={<AppGeneral />}>
           <Route path="*" element={<Navigate to="/project" />} />
           <Route path="project" element={<ProjectBar />}>
             <Route path=":projectNumber" element={<Project />} />
           </Route>
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
     </div>

@@ -1,11 +1,13 @@
 .ModalEditColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
 }
 .ModalEditColumn__Title {
 }
 .ModalEditColumn__Input {
 }
 .ModalEditColumn__Button {
+}
+.ModalEditColumn__Head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

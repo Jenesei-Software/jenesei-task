@@ -21,15 +21,22 @@ interface IModalTask {
   projectNumber: string;
   value: Task;
   listName: string;
+  changeIsChildrenView: () => void;
+  isChildrenView: boolean;
+  fullName: string
 }
 export const ModalTask = (props: IModalTask) => {
   const dispatch = useDispatch();
+  const [isChildrenView, setIsChildrenView] = useState<boolean>(false);
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [value, setValue] = useState<Task | null>(null);
   const { files, setFiles, onAddFiles, onRemoveFile, onResetFiles } =
     useFiles();
   const changeIsAdd = () => {
     setIsAdd(!isAdd);
+  };
+  const changeIsChildrenView = () => {
+    setIsChildrenView(!isChildrenView);
   };
   const saveValue = () => {
     if (value)
@@ -51,7 +58,10 @@ export const ModalTask = (props: IModalTask) => {
     if (value) setValue({ ...value, currentStatus: currentStatus });
   };
   const handleDelete = () => {
-    if (value) dispatch(deleteTask(props.projectNumber, value.taskNumber, props.listName));
+    if (value)
+      dispatch(
+        deleteTask(props.projectNumber, value.taskNumber, props.listName)
+      );
   };
   useEffect(() => {
     if (props.value) {
@@ -66,171 +76,222 @@ export const ModalTask = (props: IModalTask) => {
     value && (
       <>
         <div className="Modal__Fixed">
-          <div className="ModalTask">
-            <svg
-              className="ModalTask__Icon"
-              onClick={handleDelete}
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 448 512"
-            >
-              <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-            </svg>
-            <div className="ModalTask__Title">Task - {value.heading}</div>
-            <div className="ModalTask__DateOfCreation">
-              <div className="ModalTask__SubTitle">Date Of Creation</div>
-              {String(value.dateOfCreation)}
+          <div className="ModalTask Modal__Block">
+            <div className="ModalTask__Head">
+              <div className="ModalTask__Title Modal__Block__Title">
+                {props.listName} - {props.fullName}
+              </div>
+              <button onClick={handleDelete} className="Modal__Block__Button">
+                Удалить
+              </button>
             </div>
-            <div className="ModalTask__ExpirationDate">
-              <div className="ModalTask__SubTitle">Expiration Date</div>
-              {String(value.expirationDate)}
-            </div>
-            <div className="ModalTask__Heading">
-              <div className="ModalTask__SubTitle">Heading</div>
-              <input
-                className="ModalTask__Input"
-                required
-                placeholder="heading"
-                type="text"
-                value={value.heading || ""}
-                minLength={4}
-                onChange={(event) =>
-                  setValue({ ...value, heading: event.target.value })
-                }
-              />
-            </div>
-            <div className="ModalTask__Description">
-              <div className="ModalTask__SubTitle">Description</div>
-              <input
-                className="ModalTask__Input"
-                required
-                placeholder="description"
-                type="text"
-                value={value.description || ""}
-                minLength={4}
-                onChange={(event) =>
-                  setValue({ ...value, description: event.target.value })
-                }
-              />
-            </div>
-            <div className="ModalTask__PriorityStatus">
-              <div className="ModalTask__SubTitle">PriorityStatus</div>
-              <div className="ModalTask__List">
-                <div
-                  className={
-                    value.priorityStatus === "short"
-                      ? "ModalTask__List__Item__Active ModalTask__List__Item"
-                      : "ModalTask__List__Item"
-                  }
-                  onClick={() => handlePriorityStatus("short")}
-                >
-                  short
+            <div className="ModalTask__Info">
+              <div className="ModalTask__General">
+                <div className="ModalTask__General__Sub">
+                  <div className="ModalTask__Heading">
+                    <div className="ModalTask__SubTitle">Heading</div>
+                    <input
+                      className="ModalTask__Input Modal__Block__Input"
+                      required
+                      placeholder="Write heading"
+                      type="text"
+                      value={value.heading || ""}
+                      minLength={4}
+                      onChange={(event) =>
+                        setValue({ ...value, heading: event.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="ModalTask__Description">
+                    <div className="ModalTask__SubTitle">Description</div>
+                    <input
+                      className="ModalTask__Input Modal__Block__Input"
+                      required
+                      placeholder="Write description"
+                      type="text"
+                      value={value.description || ""}
+                      minLength={4}
+                      onChange={(event) =>
+                        setValue({ ...value, description: event.target.value })
+                      }
+                    />
+                  </div>
                 </div>
-                <div
-                  className={
-                    value.priorityStatus === "average"
-                      ? "ModalTask__List__Item__Active ModalTask__List__Item"
-                      : "ModalTask__List__Item"
-                  }
-                  onClick={() => handlePriorityStatus("average")}
-                >
-                  average
-                </div>
-                <div
-                  className={
-                    value.priorityStatus === "high"
-                      ? "ModalTask__List__Item__Active ModalTask__List__Item"
-                      : "ModalTask__List__Item"
-                  }
-                  onClick={() => handlePriorityStatus("high")}
-                >
-                  high
+                <div className="ModalTask__General__Sub">
+                  <div className="ModalTask__DateOfCreation">
+                    <div className="ModalTask__SubTitle">Date Of Creation</div>
+                    <div className="ModalTask__SubInfo">
+                      {moment(String(value.dateOfCreation)).calendar()}
+                    </div>
+                  </div>
+                  <div className="ModalTask__ExpirationDate">
+                    <div className="ModalTask__SubTitle">Expiration Date</div>
+                    <div className="ModalTask__SubInfo">
+                      {moment(String(value.expirationDate)).calendar()}
+                    </div>
+                  </div>
+                  <div className="ModalTask__PriorityStatus">
+                    <div className="ModalTask__SubTitle">PriorityStatus</div>
+                    <div className="ModalTask__List">
+                      <div
+                        className={
+                          value.priorityStatus === "short"
+                            ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                            : "ModalTask__List__Item"
+                        }
+                        onClick={() => handlePriorityStatus("short")}
+                      >
+                        short
+                      </div>
+                      <div
+                        className={
+                          value.priorityStatus === "average"
+                            ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                            : "ModalTask__List__Item"
+                        }
+                        onClick={() => handlePriorityStatus("average")}
+                      >
+                        average
+                      </div>
+                      <div
+                        className={
+                          value.priorityStatus === "high"
+                            ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                            : "ModalTask__List__Item"
+                        }
+                        onClick={() => handlePriorityStatus("high")}
+                      >
+                        high
+                      </div>
+                    </div>
+                  </div>
+                  <div className="ModalTask__CurrentStatus">
+                    <div className="ModalTask__SubTitle">Current Status</div>
+                    <div className="ModalTask__List">
+                      <div
+                        className={
+                          value.currentStatus === "wait"
+                            ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                            : "ModalTask__List__Item"
+                        }
+                        onClick={() => handleCurrentStatus("wait")}
+                      >
+                        wait
+                      </div>
+                      <div
+                        className={
+                          value.currentStatus === "work"
+                            ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                            : "ModalTask__List__Item"
+                        }
+                        onClick={() => handleCurrentStatus("work")}
+                      >
+                        work
+                      </div>
+                      <div
+                        className={
+                          value.currentStatus === "done"
+                            ? "ModalTask__List__Item__Active ModalTask__List__Item"
+                            : "ModalTask__List__Item"
+                        }
+                        onClick={() => handleCurrentStatus("done")}
+                      >
+                        done
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="ModalTask__CurrentStatus">
-              <div className="ModalTask__SubTitle">Current Status</div>
-              <div className="ModalTask__List">
-                <div
-                  className={
-                    value.currentStatus === "wait"
-                      ? "ModalTask__List__Item__Active ModalTask__List__Item"
-                      : "ModalTask__List__Item"
-                  }
-                  onClick={() => handleCurrentStatus("wait")}
-                >
-                  wait
-                </div>
-                <div
-                  className={
-                    value.currentStatus === "work"
-                      ? "ModalTask__List__Item__Active ModalTask__List__Item"
-                      : "ModalTask__List__Item"
-                  }
-                  onClick={() => handleCurrentStatus("work")}
-                >
-                  work
-                </div>
-                <div
-                  className={
-                    value.currentStatus === "done"
-                      ? "ModalTask__List__Item__Active ModalTask__List__Item"
-                      : "ModalTask__List__Item"
-                  }
-                  onClick={() => handleCurrentStatus("done")}
-                >
-                  done
-                </div>
+              <div className="ModalTask__AttachedFiles">
+                <div className="ModalTask__SubTitle">Attached Files</div>
+                {value.taskNumber && (
+                  <ModalTaskFile
+                    id={value.taskNumber}
+                    files={files}
+                    onAddFiles={onAddFiles}
+                    onRemoveFile={onRemoveFile}
+                    onResetFiles={onResetFiles}
+                    multiple
+                  ></ModalTaskFile>
+                )}
               </div>
-            </div>
-            <div className="ModalTask__AttachedFiles">
-              <div className="ModalTask__SubTitle">Attached Files</div>
-              {value.taskNumber && <ModalTaskFile
-                id={value.taskNumber}
-                files={files}
-                onAddFiles={onAddFiles}
-                onRemoveFile={onRemoveFile}
-                onResetFiles={onResetFiles}
-                multiple
+              <button
+                onClick={saveValue}
+                className="ModalTask__Button Modal__Block__Button"
+                type="submit"
               >
-              </ModalTaskFile>}
-            </div>
-            <button
-              onClick={saveValue}
-              className="ModalTask__Button"
-              type="submit"
-            >
-              Save
-            </button>
-            <div className="ModalTask__ListOfSubStacks">
-              <div className="ModalTask__SubTitle">List of subtasks </div>
-              <button onClick={() => changeIsAdd()}>Add</button>
-              {/* Tasks  Droppable*/}
-              <Droppable droppableId={JSON.stringify({ listName: props.listName, taskNumber: value.taskNumber })} type="TASK" direction="vertical">
-                {(provided) => (
-                  <div {...provided.droppableProps} ref={provided.innerRef} className="ModalTask__ListOfSubStacks__List">
-                    {props.value?.task?.map((e: Task, index: number) => (
-                      // Task Draggable
-                      <ProjectColumnItem
-                        {...e}
-                        key={e.taskNumber}
+                Save
+              </button>
+              <div className="ModalTask__ListOfSubStacks">
+                <div className="ModalTask__SubTitle">List of subtasks </div>
+                <button
+                  className="Modal__Block__Button"
+                  onClick={() => changeIsAdd()}
+                >
+                  Add
+                </button>
+                {/* Tasks  Droppable*/}
+                {props.value?.tasks && props.value?.tasks.length !== 0 && (
+                  <Droppable
+                    isDropDisabled={isChildrenView}
+                    droppableId={JSON.stringify({
+                      listName: props.listName,
+                      taskNumber: value.taskNumber,
+                    })}
+                    type="TASK"
+                    direction="vertical"
+                  >
+                    {(provided) => (
+                      <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        className="ModalTask__ListOfSubStacks__List"
+                      >
+                        {props.value?.tasks?.map((e: Task, index: number) => (
+                          // Task Draggable
+                          <ProjectColumnItem
+                            {...e}
+                            key={e.taskNumber}
+                            projectNumber={props.projectNumber}
+                            listName={props.listName}
+                            index={index}
+                            changeIsChildrenView={changeIsChildrenView}
+                            isChildrenView={isChildrenView}
+                            fullName={props.fullName + " - " + e.heading}
+                          />
+                        ))}
+                        {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                )}
+              </div>
+              <div className="ModalTask__Comments">
+                <ModalTaskComments
+                  projectNumber={props.projectNumber}
+                  taskNumber={value.taskNumber}
+                  listName={props.listName}
+                />
+
+                {value.comments && value.comments.length !== 0 && (
+                  <div className="ModalTask__Comments__Children">
+                    {value.comments.map((e) => (
+                      <ModalTaskComments
+                        key={e.commentNumber}
                         projectNumber={props.projectNumber}
+                        taskNumber={value.taskNumber}
                         listName={props.listName}
-                        index={index}
+                        comment={e}
                       />
                     ))}
-                    {provided.placeholder}
                   </div>
                 )}
-              </Droppable>
+              </div>
             </div>
-            <div className="ModalTask__Comments">
-              <ModalTaskComments projectNumber={props.projectNumber} taskNumber={value.taskNumber} listName={props.listName} />
-              {value.comments && value.comments.map((e) =>
-                <ModalTaskComments key={e.commentNumber} projectNumber={props.projectNumber} taskNumber={value.taskNumber} listName={props.listName} comment={e} />
-              )}
-            </div>
-            <button className="ModalTask__Button" onClick={props.changeIsModal}>
+            <button
+              className="ModalTask__Button__Cancel Modal__Block__Button"
+              onClick={props.changeIsModal}
+            >
               Cancel
             </button>
           </div>

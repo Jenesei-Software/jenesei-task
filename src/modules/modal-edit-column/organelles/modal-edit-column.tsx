@@ -4,13 +4,13 @@ import { useDispatch } from "react-redux";
 import "../styles/modal-edit-column.css";
 
 import { Column } from "../../../store/projects/interfaces";
-import { updateColumn } from "../../../store/projects/actions";
+import { deleteColumn, updateColumn } from "../../../store/projects/actions";
 
 interface IModalEditColumn {
   changeIsEdit: () => void;
-  projectNumber: string
-  column: Column
-  listName: string
+  projectNumber: string;
+  column: Column;
+  listName: string;
 }
 export const ModalEditColumn = (props: IModalEditColumn) => {
   const [title, setTitle] = useState<string | null>(null);
@@ -18,52 +18,76 @@ export const ModalEditColumn = (props: IModalEditColumn) => {
   const dispatch = useDispatch();
   const handleModalEditColumn = () => {
     if (title) {
-      dispatch(updateColumn(props.projectNumber, props.listName, title, description || undefined));
+      dispatch(
+        updateColumn(
+          props.projectNumber,
+          props.listName,
+          title,
+          description || undefined
+        )
+      );
       props.changeIsEdit();
     }
   };
+  const handleModalDeleteColumn = () => {
+    dispatch(deleteColumn(props.projectNumber, props.listName));
+    props.changeIsEdit();
+  };
   useEffect(() => {
-    setTitle(props.listName)
-    if (props.column.description)
-      setDescription(props.column.description);
+    setTitle(props.listName);
+    if (props.column.description) setDescription(props.column.description);
 
     return () => {
       setTitle(null);
-      setDescription(null)
+      setDescription(null);
     };
   }, [props]);
   return (
     <div className="Modal__Fixed">
       <form
-        className="ModalEditColumn"
+        className="ModalEditColumn Modal__Block"
         onSubmit={(e) => {
           e.preventDefault();
           handleModalEditColumn();
         }}
       >
-        <div className="ModalEditColumn__Title">Edit of Columns</div>
+        <div className="ModalEditColumn__Head">
+          <div className="Modal__Block__Title">Edit of Columns</div>
+          <button
+            className="Modal__Block__Button"
+            onClick={handleModalDeleteColumn}
+          >
+            Удалить
+          </button>
+        </div>
         <input
-          className="ModalEditColumn__Input"
+          className="ModalEditColumn__Input Modal__Block__Input"
           required
-          placeholder="heading"
+          placeholder="Write heading"
           type="text"
           value={title || ""}
           minLength={4}
           onChange={(event) => setTitle(event.target.value)}
         />
         <input
-          className="ModalEditColumn__Input"
-          placeholder="description"
+          className="ModalEditColumn__Input Modal__Block__Input"
+          placeholder="Write description"
           type="text"
           value={description || ""}
           minLength={4}
           maxLength={40}
           onChange={(event) => setDescription(event.target.value)}
         />
-        <button className="ModalEditColumn__Button" type="submit">
+        <button
+          className="ModalEditColumn__Button Modal__Block__Button"
+          type="submit"
+        >
           Create
         </button>
-        <button className="ModalEditColumn__Button" onClick={props.changeIsEdit}>
+        <button
+          className="ModalEditColumn__Button Modal__Block__Button"
+          onClick={props.changeIsEdit}
+        >
           Cancel
         </button>
       </form>

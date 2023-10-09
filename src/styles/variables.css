@@ -2,7 +2,7 @@
   /* /colors */
   --background: #f2f2f6;
 
-  --background-modal: rgba(0, 0, 0, 0.10);;
+  --background-modal: rgba(0, 0, 0, 0.3);
 
   --font-color-1: #8e8e92;
   --font-color-2: #000000;
@@ -17,14 +17,21 @@
   --font-color-green: #5dc466;
   --font-color-purple: #b67ad5;
   --font-color-brown: #9986;
-  --font-color-brand: #4195D2;
+  --font-color-brand: #4195d2;
+  --font-color-6: #49454E;
 
-  --block-color-active: #00C2E0;
+  --block-color-brand: #4195d2;
+  --block-color-brand-05: #4195D280;
+  --block-color-brand-08: #4195D2CC;
+  --block-color-brand-075: #4195D2BF;
+
   --block-color-1: #ffffff;
   --block-color-2: #000000;
   --block-color-3: #ececf1;
   --block-color-4: #fbfbfc;
   --block-color-5: #e4e4e5;
+  --block-color-6: #49454E;
+
   /* colors/ */
 
   /* /fonts */
@@ -36,6 +43,9 @@
 
   --font-size-2: 15px;
   --font-weight-2: 400;
+
+  --font-size-input: 16px;
+  --font-weight-input: 400;
 
   --font-size-3: 17px;
   --font-weight-3: 400;

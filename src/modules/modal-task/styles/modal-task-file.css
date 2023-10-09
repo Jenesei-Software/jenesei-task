@@ -18,6 +18,7 @@
   width: 100%;
   min-height: 100%;
   flex-direction: column;
+  color: var(--font-color-2);
 }
 .ModalTaskFile__Content__Area {
   width: 100%;
@@ -27,6 +28,7 @@
 .ModalTaskFile__Content__Area-Active {
 }
 .ModalTaskFile__Content__Hint {
+  color: var(--font-color-2);
 }
 .ModalTaskFile__Content__Notice {
 }

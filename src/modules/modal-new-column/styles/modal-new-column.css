@@ -1,7 +1,5 @@
 .ModalNewColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  
 }
 .ModalNewColumn__Title {
 }

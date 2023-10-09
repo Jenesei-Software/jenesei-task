@@ -36,27 +36,27 @@ export const ModalNewProject = (props: IModalNewProject) => {
   return (
     <div className="Modal__Fixed">
       <form
-        className="ModalNewProject"
+        className="ModalNewProject Modal__Block"
         onSubmit={(e) => {
           e.preventDefault();
           handleModalNewProject();
         }}
       >
-        <div className="ModalNewProject__Title">Heading of Project</div>
+        <div className="ModalNewProject__Title Modal__Block__Title">Heading of Project</div>
         <input
           ref={inputRef}
-          className="ModalNewProject__Input"
+          className="ModalNewProject__Input Modal__Block__Input"
           required
-          placeholder="heading"
+          placeholder="Write heading"
           type="text"
           value={title || ""}
           minLength={4}
           onChange={(event) => setTitle(event.target.value)}
         />
-        <button className="ModalNewProject__Button" type="submit">
+        <button className="ModalNewProject__Button Modal__Block__Button" type="submit">
           Create
         </button>
-        <button className="ModalNewProject__Button" onClick={props.changeIsAdd}>
+        <button className="ModalNewProject__Button Modal__Block__Button" onClick={props.changeIsAdd}>
           Cancel
         </button>
       </form>

@@ -9,6 +9,12 @@
   box-sizing: border-box;
   flex-direction: column;
 }
+.AppGeneralBar__Nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
 .AppGeneralBar__Nav__Link {
   text-decoration: none;
   display: flex;
@@ -16,10 +22,34 @@
   align-items: center;
   gap: 4px;
 }
+.AppGeneralBar__Nav__Link #AppGeneralBar__Nav__Link__Icon__Rect__Mask__Rect {
+  fill: var(--block-color-6);
+}
+
+.AppGeneralBar__Nav__Link:hover #AppGeneralBar__Nav__Link__Icon__Rect {
+  fill: var(--block-color-brand-08);
+}
+.AppGeneralBar__Nav__Link:hover
+  #AppGeneralBar__Nav__Link__Icon__Rect__Mask__Rect {
+  fill: var(--background);
+}
+
+.AppGeneralBar__Nav__Link--active svg {
+  animation: AppGeneralBar-Nav-Link-Icon 0.3s ease;
+  animation-fill-mode: forwards;
+}
+.AppGeneralBar__Nav__Link--active #AppGeneralBar__Nav__Link__Icon__Rect {
+  fill: var(--block-color-brand-08);
+}
+.AppGeneralBar__Nav__Link--active
+  #AppGeneralBar__Nav__Link__Icon__Rect__Mask__Rect {
+  fill: var(--background);
+}
+
 .AppGeneralBar__Nav__Link__Title {
   font-weight: var(--font-weight-5);
   font-size: var(--font-size-1);
-  color: var(--font-color-2);
+  color: var(--font-color-6);
 }
 @media (orientation: portrait) {
   .AppGeneralBar {
@@ -37,5 +67,25 @@
   }
   .AppGeneralBar__Nav__Link__Icon {
     width: 38px;
+  }
+  .AppGeneralBar__Nav {
+    flex-direction: row;
+  }
+}
+@keyframes AppGeneralBar-Nav-Link-Icon {
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
   }
 }

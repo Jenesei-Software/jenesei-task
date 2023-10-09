@@ -4,8 +4,8 @@ export const countNestedTasks = (tasks: Task[]): number => {
   let count = tasks.length;
 
   for (let task of tasks) {
-    if (task.task) {
-      count += countNestedTasks(task.task);
+    if (task.tasks) {
+      count += countNestedTasks(task.tasks);
     }
   }
 

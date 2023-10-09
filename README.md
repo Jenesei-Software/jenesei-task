@@ -1,6 +1,6 @@
 # Test task in UpTrader
 
-[![DEMO](https://img.shields.io/badge/live%20demo-0073cf?style=for-the-badge&logoColor=white)](https://cyrilstrone.github.io/uptrader-test)
+[![DEMO](https://img.shields.io/badge/live%20demo-0073cf?style=for-the-badge&logoColor=white)](https://cyrilstrone.github.io/jen-task)
 
 
 # ⌨️ Usage

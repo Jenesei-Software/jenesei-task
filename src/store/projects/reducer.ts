@@ -1,5 +1,5 @@
 import * as types from "./types";
-import { Project, Task, Comment } from "./interfaces";
+import { Project, Task, Comment, Column } from "./interfaces";
 
 interface ProjectsState {
   projects: Project[];
@@ -13,6 +13,24 @@ function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
+  return result;
+}
+function renameKey(
+  obj: { [key: string]: Column },
+  oldKey: string,
+  newKey: string
+): { [key: string]: any } {
+  if (oldKey === newKey) return obj;
+
+  const result: { [key: string]: any } = {};
+  for (const key in obj) {
+    if (key === oldKey) {
+      result[newKey] = obj[oldKey];
+    } else {
+      result[key] = obj[key];
+    }
+  }
+
   return result;
 }
 
@@ -42,24 +60,24 @@ const addTaskToTaskList = (
         // If the index is given, insert the subtask at this position.
         return {
           ...task,
-          task: [
-            ...(task.task || []).slice(0, index),
+          tasks: [
+            ...(task.tasks || []).slice(0, index),
             ModalNewTask,
-            ...(task.task || []).slice(index),
+            ...(task.tasks || []).slice(index),
           ],
         };
       } else {
         // If the index is not specified, add the subtask to the end of the list.
         return {
           ...task,
-          task: [...(task.task || []), ModalNewTask],
+          tasks: [...(task.tasks || []), ModalNewTask],
         };
       }
     }
-    if (task.task && task.task.length > 0) {
+    if (task.tasks && task.tasks.length > 0) {
       return {
         ...task,
-        task: addTaskToTaskList(task.task, ModalNewTask, parentTaskId, index),
+        tasks: addTaskToTaskList(task.tasks, ModalNewTask, parentTaskId, index),
       };
     }
     return task;
@@ -78,10 +96,10 @@ const updateTaskInList = (
         ...updatedFields,
       };
     }
-    if (task.task && task.task.length > 0) {
+    if (task.tasks && task.tasks.length > 0) {
       return {
         ...task,
-        task: updateTaskInList(task.task, taskNumber, updatedFields),
+        tasks: updateTaskInList(task.tasks, taskNumber, updatedFields),
       };
     }
     return task;
@@ -99,10 +117,10 @@ const deleteTaskInList = (taskList: Task[], taskNumber: string): Task[] => {
   return taskList.reduce((acc: Task[], task: Task) => {
     if (task.taskNumber === taskNumber) return acc;
 
-    if (task.task && task.task.length > 0) {
+    if (task.tasks && task.tasks.length > 0) {
       return [
         ...acc,
-        { ...task, task: deleteTaskInList(task.task, taskNumber) },
+        { ...task, tasks: deleteTaskInList(task.tasks, taskNumber) },
       ];
     }
 
@@ -152,11 +170,11 @@ const addCommentToTask = (
       };
     }
 
-    if (task.task && task.task.length > 0) {
+    if (task.tasks && task.tasks.length > 0) {
       return {
         ...task,
-        task: addCommentToTask(
-          task.task,
+        tasks: addCommentToTask(
+          task.tasks,
           taskNumber,
           comment,
           parentCommentNumber
@@ -184,6 +202,15 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
           project.projectNumber === updatedProject.projectNumber
             ? updatedProject
             : project
+        ),
+      };
+    }
+    case types.DELETE_PROJECT: {
+      const projectNumberToDelete = action.payload;
+      return {
+        ...state,
+        projects: state.projects.filter(
+          (project) => project?.projectNumber !== projectNumberToDelete
         ),
       };
     }
@@ -447,9 +474,16 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
           const column = project.columns[oldColumnName];
           if (!column) return project;
 
-          const updatedColumns = { ...project.columns };
+          let updatedColumns = { ...project.columns };
 
-          delete updatedColumns[oldColumnName];
+          if (oldColumnName !== newColumnName) {
+            updatedColumns = renameKey(
+              updatedColumns,
+              oldColumnName,
+              newColumnName
+            );
+          }
+
           updatedColumns[newColumnName] = {
             ...column,
             description: description || column.description,
@@ -462,6 +496,7 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
         }),
       };
     }
+
     default:
       return state;
   }

@@ -9,8 +9,8 @@ export const findTaskRecursively = (
       return task;
     }
 
-    if (task.task && task.task.length) {
-      const found = findTaskRecursively(task.task, taskId);
+    if (task.tasks && task.tasks.length) {
+      const found = findTaskRecursively(task.tasks, taskId);
       if (found) {
         return found;
       }

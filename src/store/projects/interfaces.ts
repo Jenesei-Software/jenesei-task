@@ -30,7 +30,7 @@ interface Task {
   priorityStatus?: PriorityStatus;
   currentStatus?: CurrentStatus;
   attachedFiles?: File[];
-  task?: Task[];
+  tasks?: Task[];
   comments?: Comment[];
 }
 

@@ -20,3 +20,37 @@ body {
   margin: 0;
   padding: 0;
 }
+img {
+  -webkit-backface-visibility: hidden;
+  -ms-transform: translateZ(0); /* IE 9 */
+  -webkit-transform: translateZ(0); /* Chrome, Safari, Opera */
+  transform: translateZ(0);
+}
+
+input[type="date"],
+input[type="time"] {
+  -webkit-min-logical-width: calc(100% - 16px);
+}
+input[type="date"] {
+  display: flex !important;
+  align-items: left !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select:focus,
+  textarea:focus,
+  input:focus {
+    font-size: 16px;
+  }
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
+input[type="submit"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

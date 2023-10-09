@@ -43,7 +43,7 @@ export const ModalTaskFileElem = (props: IModalTaskFileElem) => {
             {props.file.name}
           </div>
           <button
-            className="ModalTaskFileElem__Content__Delete"
+            className="ModalTaskFileElem__Content__Delete Modal__Block__Button"
             onClick={(e) => onRemoveBtnClick(e)}
           >
             Удалить
@@ -75,7 +75,7 @@ export const ModalTaskFileElem = (props: IModalTaskFileElem) => {
             {props.file.name}
           </div>
           <button
-            className="ModalTaskFileElem__Content__Delete"
+            className="ModalTaskFileElem__Content__Delete Modal__Block__Button"
             onClick={(e) => onRemoveBtnClick(e)}
           >
             Удалить

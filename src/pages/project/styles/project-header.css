@@ -10,9 +10,9 @@
   min-width: 120px;
 }
 .ProjectHeader .ProjectColumnItemAdd {
-  width: 200px;
+  width: 128px;
   justify-content: space-between;
 }
 .ProjectHeader .ProjectColumnItemAdd__RightIcon {
-  margin-left: 0px;
+  display: none;
 }

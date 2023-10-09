@@ -27,27 +27,27 @@ export const ModalNewColumn = (props: IModalNewColumn) => {
   return (
     <div className="Modal__Fixed">
       <form
-        className="ModalNewColumn"
+        className="ModalNewColumn Modal__Block"
         onSubmit={(e) => {
           e.preventDefault();
           handleModalNewColumn();
         }}
       >
-        <div className="ModalNewColumn__Title">Add of Columns</div>
+        <div className="ModalNewColumn__Title Modal__Block__Title">Add of Columns</div>
         <input
           ref={inputRef}
-          className="ModalNewColumn__Input"
+          className="ModalNewColumn__Input Modal__Block__Input"
           required
-          placeholder="heading"
+          placeholder="Write heading"
           type="text"
           value={title || ""}
           minLength={4}
           onChange={(event) => setTitle(event.target.value)}
         />
-        <button className="ModalNewColumn__Button" type="submit">
+        <button className="ModalNewColumn__Button Modal__Block__Button" type="submit">
           Create
         </button>
-        <button className="ModalNewColumn__Button" onClick={props.changeIsAdd}>
+        <button className="ModalNewColumn__Button Modal__Block__Button" onClick={props.changeIsAdd}>
           Cancel
         </button>
       </form>

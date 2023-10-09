@@ -1,5 +1,5 @@
 import * as types from "./types";
-import { Project, Task, Comment, Column } from "./interfaces";
+import { Project, Task, Comment } from "./interfaces";
 
 export const addProject = (project: Project) => ({
   type: types.ADD_PROJECT,
@@ -14,6 +14,11 @@ export const updateProjects = (projects: Project[]) => ({
 export const updateProject = (project: Project) => ({
   type: types.UPDATE_PROJECT,
   payload: project,
+});
+
+export const deleteProject = (projectNumber: string) => ({
+  type: types.DELETE_PROJECT,
+  payload: projectNumber,
 });
 
 export const addTask = (

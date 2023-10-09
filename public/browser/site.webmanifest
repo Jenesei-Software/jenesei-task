@@ -15,7 +15,7 @@
   ],
   "theme_color": "#4195d2",
   "background_color": "#4195d2",
-  "start_url": "/uptrader-test",
+  "start_url": "/",
   "display": "standalone",
   "description": "Jen Task is Nice",
   "lang": "eng",

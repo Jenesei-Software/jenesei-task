@@ -8,7 +8,7 @@
   font-size: var(--font-size-3);
   color: var(--font-color-2);
 }
-.Project__Columns {
+.ProjectColumn {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -16,7 +16,7 @@
   align-items: stretch;
   overflow-x: auto;
 }
-.Project__Columns__Item {
+.ProjectColumn__Item {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -29,21 +29,21 @@
   box-sizing: border-box;
   background-color: var(--block-color-1);
 }
-.Project__Columns__Item__Header {
+.ProjectColumn__Item__Header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.Project__Columns__Item__Header__Title {
+.ProjectColumn__Item__Header__Title {
   font-weight: var(--font-weight-4);
   font-size: var(--font-size-3);
   color: var(--font-color-2);
   padding-left: 8px;
 }
-.Project__Columns__Item__Header__Icon {
+.ProjectColumn__Item__Header__Icon {
   cursor: pointer;
 }
-.Project__Columns__Item__List {
+.ProjectColumn__Item__List {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -53,7 +53,7 @@
   height: 100%;
 }
 @media (orientation: portrait) {
-  .Project__Columns__Item {
+  .ProjectColumn__Item {
     width: 88dvw;
     min-width: 88dvw;
     margin: 2dvw;
