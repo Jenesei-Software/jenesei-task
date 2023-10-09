@@ -5,7 +5,7 @@
 [![DEMO](https://img.shields.io/badge/live%20demo-0073cf?style=for-the-badge&logoColor=white)](https://task.jenesei.ru/)
 [![DEMO](https://img.shields.io/badge/TEST%20TASK-0073cf?style=for-the-badge&logoColor=white)](https://github.com/UptraderTestTask/Junior-frontend)
 
-<img src="https://i4.imageban.ru/out/2023/10/09/06309eeec0b626f63ae1e2324040e791.gif" width="600">
+<img src="https://i4.imageban.ru/out/2023/10/09/d8396d89d69cbe7fa0fa5edd0c78c728.gif" width="600">
 
 ## Technologies
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
