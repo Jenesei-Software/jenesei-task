@@ -9,11 +9,12 @@ import { updateProjects } from "../stores/projects/actions";
 import { ProjectBar } from "../pages/project-bar/organelles/project-bar";
 import { Project } from "../pages/project/organelles/project";
 import { Settings } from "../pages/settings/organelles/settings";
+import { localStorageName } from "../stores/store";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const savedProjects = localStorage.getItem("projects");
+    const savedProjects = localStorage.getItem(localStorageName);
     if (savedProjects) {
       const parsedProjects = JSON.parse(savedProjects);
       dispatch(updateProjects(parsedProjects));
