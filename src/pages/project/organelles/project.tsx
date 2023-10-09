@@ -9,7 +9,7 @@ import {
 } from "react-beautiful-dnd";
 import { Helmet } from "react-helmet";
 
-import { RootState } from "../../../stores/stores";
+import { RootState } from "../../../stores/store";
 import { Task } from "../../../stores/projects/interfaces";
 import { ModalNewTask } from "../../../modules/modal-new-task/organelles/modal-new-task";
 import { moveColumns, moveTask } from "../../../stores/projects/actions";
