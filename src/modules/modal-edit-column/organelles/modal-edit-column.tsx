@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "../styles/modal-edit-column.css";
 
 import { Column } from "../../../stores/projects/interfaces";
 import { deleteColumn, updateColumn } from "../../../stores/projects/actions";
+import { doesColumnExist } from "../../../functions/does-сolumn-exist ";
+import { RootState } from "../../../stores/store";
 
 interface IModalEditColumn {
   changeIsEdit: () => void;
@@ -13,11 +15,13 @@ interface IModalEditColumn {
   listName: string;
 }
 export const ModalEditColumn = (props: IModalEditColumn) => {
+  const projectState = useSelector((state: RootState) => state.projectsState);
+
   const [title, setTitle] = useState<string | null>(null);
   const [description, setDescription] = useState<string | null>(null);
   const dispatch = useDispatch();
   const handleModalEditColumn = () => {
-    if (title) {
+    if (title && !doesColumnExist(props.projectNumber, title, props.listName, projectState.projects)) {
       dispatch(
         updateColumn(
           props.projectNumber,
@@ -27,6 +31,8 @@ export const ModalEditColumn = (props: IModalEditColumn) => {
         )
       );
       props.changeIsEdit();
+    } else {
+      console.error("A column with the same name already exists")
     }
   };
   const handleModalDeleteColumn = () => {

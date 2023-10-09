@@ -1,22 +1,28 @@
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "../styles/modal-new-column.css";
 
 import { addColumn } from "../../../stores/projects/actions";
+import { doesColumnExist } from "../../../functions/does-сolumn-exist ";
+import { Project } from "../../../stores/projects/interfaces";
+import { RootState } from "../../../stores/store";
 
 interface IModalNewColumn {
   changeIsAdd: () => void;
   projectNumber: string
 }
 export const ModalNewColumn = (props: IModalNewColumn) => {
+  const projectState = useSelector((state: RootState) => state.projectsState);
   const inputRef = useRef<HTMLInputElement>(null);
   const [title, setTitle] = useState<string | null>(null);
   const dispatch = useDispatch();
   const handleModalNewColumn = () => {
-    if (title) {
+    if (title && !doesColumnExist(props.projectNumber, title, null, projectState.projects)) {
       dispatch(addColumn(props.projectNumber, title));
       props.changeIsAdd();
+    } else {
+      console.error("A column with the same name already exists")
     }
   };
   useEffect(() => {
