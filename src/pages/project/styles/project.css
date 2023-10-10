@@ -67,4 +67,7 @@
   }
   .Project__Swiper {
   }
+  .swiper-pagination-bullet-active{
+    background: var(--block-color-brand) !important;
+  }
 }

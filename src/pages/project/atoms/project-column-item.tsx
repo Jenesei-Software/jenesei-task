@@ -14,6 +14,7 @@ import { countNestedComments } from "../../../functions/count-nested-comments";
 
 import "../styles/project-column-item.css";
 import { countNestedTasks } from "../../../functions/count-nested-tasks";
+import ReactDOM from "react-dom";
 
 interface AdditionalProps {
   projectNumber: string;
@@ -21,7 +22,7 @@ interface AdditionalProps {
   index: number;
   changeIsChildrenView: () => void;
   isChildrenView: boolean;
-  fullName:string;
+  fullName: string;
 }
 
 export const ProjectColumnItem = (props: Task & AdditionalProps) => {
@@ -63,17 +64,19 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
               ...provided.draggableProps.style,
             }}
           >
-            {isModal && props.projectNumber && (
-              <ModalTask
-                changeIsChildrenView={props.changeIsChildrenView}
-                isChildrenView={props.isChildrenView}
-                changeIsModal={changeIsModal}
-                projectNumber={props.projectNumber}
-                value={props}
-                listName={props.listName}
-                fullName={props.fullName}
-              />
-            )}
+            {isModal && props.projectNumber &&
+              ReactDOM.createPortal(
+                <ModalTask
+                  changeIsChildrenView={props.changeIsChildrenView}
+                  isChildrenView={props.isChildrenView}
+                  changeIsModal={changeIsModal}
+                  projectNumber={props.projectNumber}
+                  value={props}
+                  listName={props.listName}
+                  fullName={props.fullName}
+                />,
+                document.body
+              )}
             <div className="ProjectColumnItem__Info" onClick={handleIsCheck}>
               <div className="ProjectColumnItem__Info__Status">
                 {props.priorityStatus && (

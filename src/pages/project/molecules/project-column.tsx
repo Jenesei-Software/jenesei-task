@@ -11,6 +11,7 @@ import { ProjectColumnItemAdd } from "../atoms/project-column-item-add";
 import { ModalEditColumn } from "../../../modules/modal-edit-column/organelles/modal-edit-column";
 
 import "../styles/project-column.css";
+import ReactDOM from "react-dom";
 
 interface IProjectColumn {
   provided: DraggableProvided;
@@ -109,14 +110,16 @@ export const ProjectColumn = (props: IProjectColumn) => {
           onClick={() => props.changeIsAdd(props.listName)}
         />
       </div>
-      {isEdit && (
-        <ModalEditColumn
-          listName={props.listName}
-          projectNumber={props.projectNumber}
-          changeIsEdit={changeIsEdit}
-          column={props.column}
-        />
-      )}
+      {isEdit &&
+        ReactDOM.createPortal(
+          <ModalEditColumn
+            listName={props.listName}
+            projectNumber={props.projectNumber}
+            changeIsEdit={changeIsEdit}
+            column={props.column}
+          />,
+          document.body
+        )}
     </>
   );
 };

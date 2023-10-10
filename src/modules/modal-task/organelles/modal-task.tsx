@@ -16,6 +16,7 @@ import { ProjectColumnItem } from "../../../pages/project/atoms/project-column-i
 
 import "../styles/modal-task.css";
 import { getTimeAtWork } from "../../../functions/get-time-at-work";
+import ReactDOM from "react-dom";
 
 interface IModalTask {
   changeIsModal: () => void;
@@ -307,14 +308,16 @@ export const ModalTask = (props: IModalTask) => {
             </button>
           </div>
         </div>
-        {isAdd && props.projectNumber && (
-          <ModalNewTask
-            changeIsAdd={changeIsAdd}
-            listName={props.listName}
-            projectNumber={props.projectNumber}
-            taskNumber={value.taskNumber}
-          />
-        )}
+        {isAdd && props.projectNumber &&
+          ReactDOM.createPortal(
+            <ModalNewTask
+              changeIsAdd={changeIsAdd}
+              listName={props.listName}
+              projectNumber={props.projectNumber}
+              taskNumber={value.taskNumber}
+            />,
+            document.body
+          )}
       </>
     )
   );
