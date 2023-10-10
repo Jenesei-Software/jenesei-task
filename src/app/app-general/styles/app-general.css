@@ -25,6 +25,7 @@
     min-height: 100dvh;
     padding-right: 2dvw;
     padding-left: 2dvw;
+    padding-bottom: 2dvw;
   }
   .AppGeneral__Outlet {
     grid-column-start: 1;

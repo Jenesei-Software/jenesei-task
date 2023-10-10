@@ -48,12 +48,12 @@ interface Project {
   };
 }
 
-interface ProjectsState {
+export interface ProjectsState {
   projects: Project[];
+  searchProjects: Project[]; 
 }
 
 export type {
-  ProjectsState,
   Project,
   Column,
   Task,

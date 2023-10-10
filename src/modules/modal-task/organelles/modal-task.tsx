@@ -12,9 +12,10 @@ import { ModalNewTask } from "../../modal-new-task/organelles/modal-new-task";
 import { deleteTask, updateTask } from "../../../stores/projects/actions";
 import { ModalTaskFile, useFiles } from "../molecules/modal-task-file";
 import { ModalTaskComments } from "../molecules/modal-task-comments";
+import { ProjectColumnItem } from "../../../pages/project/atoms/project-column-item";
 
 import "../styles/modal-task.css";
-import { ProjectColumnItem } from "../../../pages/project/atoms/project-column-item";
+import { getTimeAtWork } from "../../../functions/get-time-at-work";
 
 interface IModalTask {
   changeIsModal: () => void;
@@ -46,7 +47,7 @@ export const ModalTask = (props: IModalTask) => {
           currentStatus: value.currentStatus,
           heading: value.heading,
           description: value.description,
-          expirationDate: moment(new Date(), "ddd MMM DD YYYY HH:mm:ss ZZ"),
+          expirationDate: moment(new Date()),
         })
       );
     props.changeIsModal();
@@ -62,6 +63,8 @@ export const ModalTask = (props: IModalTask) => {
       dispatch(
         deleteTask(props.projectNumber, value.taskNumber, props.listName)
       );
+    props.changeIsModal()
+
   };
   useEffect(() => {
     if (props.value) {
@@ -97,6 +100,7 @@ export const ModalTask = (props: IModalTask) => {
                       type="text"
                       value={value.heading || ""}
                       minLength={4}
+                      maxLength={40}
                       onChange={(event) =>
                         setValue({ ...value, heading: event.target.value })
                       }
@@ -111,6 +115,7 @@ export const ModalTask = (props: IModalTask) => {
                       type="text"
                       value={value.description || ""}
                       minLength={4}
+                      maxLength={40}
                       onChange={(event) =>
                         setValue({ ...value, description: event.target.value })
                       }
@@ -121,13 +126,19 @@ export const ModalTask = (props: IModalTask) => {
                   <div className="ModalTask__DateOfCreation">
                     <div className="ModalTask__SubTitle">Date Of Creation</div>
                     <div className="ModalTask__SubInfo">
-                      {moment(String(value.dateOfCreation)).calendar()}
+                      {moment(value.dateOfCreation).calendar()}
                     </div>
                   </div>
                   <div className="ModalTask__ExpirationDate">
                     <div className="ModalTask__SubTitle">Expiration Date</div>
                     <div className="ModalTask__SubInfo">
-                      {moment(String(value.expirationDate)).calendar()}
+                      {moment(value.expirationDate).calendar()}
+                    </div>
+                  </div>
+                  <div className="ModalTask__TimeAtWork">
+                    <div className="ModalTask__SubTitle">Time at work</div>
+                    <div className="ModalTask__SubInfo">
+                      {getTimeAtWork(value.dateOfCreation)}
                     </div>
                   </div>
                   <div className="ModalTask__PriorityStatus">

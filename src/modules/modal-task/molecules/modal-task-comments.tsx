@@ -55,6 +55,7 @@ export const ModalTaskComments = (props: IModalTaskComments) => {
           placeholder="Write comment"
           className="ModalTaskComments__Input Modal__Block__Input"
           minLength={4}
+          maxLength={40}
           type="text"
           value={commentContent || ""}
           onChange={(event) => setCommentContent(event.target.value)}

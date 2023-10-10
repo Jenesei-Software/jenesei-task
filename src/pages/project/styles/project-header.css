@@ -16,3 +16,19 @@
 .ProjectHeader .ProjectColumnItemAdd__RightIcon {
   display: none;
 }
+.ProjectHeader__Input {
+  max-width: 240px;
+}
+@media (orientation: portrait) {
+  .ProjectHeader {
+    gap: 8px;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .ProjectHeaderEdit {
+    position: absolute;
+    right: 0;
+  }
+}

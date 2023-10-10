@@ -21,6 +21,11 @@ export const deleteProject = (projectNumber: string) => ({
   payload: projectNumber,
 });
 
+export const updateSearchProject = (project: Project) => ({
+  type: types.UPDATE_SEARCH_PROJECTS,
+  payload: project,
+});
+
 export const addTask = (
   projectNumber: string,
   task: Task,

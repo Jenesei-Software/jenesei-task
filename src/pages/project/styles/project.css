@@ -53,9 +53,18 @@
   height: 100%;
 }
 @media (orientation: portrait) {
+  .Project {
+    height: 100%;
+  }
+  .ProjectColumn{
+    height: 100%;
+  }
   .ProjectColumn__Item {
     width: 88dvw;
     min-width: 88dvw;
     margin: 2dvw;
+    margin-bottom: 12dvw;
+  }
+  .Project__Swiper {
   }
 }

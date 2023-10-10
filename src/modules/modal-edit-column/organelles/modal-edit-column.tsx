@@ -5,7 +5,7 @@ import "../styles/modal-edit-column.css";
 
 import { Column } from "../../../stores/projects/interfaces";
 import { deleteColumn, updateColumn } from "../../../stores/projects/actions";
-import { doesColumnExist } from "../../../functions/does-сolumn-exist ";
+import { doesColumnExist } from "../../../functions/does-column-exist";
 import { RootState } from "../../../stores/store";
 
 interface IModalEditColumn {
@@ -73,6 +73,7 @@ export const ModalEditColumn = (props: IModalEditColumn) => {
           type="text"
           value={title || ""}
           minLength={4}
+          maxLength={40}
           onChange={(event) => setTitle(event.target.value)}
         />
         <input

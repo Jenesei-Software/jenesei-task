@@ -61,6 +61,7 @@ export const ModalEditProject = (props: IModalEditProject) => {
           type="text"
           value={value?.title || ""}
           minLength={4}
+          maxLength={40}
           onChange={(event) =>
             setValue({ ...value, title: event.target.value })
           }

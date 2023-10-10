@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../styles/modal-new-column.css";
 
 import { addColumn } from "../../../stores/projects/actions";
-import { doesColumnExist } from "../../../functions/does-сolumn-exist ";
-import { Project } from "../../../stores/projects/interfaces";
+import { doesColumnExist } from "../../../functions/does-column-exist";
 import { RootState } from "../../../stores/store";
 
 interface IModalNewColumn {
@@ -48,6 +47,7 @@ export const ModalNewColumn = (props: IModalNewColumn) => {
           type="text"
           value={title || ""}
           minLength={4}
+          maxLength={40}
           onChange={(event) => setTitle(event.target.value)}
         />
         <button className="ModalNewColumn__Button Modal__Block__Button" type="submit">

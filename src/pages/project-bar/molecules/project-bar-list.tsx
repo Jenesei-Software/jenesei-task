@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Flipped, Flipper } from "react-flip-toolkit";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 import { RootState } from "../../../stores/store";
 import { ProjectBarListItem } from "../atoms/project-bar-list-item";
@@ -13,7 +12,6 @@ import "../styles/project-bar-list.css";
 
 export const ProjectBarList = () => {
   const { projectNumber } = useParams();
-  const navigate = useNavigate();
   const projectState = useSelector((state: RootState) => state.projectsState);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -36,7 +34,6 @@ export const ProjectBarList = () => {
       <Flipper flipKey={selectedIndex}>
         <div className="ProjectBarList__List">
           <ProjectBarListItemZero />
-
           {selectedIndex !== null && (
             <Flipped key={projectState.projects[selectedIndex]?.projectNumber} flipId={projectState.projects[selectedIndex]?.projectNumber}>
               <div onClick={() => handleProjectBarClick(selectedIndex)}>
@@ -44,8 +41,7 @@ export const ProjectBarList = () => {
               </div>
             </Flipped>
           )}
-
-          {projectState.projects.map((e: Project, index: number) => (
+          {projectState.projects && projectState.projects.length !== 0 && projectState.projects.map((e: Project, index: number) => (
             index !== selectedIndex && (
               <Flipped key={e.projectNumber} flipId={e.projectNumber}>
                 <div onClick={() => handleProjectBarClick(index)}>
@@ -54,7 +50,6 @@ export const ProjectBarList = () => {
               </Flipped>
             )
           ))}
-
         </div>
       </Flipper>
     </div>

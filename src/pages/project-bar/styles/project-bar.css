@@ -13,5 +13,6 @@
 @media (orientation: portrait) {
   .ProjectBar {
     padding: 2dvw;
+    height: 100%;
   }
 }

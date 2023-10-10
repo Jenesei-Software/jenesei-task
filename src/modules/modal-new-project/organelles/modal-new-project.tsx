@@ -51,6 +51,7 @@ export const ModalNewProject = (props: IModalNewProject) => {
           type="text"
           value={title || ""}
           minLength={4}
+          maxLength={40}
           onChange={(event) => setTitle(event.target.value)}
         />
         <button className="ModalNewProject__Button Modal__Block__Button" type="submit">

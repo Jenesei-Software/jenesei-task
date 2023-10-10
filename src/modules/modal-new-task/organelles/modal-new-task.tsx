@@ -20,8 +20,8 @@ export const ModalNewTask = (props: IModalNewTask) => {
     isCheck: false,
     taskNumber: v4(),
     heading: "",
-    dateOfCreation: moment(new Date(), "ddd MMM DD YYYY HH:mm:ss ZZ"),
-    expirationDate: moment(new Date(), "ddd MMM DD YYYY HH:mm:ss ZZ"),
+    dateOfCreation: moment(new Date()),
+    expirationDate: moment(new Date()),
   };
   const [value, setValue] = useState<Task>(DEFAULT_VALUE);
   const dispatch = useDispatch();
@@ -56,6 +56,7 @@ export const ModalNewTask = (props: IModalNewTask) => {
           type="text"
           value={value.heading}
           minLength={4}
+          maxLength={40}
           onChange={(event) =>
             setValue({ ...value, heading: event.target.value })
           }

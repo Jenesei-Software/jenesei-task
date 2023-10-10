@@ -37,13 +37,13 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
     dispatch(
       updateTask(props.projectNumber, props.taskNumber, props.listName, {
         isCheck: !props.isCheck,
-        expirationDate: moment(new Date(), "ddd MMM DD YYYY HH:mm:ss ZZ"),
+        expirationDate: moment(new Date()),
       })
     );
   };
   return (
     <Draggable
-      isDragDisabled={isModal}
+      isDragDisabled={isModal || props.isChildrenView}
       draggableId={JSON.stringify({
         listName: undefined,
         taskNumber: props.taskNumber,
