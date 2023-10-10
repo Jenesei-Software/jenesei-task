@@ -206,10 +206,20 @@ const projectsReducer = (state = initialState, action: any): ProjectsState => {
         ),
       };
     }
+    case types.DELETE_PROJECT: {
+      const projectNumberToDelete = action.payload;
+
+      return {
+        ...state,
+        projects: state.projects.filter(
+          (project) => project.projectNumber !== projectNumberToDelete
+        ),
+      };
+    }
     case types.UPDATE_SEARCH_PROJECTS: {
       return { ...state, searchProjects: action.payload };
     }
-    
+
     case types.ADD_TASK: {
       const { projectNumber, task, listName, parentTaskId, index } =
         action.payload;

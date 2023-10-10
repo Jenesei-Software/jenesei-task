@@ -25,7 +25,8 @@ export const ModalEditProject = (props: IModalEditProject) => {
     }
   };
   const handleModalDeleteProject = () => {
-    if (value) dispatch(deleteProject(props.project.projectNumber));
+    if (value)
+      dispatch(deleteProject(value.projectNumber));
     props.changeIsAdd();
   };
   useEffect(() => {
