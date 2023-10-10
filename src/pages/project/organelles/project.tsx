@@ -9,11 +9,10 @@ import {
 } from "react-beautiful-dnd";
 import { Helmet } from "react-helmet";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Pagination, A11y } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 
 import { RootState } from "../../../stores/store";
 import { Task } from "../../../stores/projects/interfaces";
@@ -146,7 +145,7 @@ export const Project = () => {
                 >
                   {orientation === "portrait" ?
                     <Swiper className="Project__Swiper"
-                      modules={[Pagination, Scrollbar, A11y]}
+                      modules={[Pagination, A11y]}
                       pagination={{ clickable: true }}
                       scrollbar={{ draggable: true }}
                     >
