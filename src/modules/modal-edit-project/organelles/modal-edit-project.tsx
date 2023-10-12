@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import "../styles/modal-edit-project.css";
 
 import { Project } from "../../../stores/projects/interfaces";
 import { deleteProject, updateProject } from "../../../stores/projects/actions";
+import { pathName } from "../../../app/app";
 
 interface IModalEditProject {
   changeIsAdd: () => void;
   project: Project;
 }
 export const ModalEditProject = (props: IModalEditProject) => {
+  const navigate = useNavigate();
   const [value, setValue] = useState<Project | null>(null);
   const dispatch = useDispatch();
   const handleModalEditProject = () => {
@@ -25,8 +28,8 @@ export const ModalEditProject = (props: IModalEditProject) => {
     }
   };
   const handleModalDeleteProject = () => {
-    if (value)
-      dispatch(deleteProject(value.projectNumber));
+    if (value) dispatch(deleteProject(value.projectNumber));
+    navigate(`/${pathName.project.title}`);
     props.changeIsAdd();
   };
   useEffect(() => {

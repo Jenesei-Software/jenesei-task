@@ -2,12 +2,14 @@ import { NavLink } from "react-router-dom";
 
 import "../styles/app-general-bar.css";
 
+import { pathName } from "../../app";
+
 export const AppGeneralBar = () => {
   return (
     <div className="AppGeneralBar">
       <div className="AppGeneralBar__Nav">
         <NavLink
-          to={"/project"}
+          to={`/${pathName.project.title}`}
           className={({ isActive }) =>
             isActive
               ? "AppGeneralBar__Nav__Link--active AppGeneralBar__Nav__Link"
@@ -38,7 +40,7 @@ export const AppGeneralBar = () => {
           <div className="AppGeneralBar__Nav__Link__Title">Projects</div>
         </NavLink>
         <NavLink
-          to={"/settings"}
+          to={`/${pathName.setting.title}`}
           className={({ isActive }) =>
             isActive
               ? "AppGeneralBar__Nav__Link--active AppGeneralBar__Nav__Link"
