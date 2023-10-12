@@ -80,7 +80,10 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
                 />,
                 document.body
               )}
-            <div className="ProjectColumnItem__Info" onClick={handleIsCheck}>
+            <div
+              className="ProjectColumnItem__Info"
+              onClick={handleIsCheck}
+            >
               <div className="ProjectColumnItem__Info__Status">
                 {props.priorityStatus && (
                   <div
@@ -104,7 +107,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
               <div
                 className="ProjectColumnItem__Info__Title"
                 style={{
-                  textDecoration: props.isCheck ? "line-through" : "auto",
+                  textDecoration: props.isCheck ? "line-through" : "none",
                 }}
               >
                 {props.heading}
