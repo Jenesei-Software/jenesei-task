@@ -21,9 +21,11 @@ interface AdditionalProps {
   listName: string;
   index: number;
   changeIsDropDisabled: () => void;
+  changeIsDropDisabledModal?: () => void;
   isDropDisabled: boolean;
   fullName: string;
   orientation: string;
+  searchStateQuery: string;
 }
 
 export const ProjectColumnItem = (props: Task & AdditionalProps) => {
@@ -32,7 +34,10 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
 
   const changeIsModal = () => {
     setIsModal(!isModal);
-    if (props.orientation === "landscape") props.changeIsDropDisabled();
+    if (props.orientation === "landscape" && !props.searchStateQuery)
+      props.changeIsDropDisabled();
+
+    if (props.changeIsDropDisabledModal) props.changeIsDropDisabledModal();
   };
 
   const handleIsCheck = () => {
@@ -45,7 +50,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
   };
   return (
     <Draggable
-      isDragDisabled={isModal || props.isDropDisabled}
+      isDragDisabled={isModal}
       draggableId={JSON.stringify({
         listName: undefined,
         taskNumber: props.taskNumber,
@@ -69,6 +74,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
               props.projectNumber &&
               ReactDOM.createPortal(
                 <ModalTask
+                  searchStateQuery={props.searchStateQuery}
                   orientation={props.orientation}
                   changeIsDropDisabled={props.changeIsDropDisabled}
                   isDropDisabled={props.isDropDisabled}
@@ -80,10 +86,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
                 />,
                 document.body
               )}
-            <div
-              className="ProjectColumnItem__Info"
-              onClick={handleIsCheck}
-            >
+            <div className="ProjectColumnItem__Info" onClick={handleIsCheck}>
               <div className="ProjectColumnItem__Info__Status">
                 {props.priorityStatus && (
                   <div
