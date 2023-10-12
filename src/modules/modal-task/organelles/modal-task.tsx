@@ -27,10 +27,11 @@ interface IModalTask {
   isDropDisabled: boolean;
   fullName: string
   orientation:string
+  searchStateQuery:string
 }
 export const ModalTask = (props: IModalTask) => {
   const dispatch = useDispatch();
-  const [isDropDisabled, setIsDropDisabled] = useState<boolean>(false);
+  const [isDropDisabledModal, setIsDropDisabledModal] = useState<boolean>(false);
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [value, setValue] = useState<Task | null>(null);
   const { files, setFiles, onAddFiles, onRemoveFile, onResetFiles } =
@@ -38,8 +39,8 @@ export const ModalTask = (props: IModalTask) => {
   const changeIsAdd = () => {
     setIsAdd(!isAdd);
   };
-  const changeIsDropDisabled = () => {
-    setIsDropDisabled(!isDropDisabled);
+  const changeIsDropDisabledModal = () => {
+    setIsDropDisabledModal(!isDropDisabledModal);
   };
   const saveValue = () => {
     if (value)
@@ -246,7 +247,7 @@ export const ModalTask = (props: IModalTask) => {
                 {/* Tasks  Droppable*/}
                 {props.value?.tasks && props.value?.tasks.length !== 0 && (
                   <Droppable
-                    isDropDisabled={isDropDisabled}
+                    isDropDisabled={isDropDisabledModal}
                     droppableId={JSON.stringify({
                       listName: props.listName,
                       taskNumber: value.taskNumber,
@@ -264,13 +265,15 @@ export const ModalTask = (props: IModalTask) => {
                           // Task Draggable
                           <ProjectColumnItem
                             {...e}
+                            searchStateQuery={props.searchStateQuery}
                             orientation={props.orientation}
                             key={e.taskNumber}
                             projectNumber={props.projectNumber}
                             listName={props.listName}
                             index={index}
-                            changeIsDropDisabled={changeIsDropDisabled}
-                            isDropDisabled={isDropDisabled}
+                            changeIsDropDisabled={props.changeIsDropDisabled}
+                            changeIsDropDisabledModal={changeIsDropDisabledModal}
+                            isDropDisabled={props.isDropDisabled}
                             fullName={props.fullName + " - " + e.heading}
                           />
                         ))}

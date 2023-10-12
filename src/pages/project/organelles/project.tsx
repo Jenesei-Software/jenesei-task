@@ -167,6 +167,7 @@ export const Project = () => {
                             {(provided, snapshot) => {
                               return (
                                 <ProjectColumn
+                                  searchStateQuery={searchState.query}
                                   orientation={orientation}
                                   changeIsDropDisabled={changeIsDropDisabled}
                                   isDropDisabled={isDropDisabled}
@@ -199,6 +200,7 @@ export const Project = () => {
                         {(provided, snapshot) => {
                           return (
                             <ProjectColumn
+                              searchStateQuery={searchState.query}
                               orientation={orientation}
                               changeIsDropDisabled={changeIsDropDisabled}
                               isDropDisabled={isDropDisabled}

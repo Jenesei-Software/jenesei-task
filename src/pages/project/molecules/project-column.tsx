@@ -23,12 +23,13 @@ interface IProjectColumn {
   changeIsDropDisabled: () => void;
   isDropDisabled: boolean;
   orientation: string;
+  searchStateQuery:string
 }
 export const ProjectColumn = (props: IProjectColumn) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const changeIsEdit = () => {
     setIsEdit(!isEdit);
-    if (props.orientation === "landscape") props.changeIsDropDisabled();
+    if (props.orientation === "landscape" && !props.searchStateQuery) props.changeIsDropDisabled();
   };
   return (
     <>
@@ -93,6 +94,7 @@ export const ProjectColumn = (props: IProjectColumn) => {
                 // Task Draggable
                 <ProjectColumnItem
                   {...task}
+                  searchStateQuery={props.searchStateQuery}
                   orientation={props.orientation}
                   key={task.taskNumber}
                   projectNumber={props.projectNumber}
