@@ -9,10 +9,10 @@ import {
 } from "react-beautiful-dnd";
 import { Helmet } from "react-helmet";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, A11y } from 'swiper/modules';
+import { Pagination, A11y } from "swiper/modules";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
 import { RootState } from "../../../stores/store";
 import { Task } from "../../../stores/projects/interfaces";
@@ -33,7 +33,7 @@ export const Project = () => {
 
   const [type, setType] = useState<string | null>(null);
   const [isAdd, setIsAdd] = useState<boolean>(false);
-  const [isChildrenView, setIsChildrenView] = useState<boolean>(false);
+  const [isDropDisabled, setIsDropDisabled] = useState<boolean>(false);
   const [projectIndex, setProjectIndex] = useState<number | null>(null);
 
   const projectState = useSelector((state: RootState) => state.projectsState);
@@ -43,8 +43,8 @@ export const Project = () => {
     if (type) setType(type);
     setIsAdd(!isAdd);
   };
-  const changeIsChildrenView = () => {
-    setIsChildrenView(!isChildrenView);
+  const changeIsDropDisabled = () => {
+    setIsDropDisabled(!isDropDisabled);
   };
   const onDragEnd = (result: DropResult) => {
     if (!result.destination || projectIndex === null) {
@@ -96,15 +96,16 @@ export const Project = () => {
   }, [projectNumber, projectState]);
   useEffect(() => {
     if (searchState.query || orientation === "portrait") {
-      setIsChildrenView(true)
+      setIsDropDisabled(true);
     } else {
-      setIsChildrenView(false)
+      setIsDropDisabled(false);
     }
-  }, [searchState, orientation])
+  }, [searchState, orientation]);
 
   return projectNumber &&
     projectIndex !== null &&
-    projectState.projects[projectIndex] && projectState.searchProjects[projectIndex] ? (
+    projectState.projects[projectIndex] &&
+    projectState.searchProjects[projectIndex] ? (
     <div className="Project">
       {isAdd && type && projectNumber && (
         <ModalNewTask
@@ -128,7 +129,7 @@ export const Project = () => {
           <DragDropContext onDragEnd={onDragEnd}>
             {/* Columns  Droppable*/}
             <Droppable
-              isDropDisabled={isChildrenView}
+              isDropDisabled={isDropDisabled}
               droppableId={JSON.stringify({
                 listName: "droppable-lists",
                 taskNumber: undefined,
@@ -143,8 +144,9 @@ export const Project = () => {
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
-                  {orientation === "portrait" ?
-                    <Swiper className="Project__Swiper"
+                  {orientation === "portrait" ? (
+                    <Swiper
+                      className="Project__Swiper"
                       modules={[Pagination, A11y]}
                       pagination={{ clickable: true }}
                       scrollbar={{ draggable: true }}
@@ -154,7 +156,7 @@ export const Project = () => {
                       ).map(([listName, column], index) => (
                         <SwiperSlide key={listName}>
                           <Draggable
-                            isDragDisabled={isChildrenView}
+                            isDragDisabled={isDropDisabled}
                             key={listName}
                             draggableId={JSON.stringify({
                               listName: listName,
@@ -165,8 +167,9 @@ export const Project = () => {
                             {(provided, snapshot) => {
                               return (
                                 <ProjectColumn
-                                  changeIsChildrenView={changeIsChildrenView}
-                                  isChildrenView={isChildrenView}
+                                  orientation={orientation}
+                                  changeIsDropDisabled={changeIsDropDisabled}
+                                  isDropDisabled={isDropDisabled}
                                   snapshot={snapshot}
                                   provided={provided}
                                   listName={listName}
@@ -180,12 +183,12 @@ export const Project = () => {
                         </SwiperSlide>
                       ))}
                     </Swiper>
-                    :
+                  ) : (
                     Object.entries(
                       projectState.searchProjects[projectIndex].columns
                     ).map(([listName, column], index) => (
                       <Draggable
-                        isDragDisabled={isChildrenView}
+                        isDragDisabled={isDropDisabled}
                         key={listName}
                         draggableId={JSON.stringify({
                           listName: listName,
@@ -196,8 +199,9 @@ export const Project = () => {
                         {(provided, snapshot) => {
                           return (
                             <ProjectColumn
-                              changeIsChildrenView={changeIsChildrenView}
-                              isChildrenView={isChildrenView}
+                              orientation={orientation}
+                              changeIsDropDisabled={changeIsDropDisabled}
+                              isDropDisabled={isDropDisabled}
                               snapshot={snapshot}
                               provided={provided}
                               listName={listName}
@@ -209,7 +213,7 @@ export const Project = () => {
                         }}
                       </Draggable>
                     ))
-                  }
+                  )}
                   {provided.placeholder}
                 </div>
               )}

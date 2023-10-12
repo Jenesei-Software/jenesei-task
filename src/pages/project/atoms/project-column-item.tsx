@@ -20,9 +20,10 @@ interface AdditionalProps {
   projectNumber: string;
   listName: string;
   index: number;
-  changeIsChildrenView: () => void;
-  isChildrenView: boolean;
+  changeIsDropDisabled: () => void;
+  isDropDisabled: boolean;
   fullName: string;
+  orientation: string;
 }
 
 export const ProjectColumnItem = (props: Task & AdditionalProps) => {
@@ -31,7 +32,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
 
   const changeIsModal = () => {
     setIsModal(!isModal);
-    props.changeIsChildrenView();
+    if (props.orientation === "landscape") props.changeIsDropDisabled();
   };
 
   const handleIsCheck = () => {
@@ -44,7 +45,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
   };
   return (
     <Draggable
-      isDragDisabled={isModal || props.isChildrenView}
+      isDragDisabled={isModal || props.isDropDisabled}
       draggableId={JSON.stringify({
         listName: undefined,
         taskNumber: props.taskNumber,
@@ -64,11 +65,13 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
               ...provided.draggableProps.style,
             }}
           >
-            {isModal && props.projectNumber &&
+            {isModal &&
+              props.projectNumber &&
               ReactDOM.createPortal(
                 <ModalTask
-                  changeIsChildrenView={props.changeIsChildrenView}
-                  isChildrenView={props.isChildrenView}
+                  orientation={props.orientation}
+                  changeIsDropDisabled={props.changeIsDropDisabled}
+                  isDropDisabled={props.isDropDisabled}
                   changeIsModal={changeIsModal}
                   projectNumber={props.projectNumber}
                   value={props}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { Droppable } from "react-beautiful-dnd";
+import ReactDOM from "react-dom";
 
 import {
   CurrentStatus,
@@ -16,20 +17,20 @@ import { ProjectColumnItem } from "../../../pages/project/atoms/project-column-i
 
 import "../styles/modal-task.css";
 import { getTimeAtWork } from "../../../functions/get-time-at-work";
-import ReactDOM from "react-dom";
 
 interface IModalTask {
   changeIsModal: () => void;
   projectNumber: string;
   value: Task;
   listName: string;
-  changeIsChildrenView: () => void;
-  isChildrenView: boolean;
+  changeIsDropDisabled: () => void;
+  isDropDisabled: boolean;
   fullName: string
+  orientation:string
 }
 export const ModalTask = (props: IModalTask) => {
   const dispatch = useDispatch();
-  const [isChildrenView, setIsChildrenView] = useState<boolean>(false);
+  const [isDropDisabled, setIsDropDisabled] = useState<boolean>(false);
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [value, setValue] = useState<Task | null>(null);
   const { files, setFiles, onAddFiles, onRemoveFile, onResetFiles } =
@@ -37,8 +38,8 @@ export const ModalTask = (props: IModalTask) => {
   const changeIsAdd = () => {
     setIsAdd(!isAdd);
   };
-  const changeIsChildrenView = () => {
-    setIsChildrenView(!isChildrenView);
+  const changeIsDropDisabled = () => {
+    setIsDropDisabled(!isDropDisabled);
   };
   const saveValue = () => {
     if (value)
@@ -245,7 +246,7 @@ export const ModalTask = (props: IModalTask) => {
                 {/* Tasks  Droppable*/}
                 {props.value?.tasks && props.value?.tasks.length !== 0 && (
                   <Droppable
-                    isDropDisabled={isChildrenView}
+                    isDropDisabled={isDropDisabled}
                     droppableId={JSON.stringify({
                       listName: props.listName,
                       taskNumber: value.taskNumber,
@@ -263,12 +264,13 @@ export const ModalTask = (props: IModalTask) => {
                           // Task Draggable
                           <ProjectColumnItem
                             {...e}
+                            orientation={props.orientation}
                             key={e.taskNumber}
                             projectNumber={props.projectNumber}
                             listName={props.listName}
                             index={index}
-                            changeIsChildrenView={changeIsChildrenView}
-                            isChildrenView={isChildrenView}
+                            changeIsDropDisabled={changeIsDropDisabled}
+                            isDropDisabled={isDropDisabled}
                             fullName={props.fullName + " - " + e.heading}
                           />
                         ))}

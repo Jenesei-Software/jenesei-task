@@ -20,14 +20,15 @@ interface IProjectColumn {
   projectNumber: string;
   changeIsAdd: (type?: string) => void;
   column: Column;
-  changeIsChildrenView: () => void;
-  isChildrenView: boolean;
+  changeIsDropDisabled: () => void;
+  isDropDisabled: boolean;
+  orientation: string;
 }
 export const ProjectColumn = (props: IProjectColumn) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const changeIsEdit = () => {
     setIsEdit(!isEdit);
-    props.changeIsChildrenView();
+    if (props.orientation === "landscape") props.changeIsDropDisabled();
   };
   return (
     <>
@@ -75,7 +76,7 @@ export const ProjectColumn = (props: IProjectColumn) => {
         </div>
         {/* Project  Droppable*/}
         <Droppable
-          isDropDisabled={props.isChildrenView}
+          isDropDisabled={props.isDropDisabled}
           droppableId={JSON.stringify({
             listName: props.listName,
             taskNumber: undefined,
@@ -92,12 +93,13 @@ export const ProjectColumn = (props: IProjectColumn) => {
                 // Task Draggable
                 <ProjectColumnItem
                   {...task}
+                  orientation={props.orientation}
                   key={task.taskNumber}
                   projectNumber={props.projectNumber}
                   listName={props.listName}
                   index={index}
-                  changeIsChildrenView={props.changeIsChildrenView}
-                  isChildrenView={props.isChildrenView}
+                  changeIsDropDisabled={props.changeIsDropDisabled}
+                  isDropDisabled={props.isDropDisabled}
                   fullName={task.heading}
                 />
               ))}
