@@ -10,7 +10,6 @@
 .ProjectColumnItem__Info {
   padding: 10px;
   width: 100%;
-  
 }
 .ProjectColumnItem__Info__Status {
   display: flex;
@@ -57,3 +56,8 @@
 /* .ProjectColumnItem:hover .ProjectColumnItem__Icon {
   opacity: 1;
 } */
+@media (orientation: portrait) {
+  .ProjectColumnItem__Info {
+    cursor: pointer !important;
+  }
+}
