@@ -33,8 +33,11 @@ export const Project = () => {
 
   const [type, setType] = useState<string | null>(null);
   const [isAdd, setIsAdd] = useState<boolean>(false);
-  const [isDropDisabled, setIsDropDisabled] = useState<boolean>(false);
   const [projectIndex, setProjectIndex] = useState<number | null>(null);
+
+  const [isDropDisabled, setIsDropDisabled] = useState<boolean>(false);
+  const [isDropDisabledModal, setIsDropDisabledModal] =
+    useState<boolean>(false);
 
   const projectState = useSelector((state: RootState) => state.projectsState);
   const searchState = useSelector((state: RootState) => state.searchState);
@@ -43,9 +46,8 @@ export const Project = () => {
     if (type) setType(type);
     setIsAdd(!isAdd);
   };
-  const changeIsDropDisabled = () => {
-    if (orientation === "landscape" && !searchState.query)
-      setIsDropDisabled(!isDropDisabled);
+  const changeIsDropDisabledModal = () => {
+    setIsDropDisabledModal(!isDropDisabledModal);
   };
   const onDragEnd = (result: DropResult) => {
     if (!result.destination || projectIndex === null) {
@@ -96,12 +98,17 @@ export const Project = () => {
     }
   }, [projectNumber, projectState]);
   useEffect(() => {
-    if (searchState.query || orientation === "portrait") {
+    //When search is running, mobile mode is on or a fashion window is open
+    if (
+      searchState.query ||
+      orientation === "portrait" ||
+      isDropDisabledModal
+    ) {
       setIsDropDisabled(true);
     } else {
       setIsDropDisabled(false);
     }
-  }, [searchState, orientation]);
+  }, [searchState, orientation, isDropDisabledModal]);
 
   return projectNumber &&
     projectIndex !== null &&
@@ -170,7 +177,7 @@ export const Project = () => {
                                 <ProjectColumn
                                   searchStateQuery={searchState.query}
                                   orientation={orientation}
-                                  changeIsDropDisabled={changeIsDropDisabled}
+                                  changeIsDropDisabledModal={changeIsDropDisabledModal}
                                   isDropDisabled={true}
                                   snapshot={snapshot}
                                   provided={provided}
@@ -203,7 +210,7 @@ export const Project = () => {
                             <ProjectColumn
                               searchStateQuery={searchState.query}
                               orientation={orientation}
-                              changeIsDropDisabled={changeIsDropDisabled}
+                              changeIsDropDisabledModal={changeIsDropDisabledModal}
                               isDropDisabled={isDropDisabled}
                               snapshot={snapshot}
                               provided={provided}

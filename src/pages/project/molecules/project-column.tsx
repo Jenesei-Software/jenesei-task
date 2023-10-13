@@ -20,7 +20,7 @@ interface IProjectColumn {
   projectNumber: string;
   changeIsAdd: (type?: string) => void;
   column: Column;
-  changeIsDropDisabled: () => void;
+  changeIsDropDisabledModal: () => void;
   isDropDisabled: boolean;
   orientation: string;
   searchStateQuery: string;
@@ -29,7 +29,6 @@ export const ProjectColumn = (props: IProjectColumn) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const changeIsEdit = () => {
     setIsEdit(!isEdit);
-    props.changeIsDropDisabled();
   };
   return (
     <>
@@ -100,7 +99,7 @@ export const ProjectColumn = (props: IProjectColumn) => {
                   projectNumber={props.projectNumber}
                   listName={props.listName}
                   index={index}
-                  changeIsDropDisabled={props.changeIsDropDisabled}
+                  changeIsDropDisabledModal={props.changeIsDropDisabledModal}
                   isDropDisabled={props.isDropDisabled}
                   fullName={task.heading}
                   isFirstParent

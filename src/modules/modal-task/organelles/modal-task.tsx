@@ -23,15 +23,17 @@ interface IModalTask {
   projectNumber: string;
   value: Task;
   listName: string;
-  changeIsDropDisabled: () => void;
   isDropDisabled: boolean;
-  fullName: string
-  orientation:string
-  searchStateQuery:string
+  fullName: string;
+  orientation: string;
+  searchStateQuery: string;
 }
 export const ModalTask = (props: IModalTask) => {
   const dispatch = useDispatch();
-  const [isDropDisabledModal, setIsDropDisabledModal] = useState<boolean>(false);
+
+  const [isDropDisabledModal, setIsDropDisabledModal] =
+    useState<boolean>(false);
+
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [value, setValue] = useState<Task | null>(null);
   const { files, setFiles, onAddFiles, onRemoveFile, onResetFiles } =
@@ -66,8 +68,7 @@ export const ModalTask = (props: IModalTask) => {
       dispatch(
         deleteTask(props.projectNumber, value.taskNumber, props.listName)
       );
-    props.changeIsModal()
-
+    props.changeIsModal();
   };
   useEffect(() => {
     if (props.value) {
@@ -247,7 +248,9 @@ export const ModalTask = (props: IModalTask) => {
                 {/* Tasks  Droppable*/}
                 {props.value?.tasks && props.value?.tasks.length !== 0 && (
                   <Droppable
-                    isDropDisabled={isDropDisabledModal}
+                    isDropDisabled={
+                      isDropDisabledModal || Boolean(props.searchStateQuery)
+                    }
                     droppableId={JSON.stringify({
                       listName: props.listName,
                       taskNumber: value.taskNumber,
@@ -271,9 +274,13 @@ export const ModalTask = (props: IModalTask) => {
                             projectNumber={props.projectNumber}
                             listName={props.listName}
                             index={index}
-                            changeIsDropDisabled={props.changeIsDropDisabled}
-                            changeIsDropDisabledModal={changeIsDropDisabledModal}
-                            isDropDisabled={props.isDropDisabled}
+                            changeIsDropDisabledModal={
+                              changeIsDropDisabledModal
+                            }
+                            isDropDisabled={
+                              isDropDisabledModal ||
+                              Boolean(props.searchStateQuery)
+                            }
                             fullName={props.fullName + " - " + e.heading}
                           />
                         ))}
@@ -313,7 +320,8 @@ export const ModalTask = (props: IModalTask) => {
             </button>
           </div>
         </div>
-        {isAdd && props.projectNumber &&
+        {isAdd &&
+          props.projectNumber &&
           ReactDOM.createPortal(
             <ModalNewTask
               changeIsAdd={changeIsAdd}
