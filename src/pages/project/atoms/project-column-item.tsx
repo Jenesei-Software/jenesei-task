@@ -20,8 +20,7 @@ interface AdditionalProps {
   projectNumber: string;
   listName: string;
   index: number;
-  changeIsDropDisabled: () => void;
-  changeIsDropDisabledModal?: () => void;
+  changeIsDropDisabledModal: () => void;
   isDropDisabled: boolean;
   fullName: string;
   orientation: string;
@@ -35,8 +34,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
 
   const changeIsModal = () => {
     setIsModal(!isModal);
-    props.changeIsDropDisabled();
-    if (props.changeIsDropDisabledModal) props.changeIsDropDisabledModal();
+    props.changeIsDropDisabledModal();
   };
 
   const handleIsCheck = () => {
@@ -49,7 +47,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
   };
   return (
     <Draggable
-      isDragDisabled={isModal || (props.isFirstParent && props.isDropDisabled)}
+      isDragDisabled={props.isDropDisabled}
       draggableId={JSON.stringify({
         listName: undefined,
         taskNumber: props.taskNumber,
@@ -75,7 +73,6 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
                 <ModalTask
                   searchStateQuery={props.searchStateQuery}
                   orientation={props.orientation}
-                  changeIsDropDisabled={props.changeIsDropDisabled}
                   isDropDisabled={props.isDropDisabled}
                   changeIsModal={changeIsModal}
                   projectNumber={props.projectNumber}
