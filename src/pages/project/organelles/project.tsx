@@ -44,7 +44,8 @@ export const Project = () => {
     setIsAdd(!isAdd);
   };
   const changeIsDropDisabled = () => {
-    setIsDropDisabled(!isDropDisabled);
+    if (orientation === "landscape" && !searchState.query)
+      setIsDropDisabled(!isDropDisabled);
   };
   const onDragEnd = (result: DropResult) => {
     if (!result.destination || projectIndex === null) {
@@ -170,7 +171,7 @@ export const Project = () => {
                                   searchStateQuery={searchState.query}
                                   orientation={orientation}
                                   changeIsDropDisabled={changeIsDropDisabled}
-                                  isDropDisabled={isDropDisabled}
+                                  isDropDisabled={true}
                                   snapshot={snapshot}
                                   provided={provided}
                                   listName={listName}

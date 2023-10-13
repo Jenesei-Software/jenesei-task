@@ -20,6 +20,9 @@ body {
   margin: 0;
   padding: 0;
 }
+body:has(.Modal__Fixed) {
+  position: fixed;
+}
 img {
   -webkit-backface-visibility: hidden;
   -ms-transform: translateZ(0); /* IE 9 */

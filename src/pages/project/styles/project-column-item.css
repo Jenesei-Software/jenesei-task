@@ -53,11 +53,3 @@
   opacity: 1;
   padding-right: 10px;
 }
-/* .ProjectColumnItem:hover .ProjectColumnItem__Icon {
-  opacity: 1;
-} */
-@media (orientation: portrait) {
-  .ProjectColumnItem__Info {
-    cursor: pointer !important;
-  }
-}
