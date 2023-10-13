@@ -26,6 +26,7 @@ interface AdditionalProps {
   fullName: string;
   orientation: string;
   searchStateQuery: string;
+  isFirstParent?: boolean;
 }
 
 export const ProjectColumnItem = (props: Task & AdditionalProps) => {
@@ -34,9 +35,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
 
   const changeIsModal = () => {
     setIsModal(!isModal);
-    if (props.orientation === "landscape" && !props.searchStateQuery)
-      props.changeIsDropDisabled();
-
+    props.changeIsDropDisabled();
     if (props.changeIsDropDisabledModal) props.changeIsDropDisabledModal();
   };
 
@@ -50,7 +49,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
   };
   return (
     <Draggable
-      isDragDisabled={isModal}
+      isDragDisabled={isModal || (props.isFirstParent && props.isDropDisabled)}
       draggableId={JSON.stringify({
         listName: undefined,
         taskNumber: props.taskNumber,
