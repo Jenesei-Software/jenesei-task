@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { ModalNewProject } from "../../../modules/modal-new-project/organelles/modal-new-project";
+import { ModalNewProject } from "@modules/modal-new-project/organelles/modal-new-project";
 
 import "../styles/project-bar-list-item.css";
 

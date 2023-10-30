@@ -1,4 +1,4 @@
-import { Project } from "../stores/projects/interfaces";
+import { Project } from "@stores/projects/interfaces";
 
 export const doesColumnExist = (
   projectNumber: string,

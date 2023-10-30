@@ -1,4 +1,4 @@
-import { Task } from "../stores/projects/interfaces";
+import { Task } from "@stores/projects/interfaces";
 
 export const findTaskRecursively = (
   tasks: Task[],

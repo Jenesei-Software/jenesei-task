@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { Flipped, Flipper } from "react-flip-toolkit";
 import { useParams } from "react-router-dom";
 
-import { RootState } from "../../../stores/store";
-import { ProjectBarListItem } from "../atoms/project-bar-list-item";
-import { Project } from "../../../stores/projects/interfaces";
+import { RootState } from "@stores/store";
+import { Project } from "@stores/projects/interfaces";
+
 import { ProjectBarListItemZero } from "../atoms/project-bar-list-item-zero";
+import { ProjectBarListItem } from "../atoms/project-bar-list-item";
 
 import "../styles/project-bar-list.css";
 

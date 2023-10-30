@@ -26,7 +26,7 @@
   fill: var(--block-color-1);
 }
 .Icon__Bar__Button--non-active .Icon__Bar__Button__SVG__Path {
-  fill: var(--font-color-6);
+  fill: var(--font-color-1);
 }
 .Icon__Bar__Button--active:hover .Icon__Bar__Button__SVG__Path {
   fill: var(--block-color-5);

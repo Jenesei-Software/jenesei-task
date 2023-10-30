@@ -1,4 +1,4 @@
-import { Task } from "../stores/projects/interfaces";
+import { Task } from "@stores/projects/interfaces";
 
 export const deepSearchTasks = (tasks: Task[], query: string): Task[] => {
   return tasks.reduce((acc, task) => {

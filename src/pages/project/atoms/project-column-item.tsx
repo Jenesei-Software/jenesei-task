@@ -2,19 +2,19 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { Draggable } from "react-beautiful-dnd";
+import ReactDOM from "react-dom";
 
 import {
   CurrentStatusList,
   PriorityStatusList,
   Task,
-} from "../../../stores/projects/interfaces";
-import { ModalTask } from "../../../modules/modal-task/organelles/modal-task";
-import { updateTask } from "../../../stores/projects/actions";
-import { countNestedComments } from "../../../functions/count-nested-comments";
+} from "@stores/projects/interfaces";
+import { ModalTask } from "@modules/modal-task/organelles/modal-task";
+import { updateTask } from "@stores/projects/actions";
+import { countNestedComments } from "@functions/count-nested-comments";
+import { countNestedTasks } from "@functions/count-nested-tasks";
 
 import "../styles/project-column-item.css";
-import { countNestedTasks } from "../../../functions/count-nested-tasks";
-import ReactDOM from "react-dom";
 
 interface AdditionalProps {
   projectNumber: string;
@@ -59,6 +59,7 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
           <div
             className="ProjectColumnItem"
             ref={provided.innerRef}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             //@ts-ignore
             snapshot={snapshot}
             {...provided.draggableProps}

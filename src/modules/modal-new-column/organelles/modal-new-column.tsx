@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "../styles/modal-new-column.css";
 
-import { addColumn } from "../../../stores/projects/actions";
-import { doesColumnExist } from "../../../functions/does-column-exist";
-import { RootState } from "../../../stores/store";
+import { addColumn } from "@stores/projects/actions";
+import { doesColumnExist } from "@functions/does-column-exist";
+import { RootState } from "@stores/store";
 
 interface IModalNewColumn {
   changeIsAdd: () => void;

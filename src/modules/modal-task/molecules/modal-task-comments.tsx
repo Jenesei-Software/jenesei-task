@@ -5,8 +5,8 @@ import { AnyAction } from "redux";
 
 import "../styles/modal-task-comments.css";
 
-import { Comment } from "../../../stores/projects/interfaces";
-import { addComment } from "../../../stores/projects/actions";
+import { Comment } from "@stores/projects/interfaces";
+import { addComment } from "@stores/projects/actions";
 
 interface INewComment {
   commentContent: string;

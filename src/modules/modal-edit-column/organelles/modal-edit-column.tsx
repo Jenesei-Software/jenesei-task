@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "../styles/modal-edit-column.css";
 
-import { Column } from "../../../stores/projects/interfaces";
-import { deleteColumn, updateColumn } from "../../../stores/projects/actions";
-import { doesColumnExist } from "../../../functions/does-column-exist";
-import { RootState } from "../../../stores/store";
+import { Column } from "@stores/projects/interfaces";
+import { deleteColumn, updateColumn } from "@stores/projects/actions";
+import { doesColumnExist } from "@functions/does-column-exist";
+import { RootState } from "@stores/store";
 
 interface IModalEditColumn {
   changeIsEdit: () => void;

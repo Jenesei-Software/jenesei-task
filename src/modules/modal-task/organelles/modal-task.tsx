@@ -4,19 +4,19 @@ import moment from "moment";
 import { Droppable } from "react-beautiful-dnd";
 import ReactDOM from "react-dom";
 
+import { ModalNewTask } from "../../modal-new-task/organelles/modal-new-task";
+import { ModalTaskFile, useFiles } from "../molecules/modal-task-file";
+import { ModalTaskComments } from "../molecules/modal-task-comments";
+
+import { ProjectColumnItem } from "@pages/project/atoms/project-column-item";
+import { getTimeAtWork } from "@functions/get-time-at-work";
+import { deleteTask, updateTask } from "@stores/projects/actions";
 import {
   CurrentStatus,
   PriorityStatus,
   Task,
-} from "../../../stores/projects/interfaces";
-import { ModalNewTask } from "../../modal-new-task/organelles/modal-new-task";
-import { deleteTask, updateTask } from "../../../stores/projects/actions";
-import { ModalTaskFile, useFiles } from "../molecules/modal-task-file";
-import { ModalTaskComments } from "../molecules/modal-task-comments";
-import { ProjectColumnItem } from "../../../pages/project/atoms/project-column-item";
-
+} from "@stores/projects/interfaces";
 import "../styles/modal-task.css";
-import { getTimeAtWork } from "../../../functions/get-time-at-work";
 
 interface IModalTask {
   changeIsModal: () => void;

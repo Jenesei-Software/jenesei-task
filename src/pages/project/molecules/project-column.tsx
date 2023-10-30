@@ -5,10 +5,11 @@ import {
   Droppable,
 } from "react-beautiful-dnd";
 
-import { Column, Task } from "../../../stores/projects/interfaces";
 import { ProjectColumnItem } from "../atoms/project-column-item";
 import { ProjectColumnItemAdd } from "../atoms/project-column-item-add";
-import { ModalEditColumn } from "../../../modules/modal-edit-column/organelles/modal-edit-column";
+
+import { Column, Task } from "@stores/projects/interfaces";
+import { ModalEditColumn } from "@modules/modal-edit-column/organelles/modal-edit-column";
 
 import "../styles/project-column.css";
 import ReactDOM from "react-dom";
@@ -35,6 +36,7 @@ export const ProjectColumn = (props: IProjectColumn) => {
       <div
         ref={props.provided.innerRef}
         className="ProjectColumn__Item"
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         snapshot={props.snapshot}
         {...props.provided.draggableProps}

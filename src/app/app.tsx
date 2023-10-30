@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -8,11 +8,11 @@ import { AppGeneral } from "./app-general/organelles/app-general";
 import {
   updateProjects,
   updateSearchProject,
-} from "../stores/projects/actions";
-import { ProjectBar } from "../pages/project-bar/organelles/project-bar";
-import { Project } from "../pages/project/organelles/project";
-import { Settings } from "../pages/settings/organelles/settings";
-import { localStorageName } from "../stores/store";
+} from "@stores/projects/actions";
+import { ProjectBar } from "@pages/project-bar/organelles/project-bar";
+import { Project } from "@pages/project/organelles/project";
+import { Settings } from "@pages/settings/organelles/settings";
+import { localStorageName } from "@stores/store";
 import { pathName } from "./path-name";
 
 export const EXTERNAL_DATE = "2023-10-09"; //Date of specific interface change (required to delete data)

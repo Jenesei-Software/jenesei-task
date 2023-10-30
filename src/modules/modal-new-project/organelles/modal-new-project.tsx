@@ -4,7 +4,7 @@ import { v4 } from "uuid";
 
 import "../styles/modal-new-project.css";
 
-import { addProject } from "../../../stores/projects/actions";
+import { addProject } from "@stores/projects/actions";
 
 interface IModalNewProject {
   changeIsAdd: () => void;

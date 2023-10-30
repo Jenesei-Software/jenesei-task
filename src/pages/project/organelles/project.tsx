@@ -14,15 +14,16 @@ import { Pagination, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { RootState } from "../../../stores/store";
-import { Task } from "../../../stores/projects/interfaces";
-import { ModalNewTask } from "../../../modules/modal-new-task/organelles/modal-new-task";
-import { moveColumns, moveTask } from "../../../stores/projects/actions";
 import { ProjectHeader } from "../molecules/project-header";
-import { findProjectIndexByNumber } from "../../../functions/find-project-index-by-number";
-import { findTaskRecursively } from "../../../functions/find-task-recursively";
 import { ProjectColumn } from "../molecules/project-column";
-import useScreenOrientation from "../../../functions/use-screen-orientation";
+
+import { ModalNewTask } from "@modules/modal-new-task/organelles/modal-new-task";
+import { findProjectIndexByNumber } from "@functions/find-project-index-by-number";
+import { findTaskRecursively } from "@functions/find-task-recursively";
+import useScreenOrientation from "@functions/use-screen-orientation";
+import { RootState } from "@stores/store";
+import { Task } from "@stores/projects/interfaces";
+import { moveColumns, moveTask } from "@stores/projects/actions";
 
 import "../styles/project.css";
 
@@ -54,6 +55,7 @@ export const Project = () => {
       return;
     }
     const { taskNumber: resultId } = JSON.parse(result.draggableId);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { listName: listNameStart, taskNumber: taskNumberStart } = JSON.parse(
       result.source.droppableId
     );

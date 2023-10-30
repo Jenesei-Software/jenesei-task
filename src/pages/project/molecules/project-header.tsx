@@ -4,11 +4,12 @@ import { useDispatch } from "react-redux";
 import "../styles/project-header.css";
 
 import { ProjectColumnItemAdd } from "../atoms/project-column-item-add";
-import { ModalNewColumn } from "../../../modules/modal-new-column/organelles/modal-new-column";
-import { ModalEditProject } from "../../../modules/modal-edit-project/organelles/modal-edit-project";
-import { Project } from "../../../stores/projects/interfaces";
 import { ProjectHeaderEdit } from "../atoms/project-header-edit";
-import { updateSearchQuery } from "../../../stores/search-query/actions";
+
+import { ModalNewColumn } from "@modules/modal-new-column/organelles/modal-new-column";
+import { ModalEditProject } from "@modules/modal-edit-project/organelles/modal-edit-project";
+import { Project } from "@stores/projects/interfaces";
+import { updateSearchQuery } from "@stores/search-query/actions";
 
 interface IProjectHeader {
   title: string;
