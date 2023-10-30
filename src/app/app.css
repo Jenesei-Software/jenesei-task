@@ -1,5 +1,7 @@
-.App{
+.App {
   background: var(--background);
   width: 100dvw;
   min-height: 100dvh;
+}
+@media (orientation: portrait) {
 }

@@ -21,29 +21,10 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-}
-.AppGeneralBar__Nav__Link #AppGeneralBar__Nav__Link__Icon__Rect__Mask__Rect {
-  fill: var(--block-color-6);
-}
-
-.AppGeneralBar__Nav__Link:hover #AppGeneralBar__Nav__Link__Icon__Rect {
-  fill: var(--block-color-brand-08);
-}
-.AppGeneralBar__Nav__Link:hover
-  #AppGeneralBar__Nav__Link__Icon__Rect__Mask__Rect {
-  fill: var(--background);
-}
-
-.AppGeneralBar__Nav__Link--active svg {
-  animation: AppGeneralBar-Nav-Link-Icon 0.3s ease;
-  animation-fill-mode: forwards;
-}
-.AppGeneralBar__Nav__Link--active #AppGeneralBar__Nav__Link__Icon__Rect {
-  fill: var(--block-color-brand-08);
-}
-.AppGeneralBar__Nav__Link--active
-  #AppGeneralBar__Nav__Link__Icon__Rect__Mask__Rect {
-  fill: var(--background);
+  width: 56px;
+  height: 32px;
+  border-radius: 16px;
+  justify-content: center;
 }
 
 .AppGeneralBar__Nav__Link__Title {
@@ -70,22 +51,7 @@
   }
   .AppGeneralBar__Nav {
     flex-direction: row;
-  }
-}
-@keyframes AppGeneralBar-Nav-Link-Icon {
-  0% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.2;
-  }
-  70% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
+    width: 100%;
+    justify-content: space-around;
   }
 }

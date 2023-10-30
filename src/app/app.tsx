@@ -42,17 +42,21 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<AppGeneral />}>
-          <Route
+          {/* <Route
             path="*"
             element={<Navigate to={`/${pathName.project.title}`} />}
-          />
+          /> */}
           <Route path={`${pathName.project.title}`} element={<ProjectBar />}>
             <Route
               path={`:${pathName.project.item.title}`}
               element={<Project />}
             />
           </Route>
-          <Route path={`${pathName.setting.title}`} element={<Settings />} />
+          <Route path={`${pathName.settings.title}`} element={<Settings />} />
+          <Route path={`${pathName.group.title}`} element={<Settings />} />
+          <Route path={`${pathName.calendar.title}`} element={<Settings />} />
+          <Route path={`${pathName.time.title}`} element={<Settings />} />
+          <Route path={`${pathName.statistics.title}`} element={<Settings />} />
         </Route>
       </Routes>
     </div>
