@@ -13,18 +13,10 @@ import { ProjectBar } from "../pages/project-bar/organelles/project-bar";
 import { Project } from "../pages/project/organelles/project";
 import { Settings } from "../pages/settings/organelles/settings";
 import { localStorageName } from "../stores/store";
+import { pathName } from "./path-name";
 
 export const EXTERNAL_DATE = "2023-10-09"; //Date of specific interface change (required to delete data)
 
-export const pathName = {
-  project: {
-    title: "project",
-    item: { title: "projectNumber" },
-  },
-  setting: {
-    title: "setting",
-  },
-};
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

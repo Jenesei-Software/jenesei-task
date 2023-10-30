@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import "../styles/app-general-bar.css";
 
-import { pathName } from "../../app";
+import { pathName } from "../../path-name";
 
 export const AppGeneralBar = () => {
   return (

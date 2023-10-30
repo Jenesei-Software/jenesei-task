@@ -6,7 +6,7 @@ import "../styles/modal-edit-project.css";
 
 import { Project } from "../../../stores/projects/interfaces";
 import { deleteProject, updateProject } from "../../../stores/projects/actions";
-import { pathName } from "../../../app/app";
+import { pathName } from "../../../app/path-name";
 
 interface IModalEditProject {
   changeIsAdd: () => void;
