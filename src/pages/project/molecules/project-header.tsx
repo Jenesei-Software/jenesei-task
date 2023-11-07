@@ -4,10 +4,8 @@ import { useDispatch } from "react-redux";
 import "../styles/project-header.css";
 
 import { ProjectColumnItemAdd } from "../atoms/project-column-item-add";
-import { ProjectHeaderEdit } from "../atoms/project-header-edit";
 
 import { ModalNewColumn } from "@modules/modal-new-column/organelles/modal-new-column";
-import { ModalEditProject } from "@modules/modal-edit-project/organelles/modal-edit-project";
 import { Project } from "@stores/projects/interfaces";
 import { updateSearchQuery } from "@stores/search-query/actions";
 
@@ -20,13 +18,9 @@ export const ProjectHeader = (props: IProjectHeader) => {
 
   const [value, setValue] = useState<string | null>(null);
   const [isAdd, setIsAdd] = useState<boolean>(false);
-  const [isEdit, setIsEdit] = useState<boolean>(false);
 
   const changeIsAdd = () => {
     setIsAdd(!isAdd);
-  };
-  const changeIsEdit = () => {
-    setIsEdit(!isEdit);
   };
 
   const handleInputChange = (title: string) => {
@@ -45,9 +39,6 @@ export const ProjectHeader = (props: IProjectHeader) => {
           changeIsAdd={changeIsAdd}
         />
       )}
-      {isEdit && (
-        <ModalEditProject project={props.project} changeIsAdd={changeIsEdit} />
-      )}
       <div className="ProjectHeader">
         <div className="ProjectHeader__logo">{props.title}</div>
         <input
@@ -61,7 +52,6 @@ export const ProjectHeader = (props: IProjectHeader) => {
           onChange={(event) => handleInputChange(event.target.value)}
         />
         <ProjectColumnItemAdd onClick={changeIsAdd} title={"Add a Column"} />
-        <ProjectHeaderEdit onClick={changeIsEdit} />
       </div>
     </>
   );

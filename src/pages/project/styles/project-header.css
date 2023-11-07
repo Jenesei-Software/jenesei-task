@@ -27,7 +27,7 @@
     flex-wrap: wrap;
     position: relative;
   }
-  .ProjectHeaderEdit {
+  .ProjectBarListItemEdit {
     position: absolute;
     right: 0;
   }

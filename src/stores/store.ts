@@ -10,8 +10,11 @@ import projectsReducer from "./projects/reducer";
 import searchReducer from "./search-query/reducer";
 import { SearchState } from "./search-query/interfaces";
 import { deepSearchTasks } from "../functions/deep-search-tasks";
+import { createLogger } from 'redux-logger';
 
 const localStorageName = "projects";
+
+const loggerMiddleware = createLogger();
 
 const searchFilterMiddleware: Middleware =
   ({ getState, dispatch }) =>
@@ -82,7 +85,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(localStorageMiddleware, searchFilterMiddleware)
+  applyMiddleware(localStorageMiddleware, searchFilterMiddleware, loggerMiddleware)
 );
 
 export { store, localStorageName };

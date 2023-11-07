@@ -1,7 +1,8 @@
 .AppGeneral {
   display: grid;
   grid-template-columns: 80px 1fr;
-  grid-template-rows: 46px min(100dvh - 46px);
+  /* grid-template-rows: 46px min(100dvh - 46px); */
+  grid-template-rows: 100dvh;
   padding-right: 12px;
   width: 100dvw;
   box-sizing: border-box;
@@ -9,10 +10,11 @@
 .AppGeneral__Outlet {
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 1;
+  grid-row-end: auto;
   background: var(--block-color-1);
   overflow: hidden;
+  height: 100%;
 }
 @media (orientation: portrait) {
   .AppGeneral {

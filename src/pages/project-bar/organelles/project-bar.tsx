@@ -8,9 +8,7 @@ export const ProjectBar = () => {
   return (
     <div className="ProjectBar">
       <ProjectBarList />
-      <div className="ProjectBar__Line" />
       <Outlet />
-      <div className="ProjectBar__Line" />
     </div>
   );
 };

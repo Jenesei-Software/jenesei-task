@@ -39,9 +39,10 @@ export const ModalNewTask = (props: IModalNewTask) => {
     }
   }, []);
   return (
-    <div className="Modal__Fixed">
+    <div className="Modal__Fixed" onClick={() => props.changeIsAdd()}>
       <form
         className="ModalNewTask Modal__Block"
+        onClick={(e) => e.stopPropagation()}
         onSubmit={(e) => {
           e.preventDefault();
           handleModalNewTask();

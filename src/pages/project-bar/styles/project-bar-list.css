@@ -1,8 +1,26 @@
+.ProjectBarList {
+  border-right: 2px solid var(--background);
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 14px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  flex-direction: column;
+}
+.ProjectBarList__Title {
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-3);
+  color: var(--font-color-2);
+}
 .ProjectBarList__List {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-content: flex-start;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 18px;
 }

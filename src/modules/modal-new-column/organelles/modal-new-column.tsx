@@ -30,9 +30,10 @@ export const ModalNewColumn = (props: IModalNewColumn) => {
     }
   }, []);
   return (
-    <div className="Modal__Fixed">
+    <div className="Modal__Fixed" onClick={() => props.changeIsAdd()}>
       <form
         className="ModalNewColumn Modal__Block"
+        onClick={(e) => e.stopPropagation()}
         onSubmit={(e) => {
           e.preventDefault();
           handleModalNewColumn();

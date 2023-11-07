@@ -1,11 +1,11 @@
-import "../styles/project-header-edit.css";
+import "../styles/project-bar-list-item-edit.css";
 
-interface IProjectHeaderEdit {
+interface IProjectBarListItemEdit {
     onClick: () => void
 }
-export const ProjectHeaderEdit = (props: IProjectHeaderEdit) => {
+export const ProjectBarListItemEdit = (props: IProjectBarListItemEdit) => {
     return (
-        <div className="ProjectHeaderEdit" onClick={props.onClick}>
+        <div className="ProjectBarListItemEdit" onClick={props.onClick}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <mask id="mask0_4_79" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                     <rect width="24" height="24" fill="#D9D9D9" />

@@ -34,9 +34,10 @@ export const ModalNewProject = (props: IModalNewProject) => {
     }
   }, []);
   return (
-    <div className="Modal__Fixed">
+    <div className="Modal__Fixed" onClick={() => props.changeIsAdd()}>
       <form
         className="ModalNewProject Modal__Block"
+        onClick={(e) => e.stopPropagation()}
         onSubmit={(e) => {
           e.preventDefault();
           handleModalNewProject();

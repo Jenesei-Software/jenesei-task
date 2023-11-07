@@ -6,7 +6,7 @@ import "../styles/modal-edit-project.css";
 
 import { Project } from "@stores/projects/interfaces";
 import { deleteProject, updateProject } from "@stores/projects/actions";
-import { pathName } from "@app/path-name";
+import { pathName } from "@stores/path-name";
 
 interface IModalEditProject {
   changeIsAdd: () => void;
@@ -41,9 +41,10 @@ export const ModalEditProject = (props: IModalEditProject) => {
     };
   }, [props.project]);
   return value ? (
-    <div className="Modal__Fixed">
+    <div className="Modal__Fixed" onClick={() => props.changeIsAdd()}>
       <form
         className="ModalEditProject Modal__Block"
+        onClick={(e) => e.stopPropagation()}
         onSubmit={(e) => {
           e.preventDefault();
           handleModalEditProject();

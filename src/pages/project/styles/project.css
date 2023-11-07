@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: auto;
 }
 .Project__Title {
   font-weight: var(--font-weight-3);

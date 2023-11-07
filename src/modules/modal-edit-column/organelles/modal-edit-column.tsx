@@ -21,7 +21,15 @@ export const ModalEditColumn = (props: IModalEditColumn) => {
   const [description, setDescription] = useState<string | null>(null);
   const dispatch = useDispatch();
   const handleModalEditColumn = () => {
-    if (title && !doesColumnExist(props.projectNumber, title, props.listName, projectState.projects)) {
+    if (
+      title &&
+      !doesColumnExist(
+        props.projectNumber,
+        title,
+        props.listName,
+        projectState.projects
+      )
+    ) {
       dispatch(
         updateColumn(
           props.projectNumber,
@@ -32,7 +40,7 @@ export const ModalEditColumn = (props: IModalEditColumn) => {
       );
       props.changeIsEdit();
     } else {
-      console.error("A column with the same name already exists")
+      console.error("A column with the same name already exists");
     }
   };
   const handleModalDeleteColumn = () => {
@@ -49,9 +57,10 @@ export const ModalEditColumn = (props: IModalEditColumn) => {
     };
   }, [props]);
   return (
-    <div className="Modal__Fixed">
+    <div className="Modal__Fixed" onClick={() => props.changeIsEdit()}>
       <form
         className="ModalEditColumn Modal__Block"
+        onClick={(e) => e.stopPropagation()}
         onSubmit={(e) => {
           e.preventDefault();
           handleModalEditColumn();
