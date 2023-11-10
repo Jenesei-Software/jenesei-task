@@ -1,0 +1,8 @@
+.ProjectBarListTime{
+    box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+	width: 100%;
+	gap: 14px;
+}

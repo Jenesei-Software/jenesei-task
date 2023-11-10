@@ -1,55 +1,55 @@
 .ProjectColumnItem {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  border-radius: 8px;
-  background: #f4f4f4;
-  margin: 5px 0px 5px 0px;
+	display: flex;
+	align-items: center;
+	margin: 5px 0px 5px 0px;
+	border-radius: 8px;
+	background: #f4f4f4;
+	cursor: pointer;
+	gap: 6px;
 }
 .ProjectColumnItem__Info {
-  padding: 10px;
-  width: 100%;
+	padding: 10px;
+	width: 100%;
 }
 .ProjectColumnItem__Info__Status {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  opacity: 0.7;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	opacity: 0.7;
+	gap: 6px;
 }
 .ProjectColumnItem__Info__Status__PriorityStatus {
-  width: 40px;
-  height: 8px;
-  border-radius: 4px;
+	border-radius: 4px;
+	width: 40px;
+	height: 8px;
 }
 .ProjectColumnItem__Info__Status__CurrentStatus {
-  width: 40px;
-  height: 8px;
-  border-radius: 4px;
+	border-radius: 4px;
+	width: 40px;
+	height: 8px;
 }
 .ProjectColumnItem__Info__Bar {
-  display: flex;
-  gap: 2px;
+	display: flex;
+	gap: 2px;
 }
 .ProjectColumnItem__Info__Bar__Comments {
-  display: flex;
-  gap: 1px;
-  align-items: center;
+	display: flex;
+	align-items: center;
+	gap: 1px;
 }
 .ProjectColumnItem__Info__Bar__Comments__Title {
-  font-weight: var(--font-weight-5);
-  font-size: var(--font-size-2);
-  color: var(--font-color-2);
-  opacity: 0.2;
+	opacity: 0.2;
+	color: var(--font-color-2);
+	font-size: var(--font-size-2);
+	font-weight: var(--font-weight-5);
 }
 .ProjectColumnItem__Info__Title {
-  font-weight: var(--font-weight-3);
-  font-size: var(--font-size-2);
-  color: var(--font-color-2);
+	color: var(--font-color-2);
+	font-size: var(--font-size-2);
+	font-weight: var(--font-weight-3);
 }
 .ProjectColumnItem__Icon {
-  margin-left: auto;
-  opacity: 1;
-  padding-right: 10px;
+	opacity: 1;
+	margin-left: auto;
+	padding-right: 10px;
 }

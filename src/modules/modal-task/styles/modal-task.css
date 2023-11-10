@@ -1,112 +1,112 @@
 .ModalTask {
-  width: 600px;
+	width: 600px;
 }
 .ModalTask__Title {
-  white-space: nowrap;
-  overflow: hidden;
-  direction: rtl;
-  text-overflow: ellipsis;
-  max-width: 200px;
+	max-width: 200px;
+	overflow: hidden;
+	direction: rtl;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .ModalTask__Input {
 }
 .ModalTask__Button {
 }
 .ModalTask__List {
-  gap: 8px;
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
 }
 .ModalTask__SubTitle {
-  font-weight: var(--font-weight-5);
-  font-size: var(--font-size-2);
-  color: var(--font-color-2);
+	color: var(--font-color-2);
+	font-size: var(--font-size-2);
+	font-weight: var(--font-weight-5);
 }
 .ModalTask__SubInfo {
-  font-weight: var(--font-weight-2);
-  font-size: var(--font-size-2);
-  color: var(--font-color-2);
+	color: var(--font-color-2);
+	font-size: var(--font-size-2);
+	font-weight: var(--font-weight-2);
 }
 .ModalTask__ListOfSubStacks {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 .ModalTask__ListOfSubStacks__List {
-  flex-wrap: nowrap;
-  user-select: none;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  width: 100%;
-  border-radius: 16px;
-  border: 1px solid #d9d9d9;
-  box-sizing: border-box;
-  background-color: var(--block-color-1);
-  justify-content: flex-start;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	border: 1px solid #d9d9d9;
+	border-radius: 16px;
+	background-color: var(--block-color-1);
+	padding: 16px;
+	width: 100%;
+	user-select: none;
 }
 .ModalTask__List__Item {
-  font-weight: var(--font-weight-5);
-  font-size: var(--font-size-2);
-  color: var(--font-color-2);
-  display: inline-flex;
-  padding: 4px 10px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  background: #fff;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	background: #fff;
+	padding: 4px 10px;
+	color: var(--font-color-2);
+	font-size: var(--font-size-2);
+	font-weight: var(--font-weight-5);
 }
 .ModalTask__List__Item__Active {
-  color: var(--font-color-white);
-  background: var(--block-color-brand-08);
+	background: var(--block-color-brand-08);
+	color: var(--font-color-white);
 }
 .ModalTask__Comments {
-  flex-wrap: nowrap;
-  -webkit-user-select: none;
-  user-select: none;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  width: 100%;
-  border-radius: 16px;
-  border: 1px solid #d9d9d9;
-  box-sizing: border-box;
-  background-color: var(--block-color-1);
-  justify-content: flex-start;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	border: 1px solid #d9d9d9;
+	border-radius: 16px;
+	background-color: var(--block-color-1);
+	padding: 16px;
+	width: 100%;
+	-webkit-user-select: none;
+	user-select: none;
 }
 .ModalTask__General {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 20px;
-  justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 20px;
 }
 .ModalTask__General__Sub {
-  display: flex;
-  gap: 8px;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 .ModalTask__Head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .ModalTask__Info {
-  overflow-y: auto;
-  height: 70dvh;
-  min-height: 70dvh;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+	display: flex;
+	flex-direction: column;
+	height: 70dvh;
+	min-height: 70dvh;
+	overflow-y: auto;
+	gap: 10px;
 }
 .ModalTask__Button__Cancel {
 }
 @media (orientation: portrait) {
-  .ModalTask__Info {
-    height: 80dvh;
-  }
-  .ModalTask {
-    width: 90dvw;
-  }
+	.ModalTask__Info {
+		height: 80dvh;
+	}
+	.ModalTask {
+		width: 90dvw;
+	}
 }

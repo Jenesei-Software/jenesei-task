@@ -1,34 +1,34 @@
 .ProjectHeader {
-  display: flex;
-  gap: 30px;
-  align-items: center;
+	display: flex;
+	align-items: center;
+	gap: 30px;
 }
 .ProjectHeader__logo {
-  font-weight: var(--font-weight-4);
-  font-size: var(--font-size-3);
-  color: var(--font-color-2);
-  min-width: 120px;
+	min-width: 120px;
+	color: var(--font-color-2);
+	font-size: var(--font-size-3);
+	font-weight: var(--font-weight-4);
 }
 .ProjectHeader .ProjectColumnItemAdd {
-  width: 128px;
-  justify-content: space-between;
+	justify-content: space-between;
+	width: 128px;
 }
 .ProjectHeader .ProjectColumnItemAdd__RightIcon {
-  display: none;
+	display: none;
 }
 .ProjectHeader__Input {
-  max-width: 240px;
+	max-width: 240px;
 }
 @media (orientation: portrait) {
-  .ProjectHeader {
-    gap: 8px;
-    align-items: flex-start;
-    flex-direction: column;
-    flex-wrap: wrap;
-    position: relative;
-  }
-  .ProjectBarListItemEdit {
-    position: absolute;
-    right: 0;
-  }
+	.ProjectHeader {
+		position: relative;
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 8px;
+	}
+	.ProjectBarListItemEdit {
+		position: absolute;
+		right: 0;
+	}
 }
