@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Project } from "@stores/projects/interfaces";
 
@@ -11,22 +11,32 @@ import { ProjectBarListProjectsItemEdit } from "./project-bar-list-projects-item
 // }
 interface IProjectBarListProjectsItem {
   project: Project;
-  onClick: (project:Project) => void;
+  onClick: (project: Project) => void;
 }
-export const ProjectBarListProjectsItem = (props: IProjectBarListProjectsItem) => {
+export const ProjectBarListProjectsItem = (
+  props: IProjectBarListProjectsItem
+) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
-    <NavLink
-      to={`/project/${props.project.projectNumber}`}
-      className={({ isActive }) =>
-        isActive
+    <div
+      onClick={() => {
+        navigate(`/project/${props.project.projectNumber}`);
+      }}
+      className={
+        location.pathname === `/project/${props.project.projectNumber}`
           ? "ProjectBarListProjectsItem ProjectBarListProjectsItem--active"
           : "ProjectBarListProjectsItem"
       }
       style={{ backgroundImage: `url(${props.project.backgroundLink})` }}
     >
-      <div className="ProjectBarListProjectsItem__Title">{props.project.title}</div>
-      <ProjectBarListProjectsItemEdit onClick={() => props.onClick(props.project)} />
+      <div className="ProjectBarListProjectsItem__Title">
+        {props.project.title}
+      </div>
+      <ProjectBarListProjectsItemEdit
+        onClick={() => props.onClick(props.project)}
+      />
       {/* <div className="ProjectBarListProjectsItem__Quantity">{getTotalTasks(props)} task</div> */}
-    </NavLink>
+    </div>
   );
 };

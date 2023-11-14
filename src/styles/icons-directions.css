@@ -1,0 +1,45 @@
+.Icon-Directions__Bar__Button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.Icon-Directions__Bar__Button--active {
+}
+.Icon-Directions__Bar__Button:focus {
+  border-radius: 16px;
+}
+.Icon-Directions__Bar__Button--non-active {
+}
+.Icon-Directions__Bar__Button__SVG__Path {
+  fill: var(--font-color-3);
+  transition: all 0.2s;
+}
+.Icon-Directions__Bar__Button--active .Icon-Directions__Bar__Button__SVG__Path {
+  fill: transparent;
+}
+.Icon-Directions__Bar__Button--non-active
+  .Icon-Directions__Bar__Button__SVG__Path {
+  fill: var(--font-color-3);
+}
+.Icon-Directions__Bar__Button--active:hover
+  .Icon-Directions__Bar__Button__SVG__Path {
+  fill: var(--block-color-5);
+}
+.Icon-Directions__Bar__Button--non-active:hover
+  .Icon-Directions__Bar__Button__SVG__Path {
+  fill: var(--block-color-brand-08);
+}
+
+.Icon-Directions__Bar__Button--coup svg {
+  transform: rotate(180deg);
+}
+.Icon-Directions__Bar__Button svg {
+  transition: transform .3s;
+}
+.Icon-Directions__Bar__Button svg {
+  transform-origin: center center;
+}
+

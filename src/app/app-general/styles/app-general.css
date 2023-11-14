@@ -13,7 +13,6 @@
   grid-row-start: 1;
   grid-row-end: auto;
   background: var(--block-color-1);
-  overflow: hidden;
   height: 100%;
 }
 @media (orientation: portrait) {

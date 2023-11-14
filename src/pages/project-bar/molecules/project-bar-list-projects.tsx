@@ -12,9 +12,11 @@ import { ProjectBarListProjectsItemZero } from "../atoms/project-bar-list-projec
 import { ProjectBarListProjectsItem } from "../atoms/project-bar-list-projects-item";
 
 import "../styles/project-bar-list-projects.css";
+import { HidingArrowCircle } from "../../../icons/hiding-arrow-circle/hiding-arrow-circle";
 
 export const ProjectBarListProjects = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   const [project, setProject] = useState<Project | null>(null);
 
   const { projectNumber } = useParams();
@@ -24,6 +26,9 @@ export const ProjectBarListProjects = () => {
   const changeIsEdit = (project?: Project) => {
     if (project) setProject(project);
     setIsEdit(!isEdit);
+  };
+  const changeIsOpen = () => {
+    setIsOpen(!isOpen);
   };
   const handleProjectBarClick = (index: number) => {
     setSelectedIndex(index);
@@ -44,12 +49,15 @@ export const ProjectBarListProjects = () => {
     }
   }, [projectNumber, projectState]);
   return (
-    <div className="ProjectBarListProjects">
+    <div className="ProjectBarListItem ProjectBarListProjects">
       {isEdit && project && (
         <ModalEditProject project={project} changeIsAdd={changeIsEdit} />
       )}
-      <div className="ProjectBarListProjects__Title ProjectBarList__Title">Projects</div>
-      <Flipper flipKey={selectedIndex}>
+      <div className="ProjectBarListItem__Header">
+        <div className="ProjectBarListItem__Header__Title">Projects</div>
+        <HidingArrowCircle onCLick={changeIsOpen} isActive={isOpen} />
+      </div>
+      <Flipper flipKey={selectedIndex} className={isOpen ? "ProjectBarListItem__Info--open ProjectBarListItem__Info" : "ProjectBarListItem__Info--close ProjectBarListItem__Info"}>
         <div className="ProjectBarListProjects__List">
           {selectedIndex !== null && (
             <Flipped
@@ -71,7 +79,10 @@ export const ProjectBarListProjects = () => {
                 index !== selectedIndex && (
                   <Flipped key={e.projectNumber} flipId={e.projectNumber}>
                     <div onClick={() => handleProjectBarClick(index)}>
-                      <ProjectBarListProjectsItem project={e} onClick={changeIsEdit} />
+                      <ProjectBarListProjectsItem
+                        project={e}
+                        onClick={changeIsEdit}
+                      />
                     </div>
                   </Flipped>
                 )

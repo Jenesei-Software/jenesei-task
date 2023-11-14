@@ -5,6 +5,7 @@ import { v4 } from "uuid";
 import "../styles/modal-new-project.css";
 
 import { addProject } from "@stores/projects/actions";
+import ReactDOM from "react-dom";
 
 interface IModalNewProject {
   changeIsAdd: () => void;
@@ -22,7 +23,7 @@ export const ModalNewProject = (props: IModalNewProject) => {
           queue: { list: [] },
           development: { list: [] },
           done: { list: [] },
-        }
+        },
       };
       dispatch(addProject(ModalNewProject));
       props.changeIsAdd();
@@ -33,7 +34,7 @@ export const ModalNewProject = (props: IModalNewProject) => {
       inputRef.current.focus();
     }
   }, []);
-  return (
+  return ReactDOM.createPortal(
     <div className="Modal__Fixed" onClick={() => props.changeIsAdd()}>
       <form
         className="ModalNewProject Modal__Block"
@@ -43,7 +44,9 @@ export const ModalNewProject = (props: IModalNewProject) => {
           handleModalNewProject();
         }}
       >
-        <div className="ModalNewProject__Title Modal__Block__Title">Heading of Project</div>
+        <div className="ModalNewProject__Title Modal__Block__Title">
+          Heading of Project
+        </div>
         <input
           ref={inputRef}
           className="ModalNewProject__Input Modal__Block__Input"
@@ -55,13 +58,20 @@ export const ModalNewProject = (props: IModalNewProject) => {
           maxLength={40}
           onChange={(event) => setTitle(event.target.value)}
         />
-        <button className="ModalNewProject__Button Modal__Block__Button" type="submit">
+        <button
+          className="ModalNewProject__Button Modal__Block__Button"
+          type="submit"
+        >
           Create
         </button>
-        <button className="ModalNewProject__Button Modal__Block__Button" onClick={props.changeIsAdd}>
+        <button
+          className="ModalNewProject__Button Modal__Block__Button"
+          onClick={props.changeIsAdd}
+        >
           Cancel
         </button>
       </form>
-    </div>
+    </div>,
+    document.body
   );
 };
