@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
+import { useState } from "react";
 
 import { ProjectBarList } from "../molecules/project-bar-list";
 
 import "../styles/project-bar.css";
-import { useState } from "react";
-import { HidingArrowSquareRightLong } from "@icons/hiding-arrow-square-right-long/hiding-arrow-square-right-long";
+
+import { HidingArrow } from "@icons/hiding-arrow/hiding-arrow";
 
 export const ProjectBar = () => {
   const [isBarOpen, setIsBarOpen] = useState<boolean>(true);
@@ -21,7 +22,11 @@ export const ProjectBar = () => {
     >
       <ProjectBarList changeIsBarOpen={changeIsBarOpen} isBarOpen={isBarOpen} />
       <div className="ProjectBar__Line">
-        <HidingArrowSquareRightLong onCLick={changeIsBarOpen} isActive={isBarOpen} />
+        <HidingArrow.SquareRightLong
+          onCLick={changeIsBarOpen}
+          active={isBarOpen}
+          rotateDeg={180}
+        />
       </div>
       <Outlet />
     </div>
