@@ -6,7 +6,6 @@ import '@styles/index.css'
 import '@styles/fonts.css'
 import '@styles/variables.css'
 import '@styles/modal.css'
-import '@styles/icons.css'
 
 import { App } from '@app/app';
 import { store } from '@stores/store';

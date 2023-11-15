@@ -1,7 +1,6 @@
 .AppGeneral {
   display: grid;
   grid-template-columns: 80px 1fr;
-  /* grid-template-rows: 46px min(100dvh - 46px); */
   grid-template-rows: 100dvh;
   padding-right: 12px;
   width: 100dvw;
