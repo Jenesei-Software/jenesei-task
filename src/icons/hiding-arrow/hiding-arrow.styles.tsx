@@ -19,7 +19,7 @@ export const StyleHidingArrow = styled.div<IStyleHidingArrow>`
     transform-origin: center center;
 
     transform: ${(props) =>
-      props.active && props.rotateDeg ? `rotate(${props.rotateDeg}deg)` : ""};
+      props.active ? props.rotateDeg ? `rotate(${props.rotateDeg}deg)` : "" : ""};
   }
 
   & path {
@@ -28,7 +28,7 @@ export const StyleHidingArrow = styled.div<IStyleHidingArrow>`
     fill: ${(props) => (props.active ? "transparent" : "var(--font-color-3)")};
     &:hover {
       fill: ${(props) =>
-        props.active ? "var(--block-color-5)" : "var(--block-color-brand-08)"};
+        props.active ? "var(--block-color-5)" : "var(--block-color-brand-08)" };
     }
   }
 `;

@@ -1,26 +1,25 @@
-import { ProjectBarListProjects } from "./project-bar-list-item.projects";
+import { ProjectBarListProjects } from "./options/project-bar-list-item.projects";
 
-import "../styles/project-bar-list.css";
 import { ProjectBarListItem } from "./project-bar-list-item";
+import { StyleProjectBarList } from "./project-bar-list.styles";
 
 interface IProjectBarList {
   isBarOpen: boolean;
-  changeIsBarOpen: () => void;
 }
 export const ProjectBarList = (props: IProjectBarList) => {
   return (
-    <div
-      className={
-        props.isBarOpen
-          ? "ProjectBarList--open ProjectBarList"
-          : "ProjectBarList--close ProjectBarList"
-      }
-    >
-      <ProjectBarListItem title={"Projects"}>
+    <StyleProjectBarList isBarOpen={props.isBarOpen}>
+      <ProjectBarListItem title={"Projects"} isBarOpen={props.isBarOpen}>
         <ProjectBarListProjects />
       </ProjectBarListItem>
-      <ProjectBarListItem title={"Team Members"}></ProjectBarListItem>
-      <ProjectBarListItem title={"Time"}></ProjectBarListItem>
-    </div>
+      <ProjectBarListItem
+        title={"Team Members"}
+        isBarOpen={props.isBarOpen}
+      ></ProjectBarListItem>
+      <ProjectBarListItem
+        title={"Time"}
+        isBarOpen={props.isBarOpen}
+      ></ProjectBarListItem>
+    </StyleProjectBarList>
   );
 };

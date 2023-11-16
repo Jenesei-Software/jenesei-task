@@ -1,5 +1,5 @@
-import "../styles/settings.css";
+import { StyleSettings } from "./settings.styles";
 
 export const Settings = () => {
-  return <div className="Settings"></div>;
+  return <StyleSettings></StyleSettings>;
 };

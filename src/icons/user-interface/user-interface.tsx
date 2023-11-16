@@ -3,7 +3,8 @@ import {
   StyleUserInterfaceIcon,
   StyleUserInterfaceWrapperBar,
   StyleUserInterfaceWrapperIcon,
-} from "./user-interface.style";
+  StyleUserInterfaceWrapperMiniIcon,
+} from "./user-interface.styles";
 
 export interface IUserInterface {
   onCLick?: () => void;
@@ -101,8 +102,8 @@ export const UserInterface = {
             fill="none"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12.75 8C12.75 7.58579 12.4142 7.25 12 7.25C11.5858 7.25 11.25 7.58579 11.25 8V11.7324C11.25 12.1503 11.4589 12.5406 11.8066 12.7725L14.584 14.624C14.9286 14.8538 15.3943 14.7607 15.624 14.416C15.8538 14.0714 15.7607 13.6057 15.416 13.376L12.75 11.5986V8Z"
               fill="#2B3F6C"
             />
@@ -126,14 +127,51 @@ export const UserInterface = {
             fill="none"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M1.25 7C1.25 3.82436 3.82436 1.25 7 1.25H17C20.1756 1.25 22.75 3.82436 22.75 7V17C22.75 20.1756 20.1756 22.75 17 22.75H7C3.82436 22.75 1.25 20.1756 1.25 17V7ZM7.25 17C7.25 17.4142 7.58579 17.75 8 17.75C8.41421 17.75 8.75 17.4142 8.75 17V14C8.75 13.5858 8.41421 13.25 8 13.25C7.58579 13.25 7.25 13.5858 7.25 14V17ZM12 17.75C11.5858 17.75 11.25 17.4142 11.25 17V7C11.25 6.58579 11.5858 6.25 12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V17C12.75 17.4142 12.4142 17.75 12 17.75ZM15.25 17C15.25 17.4142 15.5858 17.75 16 17.75C16.4142 17.75 16.75 17.4142 16.75 17V10C16.75 9.58579 16.4142 9.25 16 9.25C15.5858 9.25 15.25 9.58579 15.25 10V17Z"
               fill="#2B3F6C"
             />
           </svg>
         </StyleUserInterfaceBar>
       </StyleUserInterfaceWrapperBar>
+    );
+  },
+  BurgerMini: function (props: IUserInterface) {
+    return (
+      <StyleUserInterfaceWrapperMiniIcon
+        onClick={props.onCLick}
+        title={props.title}
+      >
+        <StyleUserInterfaceBar
+          active={props.active}
+          rotateDeg={props.rotateDeg}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="13"
+            height="10"
+            viewBox="0 0 13 10"
+            fill="none"
+          >
+            <path
+              d="M11.6666 1L0.999959 1"
+              stroke="#2B3F6C"
+              strokeLinecap="round"
+            />
+            <path
+              d="M11.6666 5L0.999959 5"
+              stroke="#2B3F6C"
+              strokeLinecap="round"
+            />
+            <path
+              d="M11.6666 9H0.999959"
+              stroke="#2B3F6C"
+              strokeLinecap="round"
+            />
+          </svg>
+        </StyleUserInterfaceBar>
+      </StyleUserInterfaceWrapperMiniIcon>
     );
   },
   JeneseiTaskIcon: function (props: IUserInterface) {

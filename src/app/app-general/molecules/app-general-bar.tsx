@@ -1,17 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-import "../styles/app-general-bar.css";
-
 import { pathName } from "@stores/path-name";
 import { UserInterface } from "@icons/user-interface/user-interface";
+import { StyleAppGeneralBar, StyleAppGeneralBarNav } from "./app-general-bar.styles";
 
 export const AppGeneralBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   return (
-    <div className="AppGeneralBar">
-      <div className="AppGeneralBar__Nav">
+    <StyleAppGeneralBar>
+      <StyleAppGeneralBarNav>
         <UserInterface.JeneseiTaskIcon />
         <UserInterface.LayersBar
           onCLick={() => navigate(`/${pathName.group.title}`)}
@@ -38,7 +37,7 @@ export const AppGeneralBar = () => {
           active={location.pathname.startsWith(`/${pathName.statistics.title}`)}
           title={pathName.statistics.title}
         />
-      </div>
-    </div>
+      </StyleAppGeneralBarNav>
+    </StyleAppGeneralBar>
   );
 };

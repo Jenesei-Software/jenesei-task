@@ -18,19 +18,19 @@
   --font-color-purple: #b67ad5;
   --font-color-brown: #9986;
   --font-color-brand: #4195d2;
-  --font-color-6: #49454E;
+  --font-color-6: #49454e;
 
   --block-color-brand: #4195d2;
-  --block-color-brand-05: #4195D280;
-  --block-color-brand-08: #4195D2CC;
-  --block-color-brand-075: #4195D2BF;
+  --block-color-brand-05: #4195d280;
+  --block-color-brand-08: #4195d2cc;
+  --block-color-brand-075: #4195d2bf;
 
   --block-color-1: #ffffff;
   --block-color-2: #000000;
   --block-color-3: #ececf1;
   --block-color-4: #fbfbfc;
   --block-color-5: #e4e4e5;
-  --block-color-6: #49454E;
+  --block-color-6: #49454e;
 
   /* colors/ */
 
@@ -56,4 +56,8 @@
   --font-size-5: 32px;
   --font-weight-5: 700;
   /* fonts/ */
+
+  /* /media */
+  --media-max-width: 768px;
+  /* media/ */
 }

@@ -2,15 +2,15 @@ import { Outlet } from "react-router-dom";
 
 import { AppGeneralBar } from "../molecules/app-general-bar";
 
-import '../styles/app-general.css'
+import { StyleAppGeneral, StyleAppGeneralOutlet } from "./app-general.styles";
 
 export const AppGeneral = () => {
-    return (
-        <div className="AppGeneral">
-            <AppGeneralBar/>
-            <div className="AppGeneral__Outlet">
-                <Outlet />
-            </div>
-        </div>
-    );
+  return (
+    <StyleAppGeneral>
+      <AppGeneralBar />
+      <StyleAppGeneralOutlet>
+        <Outlet />
+      </StyleAppGeneralOutlet>
+    </StyleAppGeneral>
+  );
 };

@@ -2,8 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-import "./app.css";
-
 import { AppGeneral } from "./app-general/organelles/app-general";
 import {
   updateProjects,
@@ -14,6 +12,7 @@ import { Project } from "@pages/project/organelles/project";
 import { Settings } from "@pages/settings/organelles/settings";
 import { localStorageName } from "@stores/store";
 import { pathName } from "@stores/path-name";
+import { StyleApp } from "./app.styles";
 
 export const EXTERNAL_DATE = "2023-10-09"; //Date of specific interface change (required to delete data)
 
@@ -39,7 +38,7 @@ function App() {
     }
   }, [dispatch]);
   return (
-    <div className="App">
+    <StyleApp>
       <Routes>
         <Route path="/" element={<AppGeneral />}>
           {/* <Route
@@ -59,7 +58,7 @@ function App() {
           <Route path={`${pathName.statistics.title}`} element={<Settings />} />
         </Route>
       </Routes>
-    </div>
+    </StyleApp>
   );
 }
 

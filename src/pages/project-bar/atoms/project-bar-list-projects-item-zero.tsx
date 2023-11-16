@@ -1,8 +1,10 @@
 import { useState } from "react";
 
 import { ModalNewProject } from "@modules/modal-new-project/organelles/modal-new-project";
-
-import "../styles/project-bar-list-projects-item.css";
+import {
+  StyleProjectBarListProjectsItemZero,
+  StyleProjectBarListProjectsItemZeroTitle,
+} from "./project-bar-list-projects-item-zero.style";
 
 export const ProjectBarListProjectsItemZero = () => {
   const [isAdd, setIsAdd] = useState<boolean>(false);
@@ -12,9 +14,11 @@ export const ProjectBarListProjectsItemZero = () => {
   return (
     <>
       {isAdd && <ModalNewProject changeIsAdd={changeIsAdd} />}
-      <div className="ProjectBarListProjectsItemZero ProjectBarListProjectsItem">
-        <div className="ProjectBarListProjectsItem__Title" onClick={changeIsAdd}>Create new Project</div>
-      </div>
+      <StyleProjectBarListProjectsItemZero>
+        <StyleProjectBarListProjectsItemZeroTitle onClick={changeIsAdd}>
+          Create new Project
+        </StyleProjectBarListProjectsItemZeroTitle>
+      </StyleProjectBarListProjectsItemZero>
     </>
   );
 };

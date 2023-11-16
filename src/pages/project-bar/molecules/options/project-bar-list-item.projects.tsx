@@ -8,10 +8,9 @@ import { Project } from "@stores/projects/interfaces";
 
 import { ModalEditProject } from "@modules/modal-edit-project/organelles/modal-edit-project";
 
-import { ProjectBarListProjectsItemZero } from "../atoms/project-bar-list-projects-item-zero";
-import { ProjectBarListProjectsItem } from "../atoms/project-bar-list-projects-item";
-
-import "../styles/project-bar-list-projects.css";
+import { ProjectBarListProjectsItemZero } from "../../atoms/project-bar-list-projects-item-zero";
+import { ProjectBarListProjectsItem } from "../../atoms/project-bar-list-projects-item";
+import { StyleProjectBarListProjectsList } from "./project-bar-list-item.projects.styles";
 
 export const ProjectBarListProjects = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -44,17 +43,15 @@ export const ProjectBarListProjects = () => {
       }
     }
   }, [projectNumber, projectState]);
+
   return (
     <>
       {isEdit && project && (
         <ModalEditProject project={project} changeIsAdd={changeIsEdit} />
       )}
 
-      <Flipper
-        flipKey={selectedIndex}
-        className="ProjectBarListItem__Info"
-      >
-        <div className="ProjectBarListProjects__List">
+      <Flipper flipKey={selectedIndex}>
+        <StyleProjectBarListProjectsList>
           {selectedIndex !== null && (
             <Flipped
               key={projectState.projects[selectedIndex]?.projectNumber}
@@ -84,7 +81,7 @@ export const ProjectBarListProjects = () => {
                 )
             )}
           <ProjectBarListProjectsItemZero />
-        </div>
+        </StyleProjectBarListProjectsList>
       </Flipper>
     </>
   );

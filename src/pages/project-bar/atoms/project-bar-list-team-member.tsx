@@ -1,10 +1,5 @@
-import "../styles/project-bar-list-team-member.css";
+import { StyleProjectBarListTeamMember } from "./project-bar-list-team-member.styles";
 
 export const ProjectBarListTeamMember = () => {
- 
-  return (
-    <div className="ProjectBarListTeamMember">
-     
-    </div>
-  );
+  return <StyleProjectBarListTeamMember></StyleProjectBarListTeamMember>;
 };

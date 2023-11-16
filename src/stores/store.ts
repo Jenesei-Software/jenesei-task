@@ -1,5 +1,6 @@
 import {
   Middleware,
+  Reducer,
   applyMiddleware,
   combineReducers,
   createStore,
@@ -10,7 +11,8 @@ import projectsReducer from "./projects/reducer";
 import searchReducer from "./search-query/reducer";
 import { SearchState } from "./search-query/interfaces";
 import { deepSearchTasks } from "../functions/deep-search-tasks";
-import { createLogger } from 'redux-logger';
+import { createLogger } from "redux-logger";
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
 
 const localStorageName = "projects";
 
@@ -78,14 +80,17 @@ export interface RootState {
   searchState: SearchState;
 }
 
-const rootReducer = combineReducers({
+const rootReducer: Reducer = combineReducers({
   projectsState: projectsReducer,
   searchState: searchReducer,
 });
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(localStorageMiddleware, searchFilterMiddleware, loggerMiddleware)
-);
+const composeEnhancers = composeWithDevTools({name:"Jenesei Task"});
+
+const store = createStore(rootReducer, composeEnhancers(
+  applyMiddleware( localStorageMiddleware,
+    searchFilterMiddleware,
+    loggerMiddleware,),
+))
 
 export { store, localStorageName };
