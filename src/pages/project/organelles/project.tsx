@@ -26,6 +26,7 @@ import { Task } from "@stores/projects/interfaces";
 import { moveColumns, moveTask } from "@stores/projects/actions";
 
 import "../styles/project.css";
+import { StyleProject } from "./project.styles";
 
 export const Project = () => {
   const dispatch = useDispatch();
@@ -116,7 +117,7 @@ export const Project = () => {
     projectIndex !== null &&
     projectState.projects[projectIndex] &&
     projectState.searchProjects[projectIndex] ? (
-    <div className="Project">
+    <StyleProject>
       {isAdd && type && projectNumber && (
         <ModalNewTask
           changeIsAdd={changeIsAdd}
@@ -233,6 +234,6 @@ export const Project = () => {
           </DragDropContext>
         </>
       )}
-    </div>
+    </StyleProject>
   ) : null;
 };

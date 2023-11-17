@@ -4,7 +4,7 @@ import { ModalNewProject } from "@modules/modal-new-project/organelles/modal-new
 import {
   StyleProjectBarListProjectsItemZero,
   StyleProjectBarListProjectsItemZeroTitle,
-} from "./project-bar-list-projects-item-zero.style";
+} from "./project-bar-list-projects-item-zero.styles";
 
 export const ProjectBarListProjectsItemZero = () => {
   const [isAdd, setIsAdd] = useState<boolean>(false);
