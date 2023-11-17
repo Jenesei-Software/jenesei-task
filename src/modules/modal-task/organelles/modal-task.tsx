@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { Droppable } from "react-beautiful-dnd";
-import ReactDOM from "react-dom";
 
 import { ModalNewTask } from "../../modal-new-task/organelles/modal-new-task";
 import { ModalTaskFile, useFiles } from "../molecules/modal-task-file";
@@ -17,6 +16,7 @@ import {
   Task,
 } from "@stores/projects/interfaces";
 import "../styles/modal-task.css";
+import ReactDOM from "react-dom";
 
 interface IModalTask {
   changeIsModal: () => void;
@@ -80,7 +80,8 @@ export const ModalTask = (props: IModalTask) => {
     };
   }, [props.value]);
   return (
-    value && (
+    value &&
+    ReactDOM.createPortal(
       <>
         <div className="Modal__Fixed">
           <div className="ModalTask Modal__Block">
@@ -320,18 +321,16 @@ export const ModalTask = (props: IModalTask) => {
             </button>
           </div>
         </div>
-        {isAdd &&
-          props.projectNumber &&
-          ReactDOM.createPortal(
-            <ModalNewTask
-              changeIsAdd={changeIsAdd}
-              listName={props.listName}
-              projectNumber={props.projectNumber}
-              taskNumber={value.taskNumber}
-            />,
-            document.body
-          )}
-      </>
+        {isAdd && props.projectNumber && (
+          <ModalNewTask
+            changeIsAdd={changeIsAdd}
+            listName={props.listName}
+            projectNumber={props.projectNumber}
+            taskNumber={value.taskNumber}
+          />
+        )}
+      </>,
+      document.body
     )
   );
 };

@@ -8,6 +8,11 @@ import { ProjectColumnItemAdd } from "../atoms/project-column-item-add";
 import { ModalNewColumn } from "@modules/modal-new-column/organelles/modal-new-column";
 import { Project } from "@stores/projects/interfaces";
 import { updateSearchQuery } from "@stores/search-query/actions";
+import {
+  StyleProjectHeader,
+  StyleProjectHeaderInput,
+  StyleProjectHeaderTitle,
+} from "./project-header.styles";
 
 interface IProjectHeader {
   title: string;
@@ -39,20 +44,17 @@ export const ProjectHeader = (props: IProjectHeader) => {
           changeIsAdd={changeIsAdd}
         />
       )}
-      <div className="ProjectHeader">
-        <div className="ProjectHeader__logo">{props.title}</div>
-        <input
-          className="ProjectHeader__Input Modal__Block__Input"
+      <StyleProjectHeader>
+        <StyleProjectHeaderTitle>{props.title}</StyleProjectHeaderTitle>
+        <StyleProjectHeaderInput
           required
           placeholder="Search by name"
           type="text"
           value={value || ""}
-          minLength={4}
-          maxLength={40}
           onChange={(event) => handleInputChange(event.target.value)}
         />
         <ProjectColumnItemAdd onClick={changeIsAdd} title={"Add a Column"} />
-      </div>
+      </StyleProjectHeader>
     </>
   );
 };

@@ -7,6 +7,7 @@ import { Column } from "@stores/projects/interfaces";
 import { deleteColumn, updateColumn } from "@stores/projects/actions";
 import { doesColumnExist } from "@functions/does-column-exist";
 import { RootState } from "@stores/store";
+import ReactDOM from "react-dom";
 
 interface IModalEditColumn {
   changeIsEdit: () => void;
@@ -56,7 +57,7 @@ export const ModalEditColumn = (props: IModalEditColumn) => {
       setDescription(null);
     };
   }, [props]);
-  return (
+  return ReactDOM.createPortal(
     <div className="Modal__Fixed" onClick={() => props.changeIsEdit()}>
       <form
         className="ModalEditColumn Modal__Block"
@@ -107,6 +108,7 @@ export const ModalEditColumn = (props: IModalEditColumn) => {
           Cancel
         </button>
       </form>
-    </div>
+    </div>,
+    document.body
   );
 };

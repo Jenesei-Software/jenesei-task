@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
 import moment from "moment";
+import ReactDOM from "react-dom";
 
 import "../styles/modal-new-task.css";
 
@@ -38,7 +39,7 @@ export const ModalNewTask = (props: IModalNewTask) => {
       inputRef.current.focus();
     }
   }, []);
-  return (
+  return ReactDOM.createPortal(
     <div className="Modal__Fixed" onClick={() => props.changeIsAdd()}>
       <form
         className="ModalNewTask Modal__Block"
@@ -62,13 +63,20 @@ export const ModalNewTask = (props: IModalNewTask) => {
             setValue({ ...value, heading: event.target.value })
           }
         />
-        <button className="ModalNewTask__Button Modal__Block__Button" type="submit">
+        <button
+          className="ModalNewTask__Button Modal__Block__Button"
+          type="submit"
+        >
           Create
         </button>
-        <button className="ModalNewTask__Button Modal__Block__Button" onClick={props.changeIsAdd}>
+        <button
+          className="ModalNewTask__Button Modal__Block__Button"
+          onClick={props.changeIsAdd}
+        >
           Cancel
         </button>
       </form>
-    </div>
+    </div>,
+    document.body
   );
 };

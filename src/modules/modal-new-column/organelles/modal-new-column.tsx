@@ -6,10 +6,11 @@ import "../styles/modal-new-column.css";
 import { addColumn } from "@stores/projects/actions";
 import { doesColumnExist } from "@functions/does-column-exist";
 import { RootState } from "@stores/store";
+import ReactDOM from "react-dom";
 
 interface IModalNewColumn {
   changeIsAdd: () => void;
-  projectNumber: string
+  projectNumber: string;
 }
 export const ModalNewColumn = (props: IModalNewColumn) => {
   const projectState = useSelector((state: RootState) => state.projectsState);
@@ -17,11 +18,14 @@ export const ModalNewColumn = (props: IModalNewColumn) => {
   const [title, setTitle] = useState<string | null>(null);
   const dispatch = useDispatch();
   const handleModalNewColumn = () => {
-    if (title && !doesColumnExist(props.projectNumber, title, null, projectState.projects)) {
+    if (
+      title &&
+      !doesColumnExist(props.projectNumber, title, null, projectState.projects)
+    ) {
       dispatch(addColumn(props.projectNumber, title));
       props.changeIsAdd();
     } else {
-      console.error("A column with the same name already exists")
+      console.error("A column with the same name already exists");
     }
   };
   useEffect(() => {
@@ -29,7 +33,7 @@ export const ModalNewColumn = (props: IModalNewColumn) => {
       inputRef.current.focus();
     }
   }, []);
-  return (
+  return ReactDOM.createPortal(
     <div className="Modal__Fixed" onClick={() => props.changeIsAdd()}>
       <form
         className="ModalNewColumn Modal__Block"
@@ -39,7 +43,9 @@ export const ModalNewColumn = (props: IModalNewColumn) => {
           handleModalNewColumn();
         }}
       >
-        <div className="ModalNewColumn__Title Modal__Block__Title">Add of Columns</div>
+        <div className="ModalNewColumn__Title Modal__Block__Title">
+          Add of Columns
+        </div>
         <input
           ref={inputRef}
           className="ModalNewColumn__Input Modal__Block__Input"
@@ -51,13 +57,20 @@ export const ModalNewColumn = (props: IModalNewColumn) => {
           maxLength={40}
           onChange={(event) => setTitle(event.target.value)}
         />
-        <button className="ModalNewColumn__Button Modal__Block__Button" type="submit">
+        <button
+          className="ModalNewColumn__Button Modal__Block__Button"
+          type="submit"
+        >
           Create
         </button>
-        <button className="ModalNewColumn__Button Modal__Block__Button" onClick={props.changeIsAdd}>
+        <button
+          className="ModalNewColumn__Button Modal__Block__Button"
+          onClick={props.changeIsAdd}
+        >
           Cancel
         </button>
       </form>
-    </div>
+    </div>,
+    document.body
   );
 };

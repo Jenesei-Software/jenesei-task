@@ -10,6 +10,22 @@ export const StyleProject = styled.div`
   overflow: hidden;
   gap: 20px;
 
+  & .swiper-pagination-bullet-active {
+    background: var(--block-color-brand) !important;
+  }
+
+  @media (orientation: portrait) {
+    height: 100%;
+  }
+`;
+export const StyleProjectColumns = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow-x: auto;
+
   @media (orientation: portrait) {
     height: 100%;
   }

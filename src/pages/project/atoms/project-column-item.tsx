@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { Draggable } from "react-beautiful-dnd";
-import ReactDOM from "react-dom";
 
 import {
   CurrentStatusList,
@@ -68,21 +67,18 @@ export const ProjectColumnItem = (props: Task & AdditionalProps) => {
               ...provided.draggableProps.style,
             }}
           >
-            {isModal &&
-              props.projectNumber &&
-              ReactDOM.createPortal(
-                <ModalTask
-                  searchStateQuery={props.searchStateQuery}
-                  orientation={props.orientation}
-                  isDropDisabled={props.isDropDisabled}
-                  changeIsModal={changeIsModal}
-                  projectNumber={props.projectNumber}
-                  value={props}
-                  listName={props.listName}
-                  fullName={props.fullName}
-                />,
-                document.body
-              )}
+            {isModal && props.projectNumber && (
+              <ModalTask
+                searchStateQuery={props.searchStateQuery}
+                orientation={props.orientation}
+                isDropDisabled={props.isDropDisabled}
+                changeIsModal={changeIsModal}
+                projectNumber={props.projectNumber}
+                value={props}
+                listName={props.listName}
+                fullName={props.fullName}
+              />
+            )}
             <div className="ProjectColumnItem__Info" onClick={handleIsCheck}>
               <div className="ProjectColumnItem__Info__Status">
                 {props.priorityStatus && (

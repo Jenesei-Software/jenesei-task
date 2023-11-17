@@ -25,8 +25,7 @@ import { RootState } from "@stores/store";
 import { Task } from "@stores/projects/interfaces";
 import { moveColumns, moveTask } from "@stores/projects/actions";
 
-import "../styles/project.css";
-import { StyleProject } from "./project.styles";
+import { StyleProject, StyleProjectColumns } from "./project.styles";
 
 export const Project = () => {
   const dispatch = useDispatch();
@@ -150,14 +149,12 @@ export const Project = () => {
             >
               {/* Columns Draggable */}
               {(provided) => (
-                <div
-                  className="ProjectColumn"
+                <StyleProjectColumns
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
                   {orientation === "portrait" ? (
                     <Swiper
-                      className="Project__Swiper"
                       modules={[Pagination, A11y]}
                       pagination={{ clickable: true }}
                       scrollbar={{ draggable: true }}
@@ -228,7 +225,7 @@ export const Project = () => {
                     ))
                   )}
                   {provided.placeholder}
-                </div>
+                </StyleProjectColumns>
               )}
             </Droppable>
           </DragDropContext>
