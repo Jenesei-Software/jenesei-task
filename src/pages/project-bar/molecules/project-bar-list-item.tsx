@@ -26,7 +26,7 @@ export const ProjectBarListItem: React.FC<IProjectBarListItem> = (
           {props.title}
         </StyleProjectBarListItemHeaderTitle>
         <HidingArrow.CircleDown
-          onCLick={changeIsOpen}
+          onClick={changeIsOpen}
           active={isOpen}
           rotateDeg={180}
         />

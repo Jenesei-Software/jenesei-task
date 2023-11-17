@@ -4,7 +4,7 @@ import {
 } from "./hiding-arrow.styles";
 
 export interface IHidingArrow {
-  onCLick?: () => void;
+  onClick?: () => void;
   active?: boolean;
   rotateDeg?: number;
 }
@@ -12,7 +12,7 @@ export interface IHidingArrow {
 export const HidingArrow = {
   CircleDown: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ export const HidingArrow = {
   },
   CircleUp: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@ export const HidingArrow = {
   },
   CircleRight: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ export const HidingArrow = {
   },
   CircleLeft: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +100,7 @@ export const HidingArrow = {
   },
   CircleRightStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +122,7 @@ export const HidingArrow = {
   },
   CircleLeftStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +144,7 @@ export const HidingArrow = {
   },
   CircleDownStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +166,7 @@ export const HidingArrow = {
   },
   CircleUpStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +188,7 @@ export const HidingArrow = {
   },
   CircleUpRightStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +210,7 @@ export const HidingArrow = {
   },
   CircleUpLeftStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -232,7 +232,7 @@ export const HidingArrow = {
   },
   CircleDownRightStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -254,7 +254,7 @@ export const HidingArrow = {
   },
   CircleDownLeftStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -276,7 +276,7 @@ export const HidingArrow = {
   },
   SquareRightLong: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg width="20" height="60" viewBox="0 0 20 60" fill="none">
             <g id="Right">
@@ -294,7 +294,7 @@ export const HidingArrow = {
   },
   SquareDown: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -316,7 +316,7 @@ export const HidingArrow = {
   },
   SquareUp: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -338,7 +338,7 @@ export const HidingArrow = {
   },
   SquareRight: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -360,7 +360,7 @@ export const HidingArrow = {
   },
   SquareLeft: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -382,7 +382,7 @@ export const HidingArrow = {
   },
   SquareDownStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -404,7 +404,7 @@ export const HidingArrow = {
   },
   SquareUpStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -426,7 +426,7 @@ export const HidingArrow = {
   },
   SquareRightStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -448,7 +448,7 @@ export const HidingArrow = {
   },
   SquareLeftStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -470,7 +470,7 @@ export const HidingArrow = {
   },
   DownStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -498,7 +498,7 @@ export const HidingArrow = {
   },
   UpStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -526,7 +526,7 @@ export const HidingArrow = {
   },
   RightStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -554,7 +554,7 @@ export const HidingArrow = {
   },
   LeftStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -582,7 +582,7 @@ export const HidingArrow = {
   },
   UpLeftStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -610,7 +610,7 @@ export const HidingArrow = {
   },
   UpRightStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -638,7 +638,7 @@ export const HidingArrow = {
   },
   DownLeftStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -666,7 +666,7 @@ export const HidingArrow = {
   },
   DownRightStick: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -694,7 +694,7 @@ export const HidingArrow = {
   },
   Up: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -716,7 +716,7 @@ export const HidingArrow = {
   },
   Down: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -738,7 +738,7 @@ export const HidingArrow = {
   },
   Right: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -760,7 +760,7 @@ export const HidingArrow = {
   },
   Left: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -782,7 +782,7 @@ export const HidingArrow = {
   },
   SwapVertical: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -822,7 +822,7 @@ export const HidingArrow = {
   },
   SwapHorizontal: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -862,7 +862,7 @@ export const HidingArrow = {
   },
   SwapCircle: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -902,7 +902,7 @@ export const HidingArrow = {
   },
   Expand: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -942,7 +942,7 @@ export const HidingArrow = {
   },
   Collapse: function (props: IHidingArrow) {
     return (
-      <StyleHidingArrowWrapper onClick={props.onCLick}>
+      <StyleHidingArrowWrapper onClick={props.onClick}>
         <StyleHidingArrow active={props.active} rotateDeg={props.rotateDeg}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

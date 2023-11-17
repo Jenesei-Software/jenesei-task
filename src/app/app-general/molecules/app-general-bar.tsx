@@ -13,27 +13,27 @@ export const AppGeneralBar = () => {
       <StyleAppGeneralBarNav>
         <UserInterface.JeneseiTaskIcon />
         <UserInterface.LayersBar
-          onCLick={() => navigate(`/${pathName.group.title}`)}
+          onClick={() => navigate(`/${pathName.group.title}`)}
           active={location.pathname.startsWith(`/${pathName.group.title}`)}
           title={pathName.group.title}
         />
         <UserInterface.BrowserBar
-          onCLick={() => navigate(`/${pathName.project.title}`)}
+          onClick={() => navigate(`/${pathName.project.title}`)}
           active={location.pathname.startsWith(`/${pathName.project.title}`)}
           title={pathName.project.title}
         />
         <UserInterface.CalendarBar
-          onCLick={() => navigate(`/${pathName.calendar.title}`)}
+          onClick={() => navigate(`/${pathName.calendar.title}`)}
           active={location.pathname.startsWith(`/${pathName.calendar.title}`)}
           title={pathName.calendar.title}
         />
         <UserInterface.TimeCircleBar
-          onCLick={() => navigate(`/${pathName.time.title}`)}
+          onClick={() => navigate(`/${pathName.time.title}`)}
           active={location.pathname.startsWith(`/${pathName.time.title}`)}
           title={pathName.time.title}
         />
         <UserInterface.ChartBar
-          onCLick={() => navigate(`/${pathName.statistics.title}`)}
+          onClick={() => navigate(`/${pathName.statistics.title}`)}
           active={location.pathname.startsWith(`/${pathName.statistics.title}`)}
           title={pathName.statistics.title}
         />

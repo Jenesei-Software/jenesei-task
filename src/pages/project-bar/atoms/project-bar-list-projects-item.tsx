@@ -1,11 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { Project } from "@stores/projects/interfaces";
-import { ProjectBarListProjectsItemEdit } from "./project-bar-list-projects-item-edit";
 import {
   StyleProjectBarListProjectsItem,
+  StyleProjectBarListProjectsItemEdit,
   StyleProjectBarListProjectsItemTitle,
 } from "./project-bar-list-projects-item.styles";
+import { Another } from "@icons/another/another";
 
 interface IProjectBarListProjectsItem {
   project: Project;
@@ -30,9 +31,11 @@ export const ProjectBarListProjectsItem = (
       >
         {props.project.title}
       </StyleProjectBarListProjectsItemTitle>
-      <ProjectBarListProjectsItemEdit
-        onClick={() => props.onClick(props.project)}
-      />
+      <StyleProjectBarListProjectsItemEdit onClick={(e) => e.stopPropagation()}>
+        <Another.MoreCircle
+          onClick={() => props.onClick(props.project)}
+        />
+      </StyleProjectBarListProjectsItemEdit>
     </StyleProjectBarListProjectsItem>
   );
 };

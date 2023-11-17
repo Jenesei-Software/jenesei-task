@@ -57,3 +57,12 @@ export const StyleProjectBarListProjectsItemTitle = styled.div<IStyleProjectBarL
     font-size: var(--font-size-1);
   }
 `;
+
+export const StyleProjectBarListProjectsItemEdit = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  cursor: pointer;
+  @media (orientation: portrait) {
+  }
+`;

@@ -3,11 +3,10 @@ import {
   StyleUserInterfaceIcon,
   StyleUserInterfaceWrapperBar,
   StyleUserInterfaceWrapperIcon,
-  StyleUserInterfaceWrapperMiniIcon,
 } from "./user-interface.styles";
 
 export interface IUserInterface {
-  onCLick?: () => void;
+  onClick?: () => void;
   active?: boolean;
   rotateDeg?: number;
   title?: string;
@@ -16,7 +15,7 @@ export interface IUserInterface {
 export const UserInterface = {
   LayersBar: function (props: IUserInterface) {
     return (
-      <StyleUserInterfaceWrapperBar onClick={props.onCLick}>
+      <StyleUserInterfaceWrapperBar onClick={props.onClick}>
         <StyleUserInterfaceBar
           active={props.active}
           rotateDeg={props.rotateDeg}
@@ -39,7 +38,7 @@ export const UserInterface = {
   },
   BrowserBar: function (props: IUserInterface) {
     return (
-      <StyleUserInterfaceWrapperBar onClick={props.onCLick} title={props.title}>
+      <StyleUserInterfaceWrapperBar onClick={props.onClick} title={props.title}>
         <StyleUserInterfaceBar
           active={props.active}
           rotateDeg={props.rotateDeg}
@@ -64,7 +63,7 @@ export const UserInterface = {
   },
   CalendarBar: function (props: IUserInterface) {
     return (
-      <StyleUserInterfaceWrapperBar onClick={props.onCLick} title={props.title}>
+      <StyleUserInterfaceWrapperBar onClick={props.onClick} title={props.title}>
         <StyleUserInterfaceBar
           active={props.active}
           rotateDeg={props.rotateDeg}
@@ -89,7 +88,7 @@ export const UserInterface = {
   },
   TimeCircleBar: function (props: IUserInterface) {
     return (
-      <StyleUserInterfaceWrapperBar onClick={props.onCLick} title={props.title}>
+      <StyleUserInterfaceWrapperBar onClick={props.onClick} title={props.title}>
         <StyleUserInterfaceBar
           active={props.active}
           rotateDeg={props.rotateDeg}
@@ -114,7 +113,7 @@ export const UserInterface = {
   },
   ChartBar: function (props: IUserInterface) {
     return (
-      <StyleUserInterfaceWrapperBar onClick={props.onCLick} title={props.title}>
+      <StyleUserInterfaceWrapperBar onClick={props.onClick} title={props.title}>
         <StyleUserInterfaceBar
           active={props.active}
           rotateDeg={props.rotateDeg}
@@ -137,47 +136,10 @@ export const UserInterface = {
       </StyleUserInterfaceWrapperBar>
     );
   },
-  BurgerMini: function (props: IUserInterface) {
-    return (
-      <StyleUserInterfaceWrapperMiniIcon
-        onClick={props.onCLick}
-        title={props.title}
-      >
-        <StyleUserInterfaceBar
-          active={props.active}
-          rotateDeg={props.rotateDeg}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="13"
-            height="10"
-            viewBox="0 0 13 10"
-            fill="none"
-          >
-            <path
-              d="M11.6666 1L0.999959 1"
-              stroke="#2B3F6C"
-              strokeLinecap="round"
-            />
-            <path
-              d="M11.6666 5L0.999959 5"
-              stroke="#2B3F6C"
-              strokeLinecap="round"
-            />
-            <path
-              d="M11.6666 9H0.999959"
-              stroke="#2B3F6C"
-              strokeLinecap="round"
-            />
-          </svg>
-        </StyleUserInterfaceBar>
-      </StyleUserInterfaceWrapperMiniIcon>
-    );
-  },
   JeneseiTaskIcon: function (props: IUserInterface) {
     return (
       <StyleUserInterfaceWrapperIcon
-        onClick={props.onCLick}
+        onClick={props.onClick}
         title={props.title}
       >
         <StyleUserInterfaceIcon

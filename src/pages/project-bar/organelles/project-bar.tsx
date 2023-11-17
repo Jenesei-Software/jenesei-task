@@ -15,7 +15,7 @@ export const ProjectBar = () => {
       <ProjectBarList isBarOpen={isBarOpen} />
       <StyleProjectBarLine>
         <HidingArrow.SquareRightLong
-          onCLick={changeIsBarOpen}
+          onClick={changeIsBarOpen}
           active={isBarOpen}
           rotateDeg={180}
         />
