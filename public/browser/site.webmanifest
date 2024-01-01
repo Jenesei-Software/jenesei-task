@@ -1,6 +1,6 @@
 {
-  "name": "Jen Task",
-  "short_name": "Jen Task",
+  "name": "Jen. Task",
+  "short_name": "Jen. Task",
   "icons": [
     {
       "src": "./android-chrome-192x192.png",
@@ -17,7 +17,7 @@
   "background_color": "#f2f2f6",
   "start_url": "/",
   "display": "standalone",
-  "description": "Jen Task is Nice",
+  "description": "Jen. Task is Nice",
   "lang": "eng",
   "orientation": "portrait"
 }

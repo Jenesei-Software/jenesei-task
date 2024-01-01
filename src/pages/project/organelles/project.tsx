@@ -129,7 +129,7 @@ export const Project = () => {
           <Helmet>
             <meta charSet="utf-8" />
             <title>
-              Jen Task - {projectState.projects[projectIndex]?.title}
+              Jen. Task - {projectState.projects[projectIndex]?.title}
             </title>
           </Helmet>
           <ProjectHeader
