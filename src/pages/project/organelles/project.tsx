@@ -56,7 +56,7 @@ export const Project = () => {
     }
     const { taskNumber: resultId } = JSON.parse(result.draggableId);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { listName: listNameStart, taskNumber: taskNumberStart } = JSON.parse(
+    const { listName: listNameStart} = JSON.parse(
       result.source.droppableId
     );
     const { listName: listNameEnd, taskNumber: taskNumberEnd } = JSON.parse(
