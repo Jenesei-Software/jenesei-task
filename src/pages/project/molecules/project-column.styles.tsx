@@ -13,12 +13,6 @@ export const StyleProjectColumn = styled.div`
   min-width: 300px;
   gap: 10px;
 
-  @media (orientation: portrait) {
-    margin: 2dvw;
-    margin-bottom: 12dvw;
-    width: 88dvw;
-    min-width: 88dvw;
-  }
 `;
 
 export const StyleProjectColumnHeader = styled.div`

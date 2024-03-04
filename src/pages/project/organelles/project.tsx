@@ -139,13 +139,14 @@ export const Project = () => {
           <DragDropContext onDragEnd={onDragEnd}>
             {/* Columns  Droppable*/}
             <Droppable
-              isDropDisabled={isDropDisabled}
+              // isDropDisabled={isDropDisabled}
               droppableId={JSON.stringify({
                 listName: "droppable-lists",
                 taskNumber: undefined,
               })}
               type="LIST"
               direction="horizontal"
+              
             >
               {/* Columns Draggable */}
               {(provided) => (
@@ -158,6 +159,7 @@ export const Project = () => {
                       modules={[Pagination, A11y]}
                       pagination={{ clickable: true }}
                       scrollbar={{ draggable: true }}
+                      slidesPerView={'auto'}
                     >
                       {Object.entries(
                         projectState.searchProjects[projectIndex].columns

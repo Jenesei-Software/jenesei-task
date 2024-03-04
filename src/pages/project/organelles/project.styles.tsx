@@ -14,9 +14,6 @@ export const StyleProject = styled.div`
     background: var(--block-color-brand) !important;
   }
 
-  @media (orientation: portrait) {
-    height: 100%;
-  }
 `;
 export const StyleProjectColumns = styled.div`
   display: flex;
@@ -26,7 +23,4 @@ export const StyleProjectColumns = styled.div`
   justify-content: flex-start;
   overflow-x: auto;
 
-  @media (orientation: portrait) {
-    height: 100%;
-  }
 `;
